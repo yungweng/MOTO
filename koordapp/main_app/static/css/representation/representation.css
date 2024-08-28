@@ -1,0 +1,633 @@
+
+@media only screen and (min-width: 1280px) {
+    /* Style of one row of the table*/
+    .inputblock {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    /* Label Style of current values */
+    .current {
+        align-items: center;
+        align-content: center;
+        display: flex;
+        height: 50px;
+        width: 230px;
+        border-radius: 10px;
+        border: none;
+        background-color: var(--label_background);
+        font-size: 24px;
+        padding-left: 20px;
+        color: var(--font_color);
+        justify-self: center;
+        overflow-x: auto;
+    }
+
+    /* Style of change button*/
+    .change_button {
+        background-color: var(--select_color_background);
+        color: var(--font_color);
+        border-radius: 10px;
+        border: none;
+        font-size: 1.5rem;
+        font-weight: 600;
+        height: 50px;
+        width: 150px;
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+        justify-self: end;
+        transition: 0.35s;
+        cursor: pointer;
+    }
+    .change_button:hover {
+        -webkit-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        -o-transform: scale(1.05);
+        transform: scale(1.05);
+        box-shadow: 0 0 20px var(--select_color_background);
+    }
+
+    /* Style of text in front of input field*/
+    .category {
+        font-size: 24px;
+        font-weight: 400;
+        color: var(--font_color);
+        align-self: center;
+        width: 200px;
+
+    }
+
+    /* Style of inputfield */
+    .inputfield {
+        height: 50px; /* 52px */
+        width: 270px; /* 292 */
+        border-radius: 10px;
+        border: none;
+        background-color: rgba(217, 217, 217, 0.5);
+        font-size: 24px;
+        padding-left: 20px;
+        color: var(--font_color);
+        justify-self: center;
+        overflow-x: auto;
+    }
+
+    /* TABLE STYLE */
+    .header_line {
+        border-bottom-style: solid;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 75px;
+        height: 40px;
+    }
+
+    .category_header {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 180px;
+    }
+
+    .current_header {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 230px;
+    }
+
+    .new_header {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 280px;
+    }
+
+    .submit_header {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 120px;
+    }
+
+    .line {
+        height: 0px;
+        width: 100%;
+        border: 1px solid var(--list_line_color);
+    }
+
+
+    .navcontainer{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+    }
+
+
+    .information{
+
+    }
+
+    .historybutton{
+        font-size: 2em;
+        background-color: var(--button_color2);
+        background-image: none;
+        background-position: 0 90%;
+        background-repeat: repeat no-repeat;
+        background-size: 4px 3px;
+        border-radius: 30px;
+        border-style: solid;
+        border-width: 3px;
+        box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+        box-sizing: border-box;
+        color: var(--font_color);
+        cursor: pointer;
+        font-weight: bold;
+        width: 32%;
+        height: 125px;
+        outline: none;
+        text-decoration: none;
+        transition: all 235ms ease-in-out;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+    /* Button Hover Style Transformation*/
+    .historybutton:hover {
+        box-shadow: rgba(0, 0.3, 0.3, 0.3) 2px 8px 8px -5px;
+        transform: translate3d(0, 4px, 0);
+        color: var(--background_color);
+    }
+
+
+    .historybutton:focus {
+        box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+    }
+    .change_button_transparent{
+        background-color: var(--select_color_background);
+        color: var(--font_color);
+        border-radius: 10px;
+        border: none;
+        font-size: 1.5rem;
+        font-weight: 600;
+        height: 50px;
+        width: 150px;
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+        justify-self: end;
+        opacity: 0.5;
+    }
+    /* Style of Dropdown Select */
+    select {
+        width: 290px;
+        height: 50px;
+        background: url("data:image/svg+xml,<svg height='10px' width='10px' viewBox='0 0 16 16' fill='%23000000' xmlns='http://www.w3.org/2000/svg'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>") no-repeat;
+        background-position: calc(100% - 0.75rem) center !important;
+        -moz-appearance:none !important;
+        -webkit-appearance: none !important;
+        appearance: none !important;
+        padding-right: 2rem !important;
+
+        background-color: rgba(217, 217, 217, 0.5);
+        border-radius: 10px;
+        border: none;
+        font-size: 24px;
+        padding-left: 20px;
+        cursor: pointer;
+    }
+    /* Style for else block in html - restricted view */
+    .information_row{
+        display: flex;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: space-between;
+        margin: 0em 0em 2% 0em;
+    }
+    .information_container{
+        margin-top: 60px;
+    }
+}
+
+/* Tablet Ansicht */
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+    /* Style of one row of the table*/
+    .inputblock {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    /* Label Style of current values */
+    .current {
+        align-items: center;
+        align-content: center;
+        display: flex;
+        height: 50px;
+        width: 170px;
+        border-radius: 10px;
+        border: none;
+        background-color: var(--label_background);
+        font-size: 20px;
+        padding-left: 20px;
+        color: var(--font_color);
+        justify-self: center;
+        overflow-x: auto;
+    }
+
+    /* Style of change button*/
+    .change_button {
+        background-color: var(--select_color_background);
+        color: var(--font_color);
+        border-radius: 10px;
+        border: none;
+        font-size: 20px;
+        font-weight: 600;
+        height: 50px;
+        width: 120px;
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+        transition: 0.35s;
+        cursor: pointer;
+        justify-self: end;
+    }
+    .change_button:hover {
+        -webkit-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        -o-transform: scale(1.05);
+        transform: scale(1.05);
+        box-shadow: 0 0 20px var(--select_color_background);
+    }
+
+    /* Style of text in front of input field*/
+    .category {
+        font-size: 20px;
+        font-weight: 400;
+        color: var(--font_color);
+        align-self: center;
+        width: 170px;
+    }
+
+    /* Style of inputfield */
+    .inputfield {
+        height: 50px;
+        width: 160px;
+        border-radius: 10px;
+        border: none;
+        background-color: rgba(217, 217, 217, 0.5);
+        font-size: 20px;
+        padding-left: 20px;
+        color: var(--font_color);
+        justify-self: center;
+        overflow-x: auto;
+    }
+
+
+
+    /* TABLE STYLE */
+    .header_line {
+        border-bottom-style: solid;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 75px;
+        height: 40px;
+    }
+
+    .category_header {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 210px;
+    }
+
+    .current_header {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 210px;
+    }
+
+    .new_header {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 200px;
+    }
+
+    .submit_header {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 120px;
+    }
+
+    .line {
+        height: 0px;
+        width: 100%;
+        border: 1px solid var(--list_line_color);
+    }
+
+
+    .navcontainer{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+    }
+
+    .historybutton{
+        font-size: 1.4em;
+        background-color: var(--button_color2);
+        background-image: none;
+        background-position: 0 90%;
+        background-repeat: repeat no-repeat;
+        background-size: 4px 3px;
+        border-radius: 30px;
+        border-style: solid;
+        border-width: 3px;
+        box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+        box-sizing: border-box;
+        color: var(--font_color);
+        cursor: pointer;
+        font-weight: bold;
+        width: 32%;
+        height: 125px;
+        outline: none;
+        text-decoration: none;
+        transition: all 235ms ease-in-out;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+    /* Button Hover Style Transformation*/
+    .historybutton:hover {
+        box-shadow: rgba(0, 0.3, 0.3, 0.3) 2px 8px 8px -5px;
+        transform: translate3d(0, 4px, 0);
+        color: var(--background_color);
+    }
+
+
+    .historybutton:focus {
+        box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+    }
+    .change_button_transparent{
+        background-color: var(--select_color_background);
+        color: var(--font_color);
+        border-radius: 10px;
+        border: none;
+        font-size: 20px;
+        font-weight: 600;
+        height: 50px;
+        width: 120px;
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+
+        justify-self: end;
+        opacity: 0.5;
+    }
+    /* Style of Dropdown Select */
+    select {
+        width: 182px;
+        height: 52px;
+        background: url("data:image/svg+xml,<svg height='10px' width='10px' viewBox='0 0 16 16' fill='%23000000' xmlns='http://www.w3.org/2000/svg'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>") no-repeat;
+        background-position: calc(100% - 0.75rem) center !important;
+        -moz-appearance:none !important;
+        -webkit-appearance: none !important;
+        appearance: none !important;
+        padding-right: 2rem !important;
+
+        background-color: rgba(217, 217, 217, 0.5);
+        border-radius: 10px;
+        border: none;
+        font-size: 20px;
+        padding-left: 20px;
+        cursor: pointer;
+    }
+    .information_row{
+        display: flex;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: space-between;
+        margin: 0em 0em 2% 0em;
+    }
+    .information_container{
+        margin-top: 30px;
+    }
+}
+
+/* Mobile Endgeräte Ansicht */
+@media only screen and (min-width: 320px) and (max-width: 767px){
+    /* Style of one row of the table*/
+    .inputblock {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    /* Label Style of current values */
+    .current {
+        align-items: center;
+        align-content: center;
+        display: flex;
+        height: 30px;
+        width: 80px;
+        border-radius: 10px;
+        border: none;
+        background-color: var(--label_background);
+        font-size: 12px;
+        padding-left: 5px;
+        color: var(--font_color);
+        justify-self: center;
+        overflow-x: auto;
+    }
+
+    /* Style of change button*/
+    .change_button {
+        background-color: var(--select_color_background);
+        color: var(--font_color);
+        border-radius: 10px;
+        border: none;
+        font-size: 12px;
+        font-weight: 600;
+        height: 30px;
+        width: 80px;
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+        justify-self: center;
+        transition: 0.35s;
+        cursor: pointer;
+    }
+    .change_button:hover {
+        -webkit-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        -o-transform: scale(1.05);
+        transform: scale(1.05);
+        box-shadow: 0 0 20px var(--select_color_background);
+    }
+
+    /* Style of text in front of input field*/
+    .category {
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--font_color);
+        align-self: center;
+        width: 80px;
+        overflow-x: auto;
+
+    }
+
+    /* Style of inputfield */
+    .inputfield{
+        height: 30px;
+        width: 60px; /* 250px*/
+        border-radius: 10px;
+        border: none;
+        background-color: rgba(217, 217, 217, 0.5);
+        font-size: 12px;
+        padding-left: 5px;
+        color: var(--font_color);
+        justify-self: center;
+        overflow-x: auto;
+    }
+
+
+    /* TABLE STYLE */
+    .header_line {
+        border-bottom-style: solid;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 30px;
+        height: 40px;
+    }
+
+    .category_header {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 230px;
+    }
+
+    .current_header {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 260px;
+    }
+
+    .new_header {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 235px;
+    }
+
+    .submit_header {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 120px;
+    }
+
+    .line {
+        height: 0px;
+        width: 100%;
+        border: 1px solid var(--list_line_color);
+    }
+    .navcontainer{
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-top: 40px;
+    }
+
+    .historybutton{
+        font-size: 1.4em;
+        background-color: var(--button_color2);
+        background-image: none;
+        background-position: 0 90%;
+        background-repeat: repeat no-repeat;
+        background-size: 4px 3px;
+        border-radius: 30px;
+        border-style: solid;
+        border-width: 3px;
+        box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+        box-sizing: border-box;
+        color: var(--font_color);
+        cursor: pointer;
+        font-weight: bold;
+        width: 98%;
+        height: 100px;
+        outline: none;
+        text-decoration: none;
+        transition: all 235ms ease-in-out;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        margin-bottom: 20px;
+    }
+    /* Button Hover Style Transformation*/
+    .historybutton:hover {
+        box-shadow: rgba(0, 0.3, 0.3, 0.3) 2px 8px 8px -5px;
+        transform: translate3d(0, 4px, 0);
+        color: var(--background_color);
+    }
+
+
+    .historybutton:focus {
+        box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+    }
+    .change_button_transparent{
+        background-color: var(--select_color_background);
+        color: var(--font_color);
+        border-radius: 10px;
+        border: none;
+        font-size: 12px;
+        font-weight: 600;
+        height: 30px;
+        width: 70px;
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+        justify-self: center;
+        opacity: 0.5;
+    }
+    /* Style of Dropdown Select */
+    select {
+        width: 67px;
+        height: 32px;
+        background: url("data:image/svg+xml,<svg height='10px' width='10px' viewBox='0 0 16 16' fill='%23000000' xmlns='http://www.w3.org/2000/svg'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>") no-repeat;
+        background-position: calc(100% - 0.75rem) center !important;
+        -moz-appearance:none !important;
+        -webkit-appearance: none !important;
+        appearance: none !important;
+        padding-right: 2rem !important;
+
+        background-color: rgba(217, 217, 217, 0.5);
+        border-radius: 10px;
+        border: none;
+        font-size: 12px;
+        padding-left: 20px;
+        cursor: pointer;
+    }
+    .information_row {
+        display: flex;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: space-between;
+        margin: 0em 0em 20px 0em;
+    }
+
+    .information_container {
+        margin-top: 30px;
+    }
+}

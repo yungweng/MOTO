@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/checked_in_out/checked_in_out_style.css' %}"/>
+        <script>
+            // Funktion zum Umleiten nach einer Verzögerung
+            function umleitungNachVerzögerung() {
+                // Warte 3 Sekunden (3000 Millisekunden)
+                setTimeout(function () {
+                    // Umleitung zur gewünschten URL
+                    window.location.href = '/home/';
+                }, 1000);
+            }
+    
+            // Diese Funktion wird aufgerufen, wenn das Dokument vollständig geladen ist
+            document.addEventListener('DOMContentLoaded', function () {
+                // Hier kannst du andere JavaScript-Aktionen für dein Template hinzufügen
+    
+                // Starte die Verzögerung und Umleitung
+                umleitungNachVerzögerung();
+            });
+        </script>
+    </head>
+
+    <body>
+
+    <div class ="mid_container">
+        <h1 class="default_heading_mid"> Hallo {{nutzer.vorname}}! </h1>
+        <img src="{% static 'img/checked_in.png' %}" alt="Checked-In" class="checked_in_out_logo">
+    </div>
+    <form method="post" id="form">
+        {% csrf_token %}
+        <input type="hidden" name="tag_id" id="tag_id" value="">
+        <!--<input type="submit" value="">-->
+    </form>
+    <script type="module" src="{% static 'js/home_scan_tag.js' %}"></script>
+    </body>
+    </html>
+{% endblock %}

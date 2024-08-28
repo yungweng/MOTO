@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="de">
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/master_android/remove_tablet.css' %}"/>
+</head>
+
+<body>
+    
+    <div class="header_container">
+
+
+            
+    </div>
+    <form method="post" class="input_container">{% csrf_token %}
+        <div class ="mid_container">
+        
+            <h1 class="default_heading_mid"> Wollen Sie das Gerät wirklich abmelden? </h1>
+            <div class="selection_menu">
+                    <input id="abort_button" class="decision_button" type="submit", name="abort_rr" value="Nein"></input>
+                    <input id="select_button" class="decision_button" type="submit", name="submit_rr" value="Ja"></input>
+            </div>
+        </div>
+    </form>
+<script type="module" src="{% static 'js/cancel_scan_tag.js' %}"></script>
+</body>
+</html>
+{% endblock %}

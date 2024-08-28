@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+    <head>
+        <title>KoordApp!</title>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body>
+          {% if user.is_authenticated %}
+          {% else %}
+          {% endif %}
+
+
+      <div class="my-5 text-center container"> 
+        {% block content %}
+        {% endblock %}
+      </div>
+    </body>
+</html>

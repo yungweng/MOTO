@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="de">
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/create_activity/create_activity_style.css' %}"/>
+    </head>
+
+    <body>
+        <!--{% if messages %}
+            <ul class="messages">
+                {% for messages in messages %}
+                    <li{% if message.tags%} class="{{message.tags}}"{%endif%}>{{message}}</li>
+                    {% endfor %}
+            </ul>
+        {% endif %}-->
+    <div class="header_container_back_help">
+        <button class="back" onclick="location.href='{% url 'choose_room' %}';"> <span class = "arrow"> <i class="arrow_left"></i> </span> <span class="backtext">Zurück</span>  </button>
+
+        <a class="question" href="#popup1">Hilfe</a>
+
+        <div id="popup1" class="popup">
+            <div class="popup2">
+                <h3>Was muss ich in diesem Anzeigefenster beachten?</h3>
+
+                <div class="content">
+                    <p>In dieser Ansicht müssen sie die unten stehenden <strong>Eingabefelder</strong> ausfüllen, um eine Aktivität im Raum zu registrieren.
+                        Für Eingaben müssen Sie auf die grauen <strong>Schaltflächen klicken</strong>. Klicken Sie auf <strong>"Abschließen"</strong>, um den Raum zu buchen.</p>
+                </div>
+
+                <a class="close" href="#">&times;</a>
+
+            </div>"
+        </div>
+    </div>
+    <h1 class="heading_2"> Raum {{room.raum_nr}} </h1>
+    <h2 class="subheading_2"> Geben Sie folgende Informationen an: </h2>
+
+    <form method="post" class="input_container" id="form">{% csrf_token %}
+        {% for tup in default_personal_list %}
+        <div class="inputblock">
+            <label class = "category">Aufsichtsperson:</label>
+            <div class="custom-select">
+                <select name="aufsichtsperson_{{tup.value}}">
+                    <option value="0" style="color:#ffff00;">Bitte auswählen..</option>
+                    {% for personal in personallist %}
+                    {% if not personal.user.username in p_in_form or personal.user.username == tup.personal_default %}
+                    <option value="{{personal.user.username}}" {% if personal.user.username == tup.personal_default %} selected {%endif%}>{{personal.user.username}}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        {% endfor %}
+        <div class = "inputblock">
+            <label class = "category">Aktivitätsname:</label>
+            <input type="text" class="inputfield" name="activity" placeholder="Aktivitätsname" {% if not default_activity == None %} value="{{default_activity}}" {%endif%} required/>
+        </div>
+
+        <div class="inputblock">
+            <label class = "category">AG-Kategorie:</label>
+            <div class="custom-select">
+                <select name="ag_kategorie">
+                    <option value="0" style="color:#ffff00;">Bitte auswählen..</option>
+                    {% for ag_kategorie in ag_kategorien %}
+                    <option value="{{ag_kategorie.name}}" {% if ag_kategorie.name == default_ag_kategorie%} selected {%endif%}>{{ag_kategorie.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class = "inputblock">
+            <label class = "category">Maximale Kinderanzahl:</label>
+            <input type="text" class="inputfield" name="capacity" placeholder="Maximal {{room.kapazitaet}}" {% if not default_capacity == None %} value="{{default_capacity}}" {%endif%} required/>
+        </div>
+        {% for message in messages%}
+        <div class = "errormessage">
+            <p> {{message}} </p>
+        </div>
+        {% endfor %}
+
+        <input type="hidden" name="submit_through_button" id="submit_through_button" value="">
+        </form>
+
+        <div class = "submit_container">
+
+            <button class="submit_button" name="button_create_activity" id="NFC-btn" onclick="toggleNFCScanning();"> Auswählen </button>
+            <!--
+            <input type='submit' class="submit_button" name="button_add_personal" value='Aufsichtsperson hinzufügen'/>
+            <input type='submit' class="submit_button" name="button_remove_personal" value='Aufsichtsperson entfernen'/>
+            -->
+        </div>
+    
+    <!--<script type="module" src="{% static 'js/cancel_scan_tag.js' %}"></script>-->
+    </body>
+    <script type="module">
+
+        checkIFNFCSupported();
+        function checkIFNFCSupported(){
+            if (!("NDEFReader" in window)) {
+                //alert("NFC is not supported.");
+                document.getElementById("NFC-btn").disabled = true;
+            }else{
+                //alert("NFC is supported.");
+                document.getElementById("NFC-btn").disabled = false;
+            }
+        }
+        let ndef;
+        let abortController;
+        let NFCResults = [];
+        async function scanNFCTags(){
+            if (!ndef) {
+                abortController = new AbortController();
+                abortController.signal.onabort = event => {
+                    // All NFC operations have been aborted.
+                    console.log(event);
+                };
+                ndef = new NDEFReader();
+                ndef.onreadingerror = () => {
+                    console.log("Cannot read data from the NFC tag. Try another one?");
+                };
+                ndef.onreading = event => {
+                    console.log("NDEF message read.");
+                    console.log(event);
+                    NFCResults = [];
+                    NFCResults = NFCResults.concat(event.message.records);
+                };
+            }
+            ndef.addEventListener("reading", ({ message, serialNumber }) => {
+                const textDecoder = new TextDecoder();
+                //document.getElementById('tag_id').value = textDecoder.decode(message.records[0].data);
+                //document.getElementById('form').submit();
+                console.log(message.records);
+            });
+            ndef.scan({ signal: abortController.signal }).then(() => {
+                console.log("Scan started successfully.");    
+                document.getElementById('submit_through_button').value = 'True';
+                document.getElementById('form').submit();
+            }).catch(error => {
+                console.log(`Error! Scan failed to start: ${error}.`);
+            });
+        }
+        
+        async function scanNFCTags2(){
+            if (!ndef) {
+                abortController = new AbortController();
+                abortController.signal.onabort = event => {
+                    // All NFC operations have been aborted.
+                    console.log(event);
+                };
+                ndef = new NDEFReader();
+                ndef.onreadingerror = () => {
+                    console.log("Cannot read data from the NFC tag. Try another one?");
+                };
+                ndef.onreading = event => {
+                    console.log("NDEF message read.");
+                    console.log(event);
+                    NFCResults = [];
+                    NFCResults = NFCResults.concat(event.message.records);
+                };
+            }
+            ndef.addEventListener("reading", ({ message, serialNumber }) => {
+                const textDecoder = new TextDecoder();
+                console.log(message.records);
+            });
+            ndef.scan({ signal: abortController.signal }).then(() => {
+                console.log("Scan started successfully.");
+            }).catch(error => {
+                console.log(`Error! Scan failed to start: ${error}.`);
+            });
+        }
+
+        function toggleNFCScanning(){
+            //const btn = document.getElementById("HeadingPNG");
+            navigator.permissions.query({ name: "nfc" }).then(permissionStatus => {
+                console.log(`NFC user permission: ${permissionStatus.state}`);
+                if (permissionStatus.state === 'prompt') {   
+                    scanNFCTags();                 
+                } else if (permissionStatus.state === 'granted') {
+                    document.getElementById('form').submit();
+                }
+            });
+                
+                //btn.innerText = "Es wird gescannt! Bitte deinen Chip hinten links an den Scanner halten.";
+        }
+        function toggleNFCScanning2(){
+            const btn = document.getElementById("HeadingPNG");
+                scanNFCTags2();
+                //btn.innerText = "Es wird gescannt! Bitte deinen Chip hinten links an den Scanner halten.";
+        }
+        document.addEventListener('DOMContentLoaded', (event) => {
+            
+            navigator.permissions.query({ name: "nfc" }).then(permissionStatus => {
+                console.log(`NFC user permission: ${permissionStatus.state}`);
+                document.getElementById('NFC-btn').addEventListener('click', toggleNFCScanning);
+                if (permissionStatus.state === 'prompt') { 
+                                       
+                    //alert("Bitte auf Bild des NFC-Tags klicken um Berechtigung anzufordern!");
+                    
+                } else if (permissionStatus.state === 'granted') {
+                    //document.getElementById("NFC-btn").disabled = true;
+                    //document.getElementById('NFC-btn').addEventListener('click', submitForm);
+                    toggleNFCScanning2();
+                }
+            });    
+        });
+
+    </script>
+    </html>
+{% endblock %}

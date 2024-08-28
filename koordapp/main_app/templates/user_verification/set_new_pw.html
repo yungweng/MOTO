@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <title> Nutzer-Passwort-Neuvergabe </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/user_verification/user_verification_style.css' %}"/>
+</head>
+<body>
+    <div class="block_container mid_container" id="user_login">
+        <div class="header_container_back_help">
+            <button class="back invisible" onclick="window.location.href = 'http://127.0.0.1:8000/master_web/';"> <span class = "arrow"> <i class="arrow_left"></i> </span> <span class="backtext">Zurück</span>  </button>
+
+            <a class="question" href="#popup1">Hilfe</a>
+
+            <div id="popup1" class="popup">
+                <div class="popup2">
+                    <h3 id="popupheaderstyle">Was muss ich in diesem Anzeigefenster beachten?</h3>
+
+                    <div class="content">
+                        <p>
+                            Hier können Sie sich ein neues <strong>Passwort</strong> für ihr Nutzerkonto vergeben.
+                            Falls Sie noch kein Nutzerkonto besitzen, wenden Sie sich an einen <strong>Administrator</strong>.
+                        </p>
+                    </div>
+
+                    <a class="close" href="#">&times;</a>
+
+                </div>
+            </div>
+
+        </div>
+        <h1 class='heading_type1'>Setzen Sie ihr persönliches Passwort:</h1>
+        <form method='post' class="login_form">{% csrf_token %}
+            <div class="form_fields" >
+                <div id ="set_new_pw_fields">
+                    {% if otp == False %}
+                    <div class="input_group">
+                        <label for="old_password">Altes Passwort:</label>
+                        <input id="old_password" name="old_password" type="password"/>
+                    </div>
+                    {% endif %}
+                    <div class="input_group">
+                        <label for="new_password">Neues Passwort:</label>
+                        <input id="new_password" name="new_password" type="password"/>
+                    </div>
+                    <div class="input_group">
+                        <label for="repeat_new_password">Neues Passwort <br> wiederholen:</label>
+                        <input id="repeat_new_password" name="repeat_new_password" type="password"/>
+                    </div>
+                </div>   
+            </div>
+            <div class="controls_container">
+                <input type='submit' class="green_button" value='Bestätigen'/>
+            </div>
+            
+        </form>
+        {% for message in messages%}
+            <div class = "errormessage">
+                <p> {{message}} </p>
+            </div>
+        {% endfor %}
+    </div>
+    <script type="module" src="{% static 'js/cancel_scan_tag.js' %}"></script>
+</body>
+{% endblock %}

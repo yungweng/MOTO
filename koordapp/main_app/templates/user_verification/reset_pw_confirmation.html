@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="de">
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/user_verification/user_verification_style.css' %}"/>
+</head>
+<body id="reset_pw_confirmation">
+    <div class="block_container mid_container" id="user_login">
+        <div class="header_container_back_help ">
+            <button class="back" onclick="window.location.href = '/user_login'"> <span class = "arrow"> <i class="arrow_left"></i> </span> <span class="backtext">Zurück</span>  </button>
+        </div>
+        <h2 Class="mid_text space_top">Bitte nehmen Sie Kontakt zum Systemadministrator auf, damit dieser Ihnen für die Zurücksetzung ein One-Time-Passwort vergibt.</h2>
+    </div>
+    <script type="module" src="{% static 'js/cancel_scan_tag.js' %}"></script>
+</body>
+{% endblock %}

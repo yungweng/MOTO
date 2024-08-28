@@ -1,0 +1,465 @@
+/*general styles for all queries*/
+
+.space_top {
+  margin-top: 20vh;
+}
+#display_otp_info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 80%;
+  text-align: center;
+  margin: auto;
+}
+
+.display_info {
+  background-color: var(--list_line_color);
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  padding: 1vh 3vw 1vh 3vw;
+  /*width: 10vw;*/
+}
+.green_button {
+  background-color: var(--select_color_background);
+  color: var(--font_color);
+  border-radius: 10px;
+  font-weight: 500;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  transition: 0.35s;
+  cursor: pointer;
+}
+.green_button:hover {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  transform: scale(1.1);
+  box-shadow: 0 0 20px var(--select_color_background);
+}
+.controls_container a {
+  color: black;
+}
+.login_form {
+  width: 75%;
+  margin: auto;
+}
+#user_login input {
+  border-radius: 10px;
+  border: none;
+}
+.heading_type1 {
+  text-align: center;
+}
+#email_input_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 13vh;
+}
+#user_login input[type="email"] {
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+.mid_text {
+  text-align: left;
+}
+
+/*Computer Screen Media Quarry*/
+@media only screen and (min-width: 1280px) {
+  /*erstmal die max-width überschreiben*/
+  #user_login {
+    max-width: 1000px;
+  }
+  #display_otp_info label {
+    margin: 1vh 1vw 1vh 1vw;
+  }
+  #display_otp_info {
+    width: 90%;
+  }
+  #display_otp_info > * {
+    flex: 0 1 35%;
+  }
+
+  .form_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .header_container_type2 {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-items: center; /* Add this line */
+    width: 95%;
+  }
+  .header_container_type2 h1 {
+    width: 80%;
+    /*order: 3;*/
+  }
+  /*
+  .header_container_type2 .question {
+    order: 2;
+    margin-left: auto;
+  }
+  .header_container_type2 .back {
+    order: 1;
+  }*/
+  .align_right {
+    margin-left: auto;
+  }
+  .heading_type1 {
+    font-size: 4em;
+    font-weight: 600;
+    margin-bottom: 1vh;
+  }
+  .mid_container {
+    height: 50vh;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+    width: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 2vh;
+  }
+
+  #user_login input[type="text"],
+  #user_login input[type="password"],
+  #user_login input[type="email"],
+  #user_login label {
+    font-size: 2em;
+    min-width: 20%;
+    max-width: 40%;
+    overflow: hidden;
+  }
+  #user_login label[for="otp_field"],
+  #user_login label[for="username"] {
+    text-align: left;
+  }
+  .form_fields p {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10%;
+  }
+  .buffer4space {
+    height: 14vh;
+    display: block;
+  }
+  .form_fields p label {
+    width: 30%;
+  }
+  .form_fields {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+  }
+
+  .header_container {
+    padding-right: 0;
+  }
+
+  .controls_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 2vh;
+    gap: 1vh;
+  }
+
+  .green_button {
+    font-size: 1.5rem;
+    padding-top: 0px;
+    height: 2em;
+    width: 200px;
+  }
+  #email_input {
+    width: 50vw;
+    height: 100%;
+  }
+  #email_input_container {
+    height: 25vh;
+    width: 80%;
+  }
+  #user_login input[type="text"],
+  #user_login input[type="password"] {
+    width: 80%;
+  }
+  #user_login input[type="email"] {
+    width: min(64vw, 900px);
+    height: 7vh;
+  }
+  /*für page set_new_pw*/
+  .input_group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 7vh;
+    margin-bottom: 1vh;
+  }
+  .mid_text {
+    font-size: 4vh;
+  }
+}
+
+/*Tablet Media Quarry*/
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  #display_otp_info label {
+    margin: 1vh 1vw 1vh 1vw;
+    min-width: 70%;
+    max-width: 80%;
+    overflow: hidden;
+  }
+
+  .form_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .header_container_type2 {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-items: center; /* Add this line */
+    width: 95%;
+  }
+  .header_container_type2 h1 {
+    width: 90%;
+    order: 1;
+  }
+
+  .header_container_type2 .question {
+    order: 2;
+    margin-left: auto;
+  }
+
+  .heading_type1 {
+    font-size: 3.1em;
+    font-weight: 600;
+    margin-bottom: 5vh;
+  }
+
+  #user_login input[type="text"],
+  #user_login input[type="password"],
+  #user_login input[type="email"],
+  #user_login label {
+    font-size: 2em;
+  }
+  .form_fields p {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 5%;
+  }
+
+  .header_container {
+    padding-right: 0;
+  }
+
+  .controls_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 8vh;
+    font-size: 2vh;
+    gap: 1vh;
+  }
+
+  .green_button {
+    font-size: 1.5rem;
+    padding-top: 0px;
+    height: 80%;
+    width: 200px;
+  }
+  .heading_type1 {
+    margin-top: 20vh;
+  }
+  #user_login {
+    margin: auto;
+  }
+  #user_login input[type="text"],
+  #user_login input[type="password"] {
+    width: 50%;
+  }
+  #pw_mail {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .vertically_mid_container .header_container_type2 h1 {
+    font-size: max(6vw, 3vh);
+    margin-bottom: 0;
+  }
+  .heading_type1 {
+    margin-top: 15vh;
+  }
+  #email_input_container {
+    width: 100%;
+    height: max(15vh, 200px);
+  }
+  #user_login input[type="email"] {
+    width: 70vw;
+    height: 7vh;
+  }
+  #user_login input[type="password"],
+  #user_login input[type="text"] {
+    height: 4vh;
+  }
+  .vertically_mid_container {
+    margin-top: 15vh;
+  }
+  /*set new pw page*/
+  .input_group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 7vh;
+    margin-bottom: 1vh;
+    width: 100%;
+  }
+  .mid_text {
+    font-size: 6vh;
+    width: 90%;
+    margin: auto;
+    margin-top: 20vh;
+    letter-spacing: 1px;
+  }
+}
+
+/*Phone Media Quarry*/
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  .header_container_type2 {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-items: center; /* Add this line */
+    width: 95%;
+    margin: auto;
+    margin-bottom: 1vh;
+  }
+  .header_container_type2 h1 {
+    width: 90%;
+    order: 1;
+    font-size: 5vh;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+
+  .header_container_type2 .question {
+    order: 2;
+    margin-left: auto;
+  }
+
+  .heading_type1 {
+    font-size: 1.8em;
+    font-weight: 600;
+    margin-top: 15vh;
+  }
+  .header_container_type2 .heading_type2 h1 {
+    font-size: 3vh;
+    font-weight: 600;
+    margin-bottom: 5vh;
+  }
+
+  #user_login input[type="text"],
+  #user_login input[type="password"],
+  #user_login input[type="email"],
+  #user_login label {
+    font-size: 1.5em;
+  }
+  .form_fields p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .form_fields p label {
+    margin: 10px 0 10px 0;
+  }
+  /*.form_fields input {
+    width: 100%;
+  }*/
+  .header_container {
+    padding-right: 0;
+  }
+
+  .controls_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 8vh;
+    font-size: 2vh;
+    gap: 1vh;
+  }
+
+  .green_button {
+    font-size: 1.5rem;
+    padding-top: 0px;
+    height: 2em;
+    width: 200px;
+  }
+
+  .vertically_mid_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 60vh;
+    margin-top: 10vh;
+  }
+  #email_input_container {
+    margin-top: 0;
+  }
+  .vertically_mid_container .header_container_type2 h1 {
+    font-size: max(6vw, 3vh);
+    margin-bottom: 0;
+  }
+  #email_input_container {
+    width: 100%;
+    height: max(15vh, 200px);
+  }
+  #user_login input[type="email"] {
+    width: 80vw;
+    height: 6vh;
+  }
+  /*set new pw page*/
+  .input_group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 7vh;
+    margin-bottom: 1vh;
+    width: 100%;
+  }
+  #set_new_pw_fields {
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  #display_otp_info label {
+    margin: 1vh 1vw 1vh 1vw;
+    min-width: 70%;
+    max-width: 80%;
+    overflow: hidden;
+  }
+  #display_otp_info {
+    width: 100%;
+    flex-direction: column;
+  }
+}

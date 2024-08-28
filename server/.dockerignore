@@ -1,0 +1,6 @@
+.dockerignore
+Dockerfile
+nginxTest.iml
+.idea
+.read.md
+nginxTest.iml

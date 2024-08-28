@@ -1,0 +1,432 @@
+:root {
+  --page_background: #f8f9fa;
+  --text_color: #212529;
+  --button_color: #49a078;
+  --navbar_hover_text: #b8c0ff;
+  --navbar_background: #bbd0ff;
+  --navicon_hover: #e7c6ff;
+  --navicon_background_color: #c8b6ff;
+}
+.block_container {
+  display: grid;
+  height: 100dvh;
+  grid-template-areas: "header" "content" "footer";
+  background-color: #f8f9fa;
+  width: 100vw;
+}
+.header_container {
+  grid-area: header;
+  text-align: center;
+  position: relative;
+}
+.form_container {
+  grid-area: content;
+  display: grid; /*
+  background: linear-gradient(to bottom, #f8f9fa, #ffc145);*/
+  text-align: center;
+}
+.dnd_file {
+  grid-area: file_upload;
+  width: 80%;
+  height: 80%;
+  margin: auto;
+  border: 2px dashed #999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #999;
+  background-color: #f3f3f3;
+  cursor: pointer;
+}
+.upload_button {
+  grid-area: upload_button;
+  position: relative;
+}
+#database_flags {
+  position: relative;
+}
+#sheet_flags {
+  position: relative;
+}
+#dummy_download {
+  grid-area: dummy_download;
+  position: relative;
+}
+@media only screen and (max-width: 450px) {
+  .block_container {
+    display: grid;
+    height: 100dvh;
+    grid-template-rows: 0.3fr 2fr 0.5fr;
+    gap: 1%;
+  }
+  .header_container {
+    line-height: 5%;
+    /*
+    background: linear-gradient(to left, #f8f9fa, #212529);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border: 3px solid #212529;*/
+  }
+  .header_container h1 {
+    margin-top: 2%;
+    margin-bottom: 1%;
+    letter-spacing: 3px;
+    font-size: 200%;
+    line-height: 90%;
+  }
+  .header_container h2 {
+    font-size: 120%;
+  }
+  .form_container h4 {
+    letter-spacing: 2px;
+  }
+  .form_container {
+    grid-template-areas: "database_flags" "dummy_download" "file_upload" "upload_button";
+    grid-template-rows: 0.5fr 0.5fr 0.45fr 0.2fr;
+  }
+  #database_flags {
+    grid-area: database_flags;
+    align-items: center;
+    margin-bottom: 5%;
+    padding-bottom: 5%;
+  }
+  #sheet_flags {
+    grid-area: sheet_flags;
+  }
+  .checkbox_container {
+    width: 80%;
+    margin: auto;
+  }
+  #database_flags .checkbox_container {
+    display: grid;
+    text-align: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "overwrite extend";
+    gap: 5%;
+  }
+  #database_flags .checkbox_container label:nth-child(1) {
+    grid-area: overwrite;
+  }
+
+  #database_flags .checkbox_container label:nth-child(2) {
+    grid-area: extend;
+  }
+  #sheet_flags .checkbox_container {
+    margin-bottom: 5%;
+    padding-bottom: 5%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  #sheet_flags .checkbox_container label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-right: 10px;
+  }
+
+  #sheet_flags .checkbox_container input {
+    margin-right: 10px;
+  }
+  .checkbox_container input {
+    width: 15px;
+    height: 15px;
+    margin-right: 1%;
+  }
+  .checkbox_container label {
+    text-align: center;
+    font-size: 130%;
+  }
+
+  #dummy_download {
+    margin-bottom: 5%;
+    padding-bottom: 5%;
+  }
+
+  .dnd_file:before {
+    content: "Drag and drop .xlsx files here or click to upload";
+    text-align: center;
+  }
+  .upload_button {
+    margin: auto;
+    width: 100%;
+    height: 8vh;
+  }
+  .block_container input[type="submit"] {
+    width: 40vw;
+    height: 4vh;
+    background-color: var(--button_color);
+    border-radius: 8px;
+    margin: 1vh 1vh 1vh 1vh;
+  }
+  /*navbar css code*/
+  .navbar_container {
+    position: fixed;
+    display: flex;
+    left: 50%; /* Keep the navbar centered */
+    transform: translateX(-50%);
+    bottom: 1vh; /* Raise the navbar */
+    height: 8vh; /* Slightly reduce the height for a sleeker look */
+    width: 95%;
+    justify-content: center;
+    background-color: var(
+      --navbar_background
+    ); /* Use one of the provided colors for the navbar background */
+    border: none; /* Remove the border */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effects */
+    border-radius: 18px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.15);
+    border: 2px solid black;
+  }
+
+  .navbar_container:hover {
+    background-color: var(
+      --navbar_background
+    ); /* Slightly lighter background on hover */
+  }
+
+  .nav_item {
+    height: min(
+      80%,
+      100px
+    ); /* Reduce the height to create some space around the items */
+    width: 20%;
+    text-align: center;
+    background-color: var(
+      --navicon_background_color
+    ); /* Use another provided color for the nav item background */
+    margin: auto 0.2%; /* Uniform margin */
+    border-radius: 5%;
+    border: 3px solid var(--navicon_hover); /* Use another provided color for the border */
+    color: #ffd6ff; /* Use the last provided color for the text */
+    font-size: 0.8em; /* Larger text */
+    line-height: 1.5; /* Center the text vertically */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Add a subtle shadow to the items */
+    padding-top: 0.4vh;
+    padding-bottom: 0.4vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav_item:hover {
+    background-color: var(--navicon_hover); /* Lighter background on hover */
+    color: var(--navbar_hover_text); /* Darker text on hover */
+    transform: scale(1.05); /* Slightly enlarge the items on hover */
+  }
+  .icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-around;
+  }
+  .icon a {
+    text-align: center;
+    font-size: 15px;
+    width: 100%;
+    color: black;
+    text-decoration: none;
+    margin: auto;
+    /*margin-bottom: 20px;*/
+    word-wrap: break-word;
+    display: none;
+  }
+  .icon img {
+    width: min(60%, 90px);
+    height: min(60%, 90px);
+    margin: auto;
+  }
+
+  /* style changes */
+  #database_flags::after,
+  #sheet_flags::after,
+  #dummy_download::after {
+    content: "";
+    position: absolute;
+    left: 5%; /* to center the border */
+    bottom: 0;
+    height: 3px; /* adjust as needed */
+    width: 90%;
+    background-color: #495057;
+  }
+
+  #database_flags::before {
+    content: "";
+    position: absolute;
+    left: 5%; /* to center the border */
+    top: 0;
+    height: 3px; /* adjust as needed */
+    width: 90%;
+    background-color: #495057;
+  }
+}
+@media only screen and (min-width: 451px) {
+  .block_container {
+    display: grid;
+    grid-template-rows: 0.5fr 2fr 0.5fr;
+    width: 100%;
+  }
+  .form_container {
+    grid-template-rows: 0.5fr 0.5fr 0.5fr 0.3fr;
+    width: 100%;
+    grid-template-areas:
+      "dummy_download"
+      "flags"
+      "file_upload"
+      "upload_button";
+  }
+  #database_flags,
+  #sheet_flags {
+    grid-area: flags;
+    width: 75%;
+    height: 100%;
+    /*padding: 3% 3% 3% 3%;*/
+    margin: 2% 2% 2% 2%;
+  }
+  #dummy_download,
+  .upload_container {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  #sheet_flags h3 {
+    line-height: 230%;
+  }
+  #flags {
+    width: 90%;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    margin: auto; /* Adjust as needed */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  #flags::after,
+  .header_container::after {
+    content: "";
+    position: absolute;
+    left: 50%; /* Move the left edge of the line to the center of the parent element */
+    transform: translateX(
+      -50%
+    ); /* Move the line left by half its width to truly center it */
+    bottom: 0;
+    height: 3px; /* adjust as needed */
+    width: 90vw; /* Set a fixed width */
+    background-color: #495057;
+  }
+
+  #flags::before {
+    content: "";
+    position: absolute;
+    left: 50%; /* Move the left edge of the line to the center of the parent element */
+    transform: translateX(
+      -50%
+    ); /* Move the line left by half its width to truly center it */
+    top: 0; /* position at the top of the container */
+    height: 3px; /* adjust as needed */
+    width: 90vw; /* Set a fixed width */
+    background-color: #495057;
+  }
+  .dnd_file {
+    width: 60%;
+    margin-bottom: 1%;
+  }
+  .upload_button {
+    margin: auto;
+  }
+  .block_container input[type="submit"] {
+    width: 20vw;
+    height: 3vh;
+    background-color: var(--button_color);
+    border-radius: 8px;
+  }
+  .upload_container {
+    height: min(100%, 150px);
+    padding-top: 1%;
+    padding-bottom: 2%;
+  }
+  .navbar_container {
+    position: fixed;
+    display: flex;
+    left: 50%; /* Keep the navbar centered */
+    transform: translateX(-50%);
+    bottom: 2.5vh; /* Raise the navbar */
+    height: 13vh; /* Slightly reduce the height for a sleeker look */
+    width: 60%;
+    justify-content: center;
+    background-color: var(
+      --navbar_background
+    ); /* Use one of the provided colors for the navbar background */
+    border: none; /* Remove the border */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effects */
+    border-radius: 18px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.15);
+    border: 2px solid black;
+  }
+
+  .navbar_container:hover {
+    background-color: var(
+      --navbar_background
+    ); /* Slightly lighter background on hover */
+  }
+  .nav_item {
+    height: min(
+      80%,
+      100px
+    ); /* Reduce the height to create some space around the items */
+    width: 20%;
+    text-align: center;
+    background-color: var(
+      --navicon_background_color
+    ); /* Use another provided color for the nav item background */
+    margin: auto 0.2%; /* Uniform margin */
+    border-radius: 5%;
+    border: 3px solid var(--navicon_hover); /* Use another provided color for the border */
+    color: #ffd6ff; /* Use the last provided color for the text */
+    font-size: 1.2em; /* Larger text */
+    line-height: 1.5; /* Center the text vertically */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Add a subtle shadow to the items */
+    padding-top: 0.8vh;
+    padding-bottom: 0.8vh;
+    overflow: hidden;
+  }
+
+  .nav_item:hover {
+    background-color: var(--navicon_hover); /* Lighter background on hover */
+    color: var(--navbar_hover_text); /* Darker text on hover */
+    transform: scale(1.05); /* Slightly enlarge the items on hover */
+  }
+  .icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-around;
+  }
+  .icon a {
+    text-align: center;
+    font-size: 15px;
+    width: 100%;
+    color: black;
+    text-decoration: none;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+  .icon img {
+    width: min(50%, 80px);
+    height: min(50%, 80px);
+    margin: auto;
+  }
+}

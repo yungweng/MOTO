@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/history_pages/history_page_style.css' %}"/>
+    </head>
+
+    <body>
+    <div class = "block_container">
+        <div class="header_container_back_help">
+            <button class="back" onclick="location.href='{% url 'room_selection' raum=raum.raum_nr %}';"> <span class = "arrow"> <i class="arrow_left"></i> </span> <span class="backtext">Zurück</span>  </button>
+
+            <a class="question" href="#popup1">Hilfe</a>
+
+            <div id="popup1" class="popup">
+                <div class="popup2">
+                    <h3>Was muss ich in diesem Anzeigefenster beachten?</h3>
+
+                    <div class="content">
+                        <p> In dieser Ansicht können Sie die <strong>Nutzungshistorie</strong> des ausgewählten Raumes ansehen. Klicken Sie auf <strong>"Zurück"</strong>, um zurück zur Auswahlansicht für den Raum zu gelangen.</p>
+                    </div>
+
+                    <a class="close" href="#">&times;</a>
+
+                </div>"
+            </div>
+        </div>
+
+        <h1 class="heading_2"> Nutzungshistorie </h1>
+        <h2 class="subheading_2"> Raum {{raum.raum_nr}} </h2>
+
+        <div class = "table_container">
+            <div class =  "table_heading_row">
+                <h3 class = "column_title_type1"> Datum</h3>
+                <h3 class = "column_title_type1"> Uhrzeit</h3>
+                <h3 class = "column_title_type1"> AG-Kategorie</h3>
+                <h3 class = "column_title_type1"> Anzahl <br> Kinder</h3>
+            </div>
+            <div class = "table_data">
+                {%for historie in historien %} 
+                <!--<span class = "table_data_row">-->
+                    <span class = "table_data_row"><h4 class="data_row_type1">{{historie.date}}</h4> <h4 class="data_row_type1">{{historie.time}}</h4> <h4 class="data_row_type1">{{historie.kategorie}}</h4> <h4 class="data_row_type1">{{historie.number}}</h4></span>
+                    <!--<span class="data_row_type1"> {{historie.date}}</span>  <span class="data_row_type1">{{historie.time}}</span> <span class="data_row_type1">{{historie.number}}</span>-->
+                <!--</span>-->
+                {% endfor %}
+                <!--<span class = "table_data_row"><h4 class="data_row_type1">01.01.01</h4> <h4 class="data_row_type1">14.15</h4> <h4 class="data_row_type1">7</h4></span>-->
+            </div>
+        </div>
+
+    </div>
+
+    </body>
+    </html>
+{% endblock %}

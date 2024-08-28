@@ -1,0 +1,234 @@
+
+ul.errorlist {
+  display: none;
+}
+* h1 {
+  font: bold 40px Arial, sans-serif;
+  text-align: center;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  color: black;
+  font: bold 40px Arial, sans-serif;
+  text-align: center;
+}
+
+#id_password {
+  padding: 1vh;
+  font: 40px Arial, sans-serif;
+  border: 3px solid green;
+  width: 35vh;
+  margin-top: 20px;
+}
+
+.login-button {
+  padding: 1vh;
+  font: bold 20px Arial, sans-serif;
+  width: 15vh;
+  margin-top: 0.1vh;
+  background-color: #6aa73c;
+  cursor: pointer;
+}
+/*page Welcome - NFC Checkin*/
+@media only screen and (min-width: 1401px) {
+  .nfc-check-in {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    color: black;
+  }
+  .nfc-check-in img {
+    width: 700px;
+    height: auto;
+    margin-top: 100px;
+  }
+  .nfc-check-in h1 {
+    font: bold 80px Arial, sans-serif;
+    text-align: center;
+  }
+}
+@media only screen and (min-width: 392px), (max-width: 1400px) {
+  .nfc-check-in {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    color: black;
+  }
+
+  .nfc-check-in img {
+    width: 60vw;
+    height: auto;
+    margin-top: 100px;
+  }
+  .nfc-check-in h1 {
+    font: bold 5vh Arial, sans-serif;
+    text-align: center;
+  }
+}
+@media only screen and (max-width: 391px) {
+  .nfc-check-in {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    color: black;
+  }
+
+  .nfc-check-in img {
+    width: 60vw;
+    height: auto;
+    margin-top: 100px;
+  }
+  .nfc-check-in h1 {
+    font: bold 3vh Arial, sans-serif;
+    text-align: center;
+  }
+}
+/* create activity form*/
+.create_activity_form {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  font: bold 3.5vw Arial, sans-serif;
+  border: solid 0.5vw black;
+  border-radius: 20px;
+  padding: 2vw 2vw 2vw 2vw;
+  margin: 10vw 2vw 2vw 2vw;
+  background-color: rgba(76, 219, 19, 0.508);
+}
+
+.create_activity_form input {
+  width: 42vw;
+  height: auto;
+  margin: 1vw 1vw 1vw 1vw;
+  padding: 1vh;
+  border: 3px solid black;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+.create_activity_form label {
+  width: 42vw;
+  margin: 1vw 1vw 1vw 1vw;
+  padding: 1vh;
+  border: 3px solid black;
+  background-color: #ffffff;
+}
+/*navbar stuff, everything for navigation including the help-icon */
+@media only screen and (min-width: 1401px) {
+  .navbar-standard {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1120px;
+    background-color: #aaa7a7;
+    display: flex;
+    justify-content: center;
+    /*padding: 10px; */
+    border-top-left-radius: 20px; /* Rounded top left corner */
+    border-top-right-radius: 20px; /* Rounded top right corner */
+    border-bottom-left-radius: 0; /* No rounding for bottom left corner */
+    border-bottom-right-radius: 0; /* No rounding for bottom right corner */
+  }
+  .navbar-icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 70px 14px 70px;
+    margin: 0px 10px 0px 10px;
+    background-color: #6d6d6dae;
+    color: white;
+    border: solid 0.5vw #8c8c8c;
+    border-radius: 10px;
+  }
+  .navbar-icon-container img {
+    width: 70px; /* Adjust the width as desired */
+    height: auto;
+    margin-bottom: 5px;
+    color: red;
+  }
+  .navbar-text {
+    font-size: 12px; /* Adjust the font size as desired */
+  }
+
+  .navbar-standard:hover #help_icon {
+    transform: scale(1.2); /* Scale on hover */
+  }
+  #help_icon {
+    height: auto;
+    background-color: black;
+    cursor: pointer;
+    position: fixed;
+    bottom: 10px; /* Adjust the distance from the top as needed */
+    right: 10px; /* Adjust the distance from the right as needed */
+    margin: 14px;
+    transform: scale(1); /* Initial scale */
+    transition: transform 0.3s ease; /* Add transition for smooth scaling */
+    width: 70px;
+  }
+}
+@media only screen and (max-width: 1400px) {
+  .navbar-standard {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    background-color: #aaa7a7;
+    display: flex;
+    justify-content: center;
+    /*padding: 10px; */
+    border-top-left-radius: 20px; /* Rounded top left corner */
+    border-top-right-radius: 20px; /* Rounded top right corner */
+    border-bottom-left-radius: 0; /* No rounding for bottom left corner */
+    border-bottom-right-radius: 0; /* No rounding for bottom right corner */
+  }
+  .navbar-icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2vw 5vw 1vw 5vw;
+    margin: 0px 10px 0px 10px;
+    background-color: #6d6d6dae;
+    color: white;
+    border: solid 0.5vw #8c8c8c;
+    border-radius: 10px;
+  }
+  .navbar-icon-container img {
+    width: 5vw; /* Adjust the width as desired */
+    height: auto;
+    margin-bottom: 5px;
+    color: red;
+  }
+  .navbar-text {
+    font-size: 12px; /* Adjust the font size as desired */
+  }
+
+  .navbar-standard:hover #help_icon {
+    transform: scale(1.2); /* Scale on hover */
+  }
+  #help_icon {
+    height: auto;
+    background-color: black;
+    cursor: pointer;
+    position: fixed;
+    bottom: 10px; /* Adjust the distance from the top as needed */
+    right: 10px; /* Adjust the distance from the right as needed */
+    margin: 1vw 1vw;
+    transform: scale(1); /* Initial scale */
+    transition: transform 0.3s ease; /* Add transition for smooth scaling */
+    width: 5vw;
+  }
+}

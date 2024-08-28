@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+     body {
+         font-family: 'Inter', sans-serif;
+         background: #F6F4F3;
+         padding-left: 10%;
+         padding-right: 10%;
+     }
+
+    * h1{
+        text-align: center;
+        font-weight: bold;
+    }
+    * h2{
+        font-weight: normal;
+    }
+
+    .default_heading{
+        color: #1B2021;
+        font-size: 100px;
+        margin-bottom: 1px;
+        margin-top: 8%;
+    }
+    .default_subheading{
+        color: #1B2021;
+        font-size: 50px;
+        text-align: center;
+        margin-top: 20px;
+        padding-top: 0px;
+    }
+
+
+        /* Basic Selection-button Style*/
+        button {
+            background-color: #AEAEB3;
+            background-image: none;
+            background-position: 0 90%;
+            background-repeat: repeat no-repeat;
+            background-size: 4px 3px;
+            border-radius: 15px 225px 255px 15px;
+            border-style: solid;
+            border-width: 10px;
+            box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+            box-sizing: border-box;
+            color:#1B2021;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            height: 400px;
+            outline: none;
+            text-decoration: none;
+            transition: all 235ms ease-in-out;
+            border-bottom-left-radius: 15px 255px;
+            border-bottom-right-radius: 225px 15px;
+            border-top-left-radius: 255px 15px;
+            border-top-right-radius: 15px 225px;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+    #NFC-btn{
+        font-size: 70px;
+        color: #F6F4F3;
+    }
+
+        /* Button Hover Style Transformation*/
+        button:hover{
+            box-shadow: rgba(0, .3, .3, .3) 2px 8px 8px -5px;
+            transform: translate3d(0, 4px, 0);
+            color: #F6F4F3;
+
+        }
+        button:focus {
+            box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+        }
+    p{
+        font-size: 40px;
+        color: #1B2021;
+        text-align: left;
+        margin-top: 30px;
+        padding-top: 0px;
+    }
+    ol{
+        font-size: 40px;
+        color: #1B2021;
+        text-align: left;
+        margin-top: 30px;
+        padding-top: 0px;
+    }
+
+</style>
+
+
+
+<head>
+    <title>NFC and Barcode Scanner</title>
+    <link rel="stylesheet" type=text/css href="nfc_draft.css/">
+</head>
+
+<body>
+<div class="app">
+    <h1 class="default_heading"> NFC Prototyp </h1>
+
+</div>
+
+
+
+
+<div class="app">
+
+    <h2 class="default_subheading"> Klicken Sie auf "Scan starten" um den NFC Chip einzulesen! </h2>
+
+    <div>
+        <button id="NFC-btn" onclick="toggleNFCScanning();">Scan starten</button>
+    </div>
+    <div>
+        <p> NFC Results: </p>
+        <ol id="NFC-results"></ol>
+    </div>
+</div>
+<script type="text/javascript" , src="main.js"></script>
+</body>
+</html>
+

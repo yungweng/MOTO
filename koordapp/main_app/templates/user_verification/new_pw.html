@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <title> Nutzer-Passwort-Neuvergabe </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/user_verification/user_verification_style.css' %}"/>
+</head>
+<body>
+    <div class="block_container mid_container" id="user_login">
+
+        <div class="header_container_back_help">
+            <button class="back" onclick="window.location.href = '/master_web/'"> <span class = "arrow"> <i class="arrow_left"></i> </span> <span class="backtext">Zurück</span>  </button>
+            <a class="question" href="#popup1">Hilfe</a>
+
+
+            <div id="popup1" class="popup">
+                <div class="popup2">
+                    <h3 id="popupheaderstyle">Was muss ich in diesem Anzeigefenster beachten?</h3>
+
+                    <div class="content">
+                        <p>
+                            Hier können Sie sich das neue <strong>Passwort</strong> für das Nutzerkonto einsehen.
+                        </p>
+                    </div>
+
+                    <a class="close" href="#">&times;</a>
+
+                </div>
+            </div>
+
+        </div>
+        <h1 class='heading_type1'>Ihre Einmalzugangsdaten:</h1>
+
+        <div id ="display_otp_info">
+            <label for="username">Benutzername:</label>
+            <label class="display_info"id="username"type="text">{{username}}</label>
+            <label for="otp_field">Einmalpasswort:</label>
+            <label class="display_info" id="otp_field" type="text">{{otp}}</label>
+        </div> 
+    </div>
+<script type="module" src="{% static 'js/cancel_scan_tag.js' %}"></script>
+</body>
+{% endblock %}

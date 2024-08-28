@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/home/home_style.css' %}"/>
+    </head>
+
+    <body>
+    
+
+    <div class="header_container_mid">
+
+        <button class="login_button" onclick="window.location.href = '/login/'">Login</button>
+
+
+
+    </div>
+    <div class ="mid_container">
+        <h1 class="default_heading_mid"> Raum {{room.raum_nr}} </h1>
+        <img src="{% static 'img/placeholder_nfc_scan_transparent.png' %}" alt="NFC-Scan" class="nfc_scan" id="NFC-btn" onclick="toggleNFCScanning();">
+        <p class = "explanation">Halte dein Armband an das Logo um dich an- oder abzumelden!</p>
+    </div>
+    <!--
+    <form method="post" class="input_container">{% csrf_token %}
+        <input type="text" class="inputfield" name="tag_id" placeholder="|"/>
+        <input type='submit' class="change_button" name="button_register_tag" value='Register Tag-ID'/>
+    </form>
+    -->
+        <!--{% for message in messages%}
+            <div class = "errormessage">
+                <p> {{message}} </p>
+            </div>
+        {% endfor %}-->
+    <form method="post" id="form">
+        {% csrf_token %}
+        <input type="hidden" name="tag_id" id="tag_id" value="">
+        <!--<input type="submit" value="">-->
+    </form>
+
+    <script type="module" src="{% static 'js/home_scan_tag.js' %}"></script>
+    </body>
+    </html>
+{% endblock %}

@@ -1,0 +1,324 @@
+/* PC Ansicht */
+@media only screen and (min-width: 1280px) {
+    /* Style of searchabar*/
+    .searchcontainer{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    /* Style of searchbar */
+    .searchbar {
+        height: 50px;
+        width: 75%;
+        border-radius: 10px;
+        border: none;
+        background-color: var(--inputfield_background);
+        font-size: 24px;
+        padding-left: 20px;
+        color: var(--font_color);
+        justify-self: center;
+    }
+    /* Style of search button*/
+    .search_button {
+        background-color: var(--blue_color);
+        color: whitesmoke;
+        border-radius: 10px;
+        font-size: 1.5rem;
+        font-weight: 600;
+        height: 50px;
+        width: 20%;
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+        justify-self: end;
+        transition: all 0.35s;
+        position: relative;
+        &::before,
+        &::after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-color: var(--blue_color);
+            border-radius: 10px;
+            border-style: solid;
+            transition: all 0.35s;
+            content: "";
+            z-index: 1;
+        }
+        &::before {
+            width: 0;
+            height: 100%;
+            border-width: 2px 0 2px 0;
+        }
+        &::after {
+            width: 100%;
+            height: 0;
+            border-width: 0 2px 0 2px;
+        }
+        &:hover {
+            border-color: var(--blue_color);
+            &::before {
+                width: 100%;
+                border-width: 2px 0 2px 0;
+            }
+            &::after {
+                height: 100%;
+                border-width: 0 1px 0 1px;
+            }
+        }
+    }
+    /* Style of Select Button*/
+    .assign_button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: auto;
+        line-height: 65px;
+        background-color: var(--select_color_background);
+        color: var(--font_color);
+        border-radius: 10px;
+        border: none;
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding-top: 0px;
+        height: 70px;
+        width: 200px;
+        margin-right: 25px;
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+        transition: all 0.35s;
+        position: relative;
+        box-sizing: border-box;
+        overflow: hidden;
+
+        &::before {
+            width: 40px;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            content: '\27A4';
+            font-weight: bold;
+            font-size: 25px;
+            color: var(--font_color);
+            text-indent: 5px;
+            border-radius: 0 50% 50% 0;
+            background-color: rgba(110, 166, 103, 0.75);
+            transform: translate(-20%, -50%) scale(0, 1);
+            transform-origin: left center;
+            transition: all 0.25s;
+            z-index: 1;
+        }
+
+        &:hover {
+            text-indent: 25px;
+
+            &::before {
+                transform: translate(-20%, -50%) scale(1, 1);
+            }
+        }
+    }
+    /* Style of listblock */
+    .text_pupil {
+        margin-top: 25px;
+        font-size: 1.7rem;
+        font-weight: 500;
+        color: var(--font_color);
+        margin-left: 30px;
+        height: 1.6em;
+        width: 760px;
+    }
+    .pupil_container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 5em;
+        width: 100%;
+        margin-top: 15px;
+        background-color: var(--listblock_background);
+        border-radius: 18px;
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+    }
+    .no_results{
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        text-align: center;
+        color: var(--list_line_color);
+        font-size: 18px;
+        font-weight: 500;
+        margin-left: 15px;
+    }
+}
+
+/* Tablet Ansicht */
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+    /* Style of searchabar*/
+    .searchcontainer{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    /* Style of searchbar */
+    .searchbar {
+        height: 40px;
+        width: 75%;
+        border-radius: 10px;
+        border: none;
+        background-color: var(--inputfield_background);
+        font-size: 22px;
+        padding-left: 20px;
+        color: var(--font_color);
+        justify-self: center;
+    }
+    /* Style of search button*/
+    .search_button {
+        background-color: var(--blue_color);
+        color: whitesmoke;
+        border-radius: 10px;
+        font-size: 22px;
+        font-weight: 600;
+        height: 40px;
+        width: 20%;
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+        justify-self: end;
+    }
+    /* Style of Select Button*/
+    .assign_button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: auto;
+        line-height: 65px;
+        background-color: var(--select_color_background);
+        color: var(--font_color);
+        border-radius: 10px;
+        border: none;
+        font-size: 22px;
+        font-weight: 600;
+        padding-top: 0px;
+        height: 50px;
+        width: 225px;
+        margin-right: 25px;
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    }
+    /* Style of listblock */
+    .text_pupil {
+        margin-top: 20px;
+        font-size: 22px;
+        font-weight: 500;
+        color: var(--font_color);
+        margin-left: 30px;
+        height: 1.6em;
+        width: 760px;
+    }
+    .pupil_container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 4em;
+        width: 100%;
+        margin-top: 15px;
+        background-color: var(--listblock_background);
+        border-radius: 18px;
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+    }
+    .no_results{
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        text-align: center;
+        color: var(--list_line_color);
+        font-size: 18px;
+        font-weight: 500;
+        margin-left: 15px;
+    }
+}
+
+/* Mobile Endgeräte Ansicht */
+@media only screen and (min-width: 320px) and (max-width: 767px){
+    /* Style of searchabar*/
+    .searchcontainer{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    /* Style of searchbar */
+    .searchbar {
+        height: 40px;
+        width: 65%;
+        border-radius: 10px;
+        border: none;
+        background-color: var(--inputfield_background);
+        font-size: 20px;
+        padding-left: 20px;
+        color: var(--font_color);
+        justify-self: center;
+    }
+    /* Style of search button*/
+    .search_button {
+        background-color: var(--blue_color);
+        color: whitesmoke;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: 600;
+        height: 40px;
+        width: 28%;
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+        justify-self: end;
+    }
+    /* Style of Select Button*/
+    .assign_button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: auto;
+        line-height: 65px;
+        background-color: var(--select_color_background);
+        color: var(--font_color);
+        border-radius: 10px;
+        border: none;
+        font-size: 18px;
+        font-weight: 600;
+        padding-top: 0px;
+        height: 50px;
+        width: 250px;
+        margin-right: 15px;
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    }
+    /* Style of listblock */
+    .text_pupil {
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: 500;
+        color: var(--font_color);
+        margin-left: 30px;
+        height: 1.6em;
+        width: 400px;
+    }
+    .pupil_container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 4em;
+        width: 100%;
+        margin-top: 15px;
+        background-color: var(--listblock_background);
+        border-radius: 18px;
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+    }
+    .no_results{
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        text-align: center;
+        color: var(--list_line_color);
+        font-size: 15px;
+        font-weight: 500;
+        margin-left: 15px;
+    }
+}
+

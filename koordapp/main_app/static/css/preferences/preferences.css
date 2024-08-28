@@ -1,0 +1,371 @@
+
+@media only screen and (min-width: 1280px) {
+    /* Style of one row of the table*/
+    .inputblock {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    /* Label Style of current values */
+    .current {
+        align-items: center;
+        align-content: center;
+        display: flex;
+        height: 50px;
+        width: 230px;
+        border-radius: 10px;
+        border: none;
+        background-color: var(--label_background);
+        font-size: 24px;
+        padding-left: 20px;
+        color: var(--font_color);
+        justify-self: center;
+        overflow-x: auto;
+    }
+
+    /* Style of change button*/
+    .change_button {
+        background-color: var(--select_color_background);
+        color: var(--font_color);
+        border-radius: 10px;
+        border: none;
+        font-size: 1.5rem;
+        font-weight: 600;
+        height: 50px;
+        width: 150px;
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+        justify-self: end;
+        transition: 0.35s;
+        cursor: pointer;
+    }
+    .change_button:hover {
+        -webkit-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        -o-transform: scale(1.05);
+        transform: scale(1.05);
+        box-shadow: 0 0 20px var(--select_color_background);
+    }
+    /* Style of text in front of input field*/
+    .category {
+        font-size: 24px;
+        font-weight: 400;
+        color: var(--font_color);
+        align-self: center;
+        width: 250px;
+    }
+
+    /* Style of inputfield */
+    .inputfield {
+        height: 50px;
+        width: 270px; /* 250px */
+        border-radius: 10px;
+        border: none;
+        background-color: rgba(217, 217, 217, 0.5);
+        font-size: 24px;
+        padding-left: 20px;
+        color: var(--font_color);
+        justify-self: center;
+    }
+
+    /* TABLE STYLE */
+    .header_line {
+        border-bottom-style: solid;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 75px;
+        height: 40px;
+    }
+
+    .category_header {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 200px;
+    }
+
+    .current_header {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 190px;
+    }
+
+    .new_header {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 235px;
+    }
+
+    .submit_header {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 120px;
+    }
+
+    .line {
+        height: 0px;
+        width: 100%;
+        border: 1px solid var(--list_line_color);
+    }
+}
+
+/* Tablet Ansicht */
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+    /* Style of one row of the table*/
+    .inputblock {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    /* Label Style of current values */
+    .current {
+        align-items: center;
+        align-content: center;
+        display: flex;
+        height: 50px;
+        width: 170px;
+        border-radius: 10px;
+        border: none;
+        background-color: var(--label_background);
+        font-size: 20px;
+        padding-left: 20px;
+        color: var(--font_color);
+        justify-self: center;
+        overflow-x: auto;
+    }
+
+
+    /* Style of change button*/
+    .change_button {
+        background-color: var(--select_color_background);
+        color: var(--font_color);
+        border-radius: 10px;
+        border: none;
+        font-size: 20px;
+        font-weight: 600;
+        height: 50px;
+        width: 120px;
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+
+        justify-self: end;
+        transition: 0.35s;
+        cursor: pointer;
+    }
+    .change_button:hover {
+        -webkit-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        -o-transform: scale(1.05);
+        transform: scale(1.05);
+        box-shadow: 0 0 20px var(--select_color_background);
+    }
+    /* Style of text in front of input field*/
+    .category {
+        font-size: 20px;
+        font-weight: 400;
+        color: var(--font_color);
+        align-self: center;
+        width: 190px;
+    }
+
+    /* Style of inputfield */
+    .inputfield {
+        height: 50px;
+        width: 220px; /* 250px */
+        border-radius: 10px;
+        border: none;
+        background-color: rgba(217, 217, 217, 0.5);
+        font-size: 20px;
+        padding-left: 20px;
+        color: var(--font_color);
+        justify-self: center;
+    }
+
+
+
+    /* TABLE STYLE */
+    .header_line {
+        border-bottom-style: solid;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 75px;
+        height: 40px;
+    }
+
+    .category_header {
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 200px;
+    }
+
+    .current_header {
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 190px;
+    }
+
+    .new_header {
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 235px;
+    }
+
+    .submit_header {
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 120px;
+    }
+
+    .line {
+        height: 0px;
+        width: 100%;
+        border: 1px solid var(--list_line_color);
+    }
+}
+
+/* Mobile Endgeräte Ansicht */
+@media only screen and (min-width: 320px) and (max-width: 767px){
+    /* Style of one row of the table*/
+    .inputblock {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    /* Label Style of current values */
+    .current {
+        align-items: center;
+        align-content: center;
+        display: flex;
+        height: 30px;
+        width: 80px;
+        border-radius: 10px;
+        border: none;
+        background-color: var(--label_background);
+        font-size: 12px;
+        padding-left: 5px;
+        color: var(--font_color);
+        justify-self: center;
+        overflow-x: auto;
+    }
+
+    /* Style of change button*/
+    .change_button {
+        background-color: var(--select_color_background);
+        color: var(--font_color);
+        border-radius: 10px;
+        border: none;
+        font-size: 12px;
+        font-weight: 600;
+        height: 30px;
+        width: 70px;
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+
+        justify-self: end;
+        transition: 0.35s;
+        cursor: pointer;
+    }
+    .change_button:hover {
+        -webkit-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        -o-transform: scale(1.05);
+        transform: scale(1.05);
+        box-shadow: 0 0 20px var(--select_color_background);
+    }
+    /* Style of text in front of input field*/
+    .category {
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--font_color);
+        align-self: center;
+        width: 80px;
+    }
+
+    /* Style of inputfield */
+    .inputfield {
+        height: 30px;
+        width: 85px; /* 250px*/
+        border-radius: 10px;
+        border: none;
+        background-color: rgba(217, 217, 217, 0.5);
+        font-size: 12px;
+        padding-left: 5px;
+        color: var(--font_color);
+        justify-self: center;
+    }
+
+
+    /* TABLE STYLE */
+    .header_line {
+        border-bottom-style: solid;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 30px;
+        height: 40px;
+    }
+
+    .category_header {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 200px;
+    }
+
+    .current_header {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 210px;
+    }
+
+    .new_header {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 235px;
+    }
+
+    .submit_header {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--font_color);
+        align-self: center;
+        width: 120px;
+    }
+
+    .line {
+        height: 0px;
+        width: 100%;
+        border: 1px solid var(--list_line_color);
+    }
+}

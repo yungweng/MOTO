@@ -1,0 +1,63 @@
+.question{
+    visibility:hidden;
+}
+
+
+.header_container_mid{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.login_button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 46px;
+    width: 130px;
+    background: var(--help_button_color);
+    border-style: solid;
+    border-width: 3px;
+    border-color: var(--font_color);
+    color: var(--font_color);
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    border-radius: 45px;
+    cursor: pointer;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+.mid_container {
+
+    display: flex;
+    align-items: center;
+    justify-content:  center;
+    flex-direction: column;
+}
+.default_heading_mid {
+
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 70px;
+}
+
+.nfc_scan {
+    margin-left: 7%;
+    height: 30vw;
+    width: auto;
+
+}
+
+.explanation{
+    margin-top: 10px;
+    text-align: center;
+    font-weight: normal;
+    font-size: 25px;
+}

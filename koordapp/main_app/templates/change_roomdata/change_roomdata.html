@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="de">
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/change_roomdata/change_roomdata.css' %}"/>
+    </head>
+
+    <body>
+
+    <div class="header_container_back_help">
+        <button class="back" onclick="window.location.href = '/master_tablet/'"> <span class = "arrow"> <i class="arrow_left"></i> </span> <span class="backtext">Zurück</span>  </button>
+
+        <a class="question" href="#popup1">Hilfe</a>
+
+        <div id="popup1" class="popup">
+            <div class="popup2">
+                <h3>Was muss ich in diesem Anzeigefenster beachten?</h3>
+
+                <div class="content">
+                    <p>In dieser Ansicht können Sie bei Bedarf die <strong>Rauminformationen ändern</strong>. Geben Sie hierzu Ihre neuen Daten in das entsprechende <strong>Eingabefeld</strong> ein.
+                        Tippen Sie auf <strong>"Ändern"</strong>, um die neuen Daten zu speichen.</p>
+                </div>
+
+                <a class="close" href="#">&times;</a>
+
+            </div>"
+        </div>
+    </div>
+    <h1 class="heading_2"> Raumangaben für Raum {{room_name}}</h1>
+    <h2 class="subheading_2"> Ändern Sie bei Bedarf folgende Informationen: </h2>
+
+
+    <div class="header_line">
+        <label class="category_header">Kategorie</label>
+        <label class="current_header">Aktueller Wert</label>
+        <label class="new_header">Neuer Wert</label>
+        <label class="submit_header"></label>
+
+    </div>
+    
+        <div class="input_container">
+            {% for tup in aufsichtspersonen %}
+            <form method="post">{% csrf_token %}
+                <div class="inputblock">           
+                    <label class = "category">Aufsichtsperson:</label>
+
+                    <label class = "current">{{tup.vorname}} {{tup.nachname}}</label>
+
+                    <div class="custom-select">
+                        <select name="user">
+                            <option value="0" style="color:#ffff00;">Bitte auswählen..</option>
+                            {% for personal in personallist %}
+                            <option value="{{personal.user.username}}">{{personal.nutzer.vorname}} {{personal.nutzer.nachname}}</option>
+                            {% endfor %}
+                            <option value="delete" style="color:#f54257;">Löschen</option>
+                        </select>
+                    </div>
+
+                    <button type='submit' class="change_button" name="change_button_user" value='{{tup.personal_default}}'>Ändern</button>
+                
+                </div>
+            </form>
+            <!--<div class = "line"></div>-->
+            {%endfor%}
+            <form method="post">{% csrf_token %}
+                <div class="inputblock">           
+                    <label class = "category">Aufsichtsperson:</label>
+
+                    <label class = "current"> Hinzufügen </label>
+
+                    <div class="custom-select">
+                        <select name="user">
+                            <option value="0" style="color:#ffff00;">Bitte auswählen..</option>
+                            {% for personal in personallist %}
+                            <option value="{{personal.user.username}}">{{personal.nutzer.vorname}} {{personal.nutzer.nachname}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <button type='submit' class="change_button" name="add_button_user" value='{{tup.personal_default}}'>Ändern</button>
+                
+                </div>
+            </form>
+            <div class = "line"></div>
+            <form method="post">{% csrf_token %}
+                <div class = "inputblock">
+                    <label class = "category">Aktivitätsname:</label>
+                    <label class = "current">{{ag.name}}</label>
+                    <input type="text" class="inputfield" name="activity" placeholder="Neue Aktivität.." />
+                    <input type='submit' class="change_button" name="change_button_activity" value='Ändern'/>
+                </div>
+            </form>
+            <div class = "line"></div>
+            <form method="post">{% csrf_token %}
+                <div class="inputblock">
+                    <label class = "category">AG-Kategorie:</label>
+                    <label class = "current">{{ag.ag_kategorie.name}}</label>
+                    <div class="custom-select">
+                        <select name="category_name">
+                            <option value="0" style="color:#ffff00;">Bitte auswählen..</option>
+                            {% for ag_kategorie in ag_kategorien %}
+                            <option value="{{ag_kategorie.name}}">{{ag_kategorie.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <input type='submit' class="change_button" name="change_button_category" value='Ändern'/>
+                </div>
+            </form>
+            <div class = "line"></div>
+            <form method="post">{% csrf_token %}
+                <div class = "inputblock">
+                    <label class = "category">Kinderanzahl:</label>
+                    <label class = "current">{{ag.max_anzahl}}</label>
+
+                    <input type="text" class="inputfield" name="capacity" placeholder="Neue Anzahl.." />
+                    <input type='submit' class="change_button" name="change_button_capacity" value='Ändern'/>
+                </div>
+            </form>
+        </div>
+
+        <script type="module" src="{% static 'js/cancel_scan_tag.js' %}"></script>
+
+    </body>
+    </html>
+{% endblock %}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/master_android/set_nfc_scan.css' %}"/>
+</head>
+
+<body>
+
+
+    <div class="header_container_back_help">
+        <button class="back" onclick="window.location.href = '/master_tablet/'"> <span class = "arrow"> <i class="arrow_left"></i> </span> <span class="backtext">Zurück</span>  </button>
+
+        <a class="question" href="#popup1">Hilfe</a>
+
+        <div id="popup1" class="popup">
+            <div class="popup2">
+                <h3>Was muss ich in diesem Anzeigefenster beachten?</h3>
+
+                <div class="content">
+                    <p>Hier können Sie den <strong>NFC-Chip</strong> eines Kinds neu zuweisen. Halten Sie das <strong>Armband</strong> dafür an den Scanner.
+                        Nach erfolreicher Identifizierung des NFC-Chips öffnet sich ein Fenster, in dem Sie den Chip neu zuweisen können. </p>
+                </div>
+
+                <a class="close" href="#">&times;</a>
+
+            </div>"
+        </div>
+    </div>
+
+    <div class ="mid_container">
+        <h1 class="default_heading_mid" id="HeadingPNG"> Scannen Sie den NFC-Chip den Sie neu setzen möchten. </h1>
+        <img src="{% static 'img/placeholder_nfc_scan_transparent.png' %}" alt="NFC-Scan" class="nfc_scan" id="NFC-btn" onclick="toggleNFCScanning();">
+        </div>
+
+
+    <form method="post" id="form">
+        {% csrf_token %}
+        <input type="hidden" name="tag_id" id="tag_id" value="">
+        <!--<input type="submit" value="">-->
+    </form>
+
+    <script type="module">
+
+        checkIFNFCSupported();
+        function checkIFNFCSupported(){
+            if (!("NDEFReader" in window)) {
+                //alert("NFC is not supported.");
+                document.getElementById("NFC-btn").disabled = true;
+            }else{
+                //alert("NFC is supported.");
+                document.getElementById("NFC-btn").disabled = false;
+            }
+        }
+        let ndef;
+        let abortController;
+        let NFCResults = [];
+        async function scanNFCTags(){
+            if (!ndef) {
+                abortController = new AbortController();
+                abortController.signal.onabort = event => {
+                    // All NFC operations have been aborted.
+                    console.log(event);
+                };
+                ndef = new NDEFReader();
+                ndef.onreadingerror = () => {
+                    console.log("Cannot read data from the NFC tag. Try another one?");
+                };
+                ndef.onreading = event => {
+                    console.log("NDEF message read.");
+                    console.log(event);
+                    NFCResults = [];
+                    NFCResults = NFCResults.concat(event.message.records);
+                };
+            }
+            ndef.addEventListener("reading", ({ message, serialNumber }) => {
+                const textDecoder = new TextDecoder();
+                //message.records[0].data
+                document.getElementById('tag_id').value = serialNumber;
+                document.getElementById('form').submit();
+                console.log(message.records);
+            });
+            ndef.scan({ signal: abortController.signal }).then(() => {
+                console.log("Scan started successfully.");
+            }).catch(error => {
+                console.log(`Error! Scan failed to start: ${error}.`);
+            });
+        }
+
+        function toggleNFCScanning(){
+            const btn = document.getElementById("HeadingPNG");
+                scanNFCTags();
+                btn.innerText = "Es wird gescannt! Bitte deinen Chip hinten links an den Scanner halten.";
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            navigator.permissions.query({ name: "nfc" }).then(permissionStatus => {
+                console.log(`NFC user permission: ${permissionStatus.state}`);
+                if (permissionStatus.state === 'prompt') {
+                    alert("Bitte auf Bild des NFC-Tags klicken um Berechtigung anzufordern!");
+                    document.getElementById('NFC-btn').addEventListener('click', toggleNFCScanning);
+                } else if (permissionStatus.state === 'granted') {
+                    document.getElementById("NFC-btn").disabled = true;
+                    toggleNFCScanning();
+                }
+            });    
+        });
+
+    </script>
+</body>
+</html>
+{% endblock %}

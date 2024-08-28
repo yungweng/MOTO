@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/leave_room/leave_room.css' %}"/>
+</head>
+
+<body id="tabletbody">
+
+    <form method='post' id="form1">{% csrf_token %}
+    <div class="mid_container">
+        <h1 class="default_heading_mid"> Tschüss {{nutzer.vorname}}! </h1>
+        <h2 class="default_subheading_mid"> Wohin möchtest du gehen? </h2>
+
+        <div class="selection_board">
+            <div class="button_container_row">
+                <div class="button_container_icon" id="leave_room_button" name="leave_room_button">
+                    <a id="icon_button_style">
+                        <img src="{% static 'img/leave_room_icon.png' %}"">
+                        <p class="icon_description">Raum wechseln</p>
+                    </a>
+                </div>  
+                <div class="button_container_icon" id="toilet_button" name="toilet_button">
+                    <a id="icon_button_style">
+                        <img src="{% static 'img/toilet_icon.png' %}""> 
+                        <p class="icon_description">Toilette</p>
+                    </a>
+                </div>
+                <div class="button_container_icon" id="school_yard_button" name="school_yard_button">
+                    <a id="icon_button_style"> 
+                        <img src="{% static 'img/school_yard_icon.png' %}">
+                        <p class="icon_description">Schulhof</p> 
+                    </a>   
+                </div>
+                <div class="button_container_icon" id="leave_school_button" name="leave_school_button">
+                    <a id="icon_button_style">
+                        <img src="{% static 'img/home.png' %}">
+                        <p class="icon_description">Nach Hause</p>
+                    </a>   
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="div_name" id="divIDField">
+    </form>
+
+    <form method="post" id="form">
+        {% csrf_token %}
+        <input type="hidden" name="tag_id" id="tag_id" value="">
+        <!--<input type="submit" value="">-->
+    </form>
+    <script type="module" src="{% static 'js/home_scan_tag.js' %}"></script>
+    <script>
+        function submitForm(divID) {
+            document.getElementById('divIDField').value = divID;
+            document.getElementById('form1').submit();
+        }
+
+        document.getElementById('leave_room_button').addEventListener('click', function() {
+            submitForm(this.getAttribute('name'));
+        });
+        document.getElementById('toilet_button').addEventListener('click', function() {
+            submitForm(this.getAttribute('name'));
+        });
+        document.getElementById('school_yard_button').addEventListener('click', function() {
+            submitForm(this.getAttribute('name'));
+        });
+        document.getElementById('leave_school_button').addEventListener('click', function() {
+            submitForm(this.getAttribute('name'));
+        });
+
+        
+        // Funktion zum Umleiten nach einer Verzögerung
+        function umleitungNachVerzögerung() {
+            // Warte 3 Sekunden (3000 Millisekunden)
+            setTimeout(function () {
+                // Umleitung zur gewünschten URL
+                submitForm('leave_room_button');
+            }, 5000);
+        }
+
+        // Diese Funktion wird aufgerufen, wenn das Dokument vollständig geladen ist
+        document.addEventListener('DOMContentLoaded', function () {
+            // Hier kannst du andere JavaScript-Aktionen für dein Template hinzufügen
+
+            // Starte die Verzögerung und Umleitung
+            umleitungNachVerzögerung();
+        });
+    </script>
+
+
+</body>
+</html>
+{% endblock %}

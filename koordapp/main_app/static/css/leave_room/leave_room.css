@@ -1,0 +1,129 @@
+.button_container_row {
+  padding: 2vw 0vw 2vw 0vw;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+/*  row-gap: 1vh;
+  column-gap: 1vh;
+  flex-wrap: wrap;
+  */
+
+}
+
+#tabletbody{
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+.mid_container{
+
+  width: 100%;
+}
+
+
+.button_container_row > * {
+  flex: 0 1 min(40%, 30vh); /* This line ensures that each item will take up at least 50% of the container's width */
+}
+.button_container_icon {
+  padding: 2vw 2vw 2vw 2vw;
+  height: 24vh;
+  width: 6vw;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  border-radius: 18px;
+}
+#icon_button_style img {
+  height: 22vh;
+  width: auto;
+}
+#icon_button_style img,
+#icon_button_style {
+  display: block;
+  text-align: center;
+  margin: auto;
+}
+
+#icon_button_style:link,
+#icon_button_style:visited,
+#icon_button_style:hover,
+#icon_button_style:active {
+  text-decoration: none;
+}
+
+#leave_room_button {
+  background-color: var(--color_icon_door);
+  box-shadow: 0px 8px 15px var(--color_icon_door);
+}
+#leave_room_button:hover {
+  background-color: var(--color_icon_door2);
+}
+#toilet_button {
+  background-color: var(--color_icon_toilet);
+  box-shadow: 0px 8px 15px var(--color_icon_toilet);
+}
+#toilet_button:hover {
+  background-color: var(--color_icon_toilet2);
+}
+#school_yard_button {
+  background-color: var(--color_icon_school_yard);
+  box-shadow: 0px 8px 15px var(--color_icon_school_yard);
+}
+#school_yard_button:hover {
+  background-color: var(--color_icon_school_yard2);
+}
+#leave_school_button {
+  background-color: var(--color_icon_leave_school);
+  box-shadow: 0px 8px 15px var(--color_icon_leave_school);
+
+}
+#leave_school_button:hover {
+  background-color: var(--color_icon_leave_school2);
+}
+
+#school_yard_button:hover,
+#toilet_button:hover,
+#leave_room_button:hover {
+  opacity: 0.4; /* or any other value between 0 and 1 */
+}
+
+#help_right {
+  right: 0;
+  position: absolute;
+  margin-right: 11vw;
+}
+
+.default_heading_mid {
+  text-align: center;
+  font: 600 max(64px, 6vw) "Inter";
+}
+.default_subheading_mid {
+  text-align: center;
+  font: max(32px, 2vw) "Inter";
+}
+.icon_description,
+.icon_description a:hover {
+  text-decoration: none;
+  color: #000000;
+  font-size: 3vh;
+  margin-top: 3px;
+  font-weight: 600;
+  opacity: 1;
+  letter-spacing: 2px;
+}
+@media only screen and (max-width: 900px) {
+  #icon_button_style img {
+    height: 15vh;
+    width: 20vw;
+  }
+  .icon_description {
+    font-size: 2vh;
+    margin-top: 2vh;
+    text-align: center;
+  }
+  .button_container_row {
+    padding: 0;
+  }
+}

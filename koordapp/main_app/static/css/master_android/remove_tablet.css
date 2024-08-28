@@ -1,0 +1,44 @@
+/*hier Stype optionen z.b. für Pages, wo der Help-button auf die Rechte Seite soll*/
+#help_right {
+  right: 0;
+  position: absolute;
+  margin-right: 11vw;
+}
+.mid_container {
+  margin-top: 15%;
+  margin-left: 10%;
+  height: 50vh;
+  width: 65vw;
+}
+.selection_menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 80%;
+  height: 10vh;
+  margin: auto;
+}
+
+.decision_button {
+  width: 40%;
+  height: 80%;
+  margin: auto;
+  font-weight: bold;
+  font-size: max(100%, 1.8vw);
+  border: none;
+}
+
+#select_button {
+  background-color: #bad87a;
+  border-radius: 10px;
+}
+#abort_button {
+  background-color: #de675f;
+  border-radius: 10px;
+}
+
+.default_heading_mid {
+  text-align: center;
+  font: 600 max(64px, 6vw) "Inter";
+  margin-bottom: min(30px, 3vw);
+}

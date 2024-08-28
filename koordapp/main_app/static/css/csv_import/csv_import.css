@@ -1,0 +1,232 @@
+/* Form styles */
+.form_container {
+  width: 100%;
+  height: 80%;
+  margin: auto;
+  margin-bottom: 3vh;
+  margin-top: 3vh;
+  text-align: center;
+}
+
+/* Flags styles */
+#flags {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 40%;
+  position: relative;
+}
+#flags::before,
+#flags::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  border-top: 2px solid #000;
+}
+
+#flags::before {
+  top: -2vh;
+}
+
+#flags::after {
+  bottom: -2vh;
+}
+
+/* Text styles */
+.form_container h3,
+.template_container h3 {
+  font-size: min(25px, 4vh);
+}
+
+.form_container h4,
+.template_container h4 {
+  font-size: min(12px, 2vh);
+  letter-spacing: 2px;
+  line-height: 43.125px;
+}
+
+/* Checkbox styles */
+.checkbox_container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.checkbox_container label {
+  font-size: min(20px, 4vh);
+  margin: 20px;
+}
+
+.checkbox_container label p {
+  padding-bottom: 5px;
+}
+
+.checkbox_container input {
+  height: min(25px, 8vh);
+  width: min(25px, 8vh);
+  margin-right: 7px;
+  border-radius: 18px;
+}
+
+/* Content container styles */
+.content_container {
+  width: 45%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  max-width: 720px;
+  min-height: 30vh;
+}
+
+.checkbox_content_container {
+  display: flex;
+  justify-content: flex-start;
+  width: 40%;
+  align-items: center;
+  margin: auto;
+  gap: 10%;
+}
+
+.checkbox_content_container p {
+  font-size: 18px;
+}
+
+#sheet_flags {
+  line-height: 43.125px;
+}
+
+/* Template container styles */
+.template_container {
+  text-align: center;
+  margin-top: 20px;
+  border-top: 2px dashed black;
+}
+
+/* Button styles */
+.submit_button {
+  width: 32%;
+  height: 5vh;
+  font: bold 20px "Inter";
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.35s;
+}
+
+.submit_button[value="Hochladen"] {
+  background-color: var(--select_color_background);
+}
+.submit_button[value="Hochladen"]:hover {
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--select_color_background);
+}
+.submit_button[value="Vorlage herunterladen"] {
+  background-color: var(--blue_color);
+  color: white;
+}
+.submit_button[value="Vorlage herunterladen"]:hover {
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--blue_color);
+}
+.submit_button[value="Dateien entfernen"] {
+  background-color: var(--red_color);
+}
+.submit_button[value="Dateien entfernen"]:hover {
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--red_color);
+}
+
+/* Upload container styles */
+.upload_container {
+  margin: auto;
+  width: 80%;
+  height: 175px;
+  margin-top: 3vh;
+}
+.upload_button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  margin: auto;
+  margin-top: 1vh;
+}
+
+/* Drag-and-drop file upload area styles */
+.dnd_file {
+  width: 100%;
+  height: 200px;
+  border: 4px dashed black;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: black;
+  font: 300 20px "Inter";
+  background-color: var(--inputfield_background);
+  transition: background-color 0.3s ease;
+}
+
+.dnd_file:hover {
+  background-color: var(--background_color_selection_board);
+}
+
+.dnd_file:active {
+  background-color: #e0e0e0;
+}
+.errormessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--red_color);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* Media query for larger computer screens */
+@media screen and (min-width: 1181px) {
+  .form_container,
+  .upload_container {
+    /* Adjust the internal containers for larger screens */
+    width: 100%;
+  }
+
+  .checkbox_container {
+    /* Adjust the layout of checkboxes for larger screens */
+    width: auto;
+    justify-content: flex-start;
+  }
+  .upload_container {
+    padding-bottom: 10vh;
+  }
+
+  .header_container {
+    padding-left: 5%;
+  }
+  .default_subheading {
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+  .heading_2,
+  .default_subheading {
+    margin-left: 0;
+    padding-left: 0;
+  }
+}

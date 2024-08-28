@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard/dashboard.css' %}"/>
+    </head>
+
+    <body>
+    <div class = "block_container">
+        <div class="header_container_back_help">
+            <button class="back" onclick="window.location.href = '/master_web/'"> <span class = "arrow"> <i class="arrow_left"></i> </span> <span class="backtext">Zurück</span>  </button>
+
+            <a class="question" href="#popup1">Hilfe</a>
+
+            <div id="popup1" class="popup">
+                <div class="popup2">
+                    <h3>Was muss ich in diesem Anzeigefenster beachten?</h3>
+
+                    <div class="content">
+                        <p> In dieser Ansicht können Sie <strong>allgemeine Informationen</strong> zu Schulkindern oder Raumverfügbarkeiten einsehen. Klicken Sie auf <strong>"Zurück"</strong>, um zurück zur Hauptansicht zu gelangen.</p>
+                    </div>
+
+                    <a class="close" href="#">&times;</a>
+
+                </div>"
+            </div>
+        </div>
+
+        <h1 class="heading_2"> Dashboard</h1>
+        <h2 class="subheading_2"> Aktueller Überblick </h2>
+        <div class = "information_container">
+            {% if not ogs_group == None %}
+            <div class =  "information_row">
+                <label class = "header">OGS-Gruppe</label>
+                <div class  =  "row">
+                    <label class = "category">In Heimatraum:</label>
+                    <label class = "value"> {{students_in_room}} </label>
+                </div>
+                <div class = "line"></div>
+                <div class  =  "row">
+                    <label class = "category">In Bewegung:</label>
+                    <label class = "value"> {{students_in_movement}} </label>
+                </div>
+                <div class = "line"></div>
+                <div class  =  "row">
+                    <label class = "category">Bereits zuhause:</label>
+                    <label class = "value"> {{students_at_home}} </label>
+                </div>
+            </div>
+            {% endif %}
+            <p class = "inlineheader">Raumverfügbarkeit</p>
+
+            <div class = "rooms">
+
+                <label class = "circle1">{{rooms_group}}</label>
+                <label class = "circle2">{{rooms_learn}}</label>
+                <label class = "circle3">{{rooms_sport}}</label>
+                <label class = "circle4">{{rooms_break}}</label>
+
+                <label class = "activity activity1" >Gruppenraum</label>
+                <label class = "activity activity2">Lernen</label>
+                <label class = "activity activity3">Spielen</label>
+                <label class = "activity activity4">Bewegen/Ruhe</label>
+
+                <lGruppenabel class = "circle5">{{rooms_food}}</lGruppenabel>
+                <label class = "circle6">{{rooms_nature}}</label>
+                <label class = "circle7">{{rooms_creative}}</label>
+                <label class = "circle8">{{rooms_other}}</label>
+
+                <label class = "activity activity5">Hauswirtschaft</label>
+                <label class = "activity activity6">Natur</label>
+                <label class = "activity activity7">Kreatives/Musik</label>
+                <label class = "activity activity8">NW/Technik</label>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    </body>
+    </html>
+{% endblock %}
