@@ -12,7 +12,7 @@
     Bei fehlern wie 'relation does exists' oder 'column does not exists' kann es sinnvoll sein die Datenbank zurückzusetzten
     1. Docker Desktop öffnen
     2. Containers links oben öffnen
-    3. koordapp ausklappen und db-1 mit symbol starten, dannach auf den namen db-1 klicken
+    3. MOTO ausklappen und db-1 mit symbol starten, dannach auf den namen db-1 klicken
     4. Reiter Exec öffnen
     5. cmd eingeben: dropdb koordapp -f -U postgres
     6. cmd eingeben: createdb koordapp -U postgres
@@ -22,7 +22,7 @@
 ## Root user erstellen und Datenbank importieren
     1. Server starten
     2. Docker Desktop öffnen
-    3. koordapp auswählen und django-1 öffnen
+    3. MOTO auswählen und django-1 öffnen
     4. Reiter Exec öffnen
     5. cmd eingeben und dannach weitere daten eingeben (email kann einfach mit enter übergangen werden): python manage.py createsuperuser
     !! Dieser User ist nicht zum Benutzen der einzelnen Funktionen gedacht, sondern rein zur Verwaltung des Backend, Daten und Personal-Nutzer
