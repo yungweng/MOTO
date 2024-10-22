@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFC-Scanner</title>
+</head>
+<body>
+<h1>NFC-Scanner:</h1>
+<p id="rfid-display">Warte auf NFC-Scan...</p>
+
+<script>
+    // WebSocket-Verbindung zum Server
+    const socket = new WebSocket('ws://localhost:8000');
+
+    socket.onmessage = function(event) {
+        // NFC-ID im Browser anzeigen
+        document.getElementById('rfid-display').innerText = event.data;
+    };
+
+    socket.onopen = function() {
+        console.log("WebSocket-Verbindung geöffnet");
+    };
+
+    socket.onclose = function() {
+        console.log("WebSocket-Verbindung geschlossen");
+    };
+
+    socket.onerror = function(error) {
+        console.error("WebSocket-Fehler: ", error);
+    };
+</script>
+</body>
+</html>

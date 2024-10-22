@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>NFC-Scanner Log</title>
+</head>
+<body>
+<h1>NFC-Scanner Log</h1>
+<ul id="log"></ul>
+
+<script>
+    const socket = new WebSocket('ws://' + window.location.host + '/ws/nfc/');
+
+    socket.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+        const log = document.getElementById('log');
+        const li = document.createElement('li');
+        li.innerText = data.message;
+        log.appendChild(li);
+    };
+
+    socket.onopen = function() {
+        console.log("WebSocket-Verbindung geöffnet");
+    };
+
+    socket.onclose = function() {
+        console.log("WebSocket-Verbindung geschlossen");
+    };
+</script>
+</body>
+</html>
