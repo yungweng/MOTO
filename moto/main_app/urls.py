@@ -1,10 +1,11 @@
 from django.urls import path
 from django.views.generic import RedirectView
-from . import views
+from . import views, apis
 
 
 
 urlpatterns = [
+    # View paths:
     path('master_web/', views.master_web, name='master_web'),
     path('master_tablet/', views.master_android, name='master_tablet'),
     path('remove_tablet/', views.remove_tablet, name='remove_tablet'),
@@ -38,6 +39,9 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('food_history/<int:pupil>', views.food_history, name='food_history'),
     path('representation/', views.representation, name='representation'),
+
+    # Api Paths (Native App)
+    path('api/get_name_of_id/<int:id>/', apis.get_name_of_id , name="api_get_name_of_id"),
 ]
 
 
@@ -92,3 +96,9 @@ allowed_urls_web = [
     'representation',
     ]
 main_url_web = 'master_web'
+
+urls_apis = [
+
+    'api_test',
+
+]

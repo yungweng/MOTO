@@ -9,6 +9,17 @@ services:
     command: python manage.py runserver_plus --cert-file certificate/nginx-selfsigned.crt --key-file certificate/nginx-selfsigned.key 0.0.0.0:8000
     depends_on:
         - db
+  native-app:
+    build:
+      context: ./native_app
+      dockerfile: Dockerfile
+    environment:
+      - DISPLAY=host.docker.internal:0
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix  # X11-Freigabe für die GUI-Anzeige
+      - ./native_app:/app
+    network_mode: host
+    # network_mode: host  # Netzwerkmodus für X11-Weiterleitung
   db:
     image: postgres:latest
     volumes:
