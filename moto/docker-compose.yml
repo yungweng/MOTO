@@ -16,10 +16,9 @@ services:
     environment:
       - DISPLAY=host.docker.internal:0
     volumes:
-      - /tmp/.X11-unix:/tmp/.X11-unix  # X11-Freigabe für die GUI-Anzeige
+      - /tmp/.X11-unix:/tmp/.X11-unix
       - ./native_app:/app
     network_mode: host
-    # network_mode: host  # Netzwerkmodus für X11-Weiterleitung
   db:
     image: postgres:latest
     volumes:
