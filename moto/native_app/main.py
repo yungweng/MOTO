@@ -1,7 +1,11 @@
 import gi
 import requests
+import uuid
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk
+
+device_id = str(uuid.uuid4())
 
 class MainWindow(Gtk.Window):
     def __init__(self):
@@ -58,7 +62,10 @@ class MainWindow(Gtk.Window):
     
     def make_request(self, input_text):
         try:
-            response = requests.get("https://127.0.0.1:8000/api/get_name_of_id/" + input_text + "/", verify=False, allow_redirects=True)  # URL deines Django-Servers
+            headers = {
+                        "Client-Device-ID": device_id
+            }
+            response = requests.get("https://127.0.0.1:8000/api/get_name_of_id/" + input_text + "/", verify=False, allow_redirects=True, headers=headers)  # URL deines Django-Servers
             if response.status_code == 200:
                 response_data = response.json()  # Konvertiere die Antwort in ein JSON-Objekt
                 self.response_label.set_text(response_data.get("message", "Keine Nachricht erhalten."))
