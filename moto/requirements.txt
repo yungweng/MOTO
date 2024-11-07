@@ -3,3 +3,5 @@ Django==4.2.5
 sqlparse==0.4.4
 psycopg[binary]==3.1.14
 openpyxl==3.0.9
+djangorestframework>=3.12
+djangorestframework-simplejwt>=4.7

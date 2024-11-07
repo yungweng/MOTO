@@ -1,6 +1,6 @@
 from django.urls import path
 from django.views.generic import RedirectView
-from . import views, apis
+from . import views
 
 
 
@@ -39,9 +39,6 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('food_history/<int:pupil>', views.food_history, name='food_history'),
     path('representation/', views.representation, name='representation'),
-
-    # Api Paths (Native App)
-    path('api/get_name_of_id/<int:id>/', apis.get_name_of_id , name="api_get_name_of_id"),
 ]
 
 
