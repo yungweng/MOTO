@@ -5,6 +5,7 @@ import uuid
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk
 
+domain = "https://127.0.0.1:8000"
 device_id = str(uuid.uuid4())
 token = None
 
@@ -78,7 +79,7 @@ class MainWindow(Gtk.Window):
     def make_request(self, input_text, username, pw):
         try:
             # response = requests.get("https://api.chucknorris.io/jokes/random")
-            response = requests.post("https://127.0.0.1:8000/api/login/", verify=False, allow_redirects=True, json={"device_id": device_id,
+            response = requests.post(domain + "/api/login/", verify=False, allow_redirects=True, json={"device_id": device_id,
                                                                                 "password": pw,
                                                                                 "username": username})
 
@@ -88,7 +89,7 @@ class MainWindow(Gtk.Window):
                     "Authorization": f"Bearer {token}",  # Authentifizierung
                     "Device-ID": device_id,  # Geräte-ID zur Überprüfung
                 }
-                response2 = requests.get("https://127.0.0.1:8000/api/get_user_by_id/" + input_text + "/", verify=False, allow_redirects=True, headers=headers)
+                response2 = requests.get(domain + "/api/get_user_by_id/" + input_text + "/", verify=False, allow_redirects=True, headers=headers)
                 if response2.status_code == 200:
                     user_data2 = response2.json()
                     vorname = user_data2.get("vorname","")
