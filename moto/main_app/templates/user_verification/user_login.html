@@ -38,7 +38,8 @@
         <!-- TODO: Alle Bezeichnungnen auf Deutsch !!!! (z.B. Benutzername != Username ) -->
         </div>
         <span class="buffer4space"></span>
-        <h1 class='heading_type1'>Bitte melden Sie sich an:</h1>
+        <img class="moto" src="{% static 'img/moto_transparent.png' %}"">
+        <h1 class='heading_type1'>Login</h1>
         <form method='post' class="login_form">{% csrf_token %}
             <span class="form_fields">{{form.as_p}}</span>
             <div class="controls_container">

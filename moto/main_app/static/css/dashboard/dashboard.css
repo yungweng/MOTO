@@ -78,7 +78,7 @@
         color: var(--font_color);
         font-weight: bold;
         border-radius: 50%;
-        background-color: #fbd1d1;
+        background-color: #808080;
         justify-self: center;
     }
     .circle2{
@@ -92,7 +92,7 @@
         color: var(--font_color);
         font-weight: bold;
         border-radius: 50%;
-        background-color: #ce7777;
+        background-color: #f48c14;
         justify-self: center;
     }
     .circle3{
@@ -106,7 +106,7 @@
         color: var(--font_color);
         font-weight: bold;
         border-radius: 50%;
-        background-color: #a8bef7;
+        background-color: #6d93d4;
         justify-self: center;
     }
     .circle4{
@@ -120,7 +120,7 @@
         color: var(--font_color);
         font-weight: bold;
         border-radius: 50%;
-        background-color: #F9EA9C;
+        background-color: #84cc2d;
         justify-self: center;
     }
     .circle5{
@@ -134,7 +134,7 @@
         color: var(--font_color);
         font-weight: bold;
         border-radius: 50%;
-        background-color: #9d8383;
+        background-color: #fc3635;
         justify-self: center;
     }
     .circle6{
@@ -148,7 +148,7 @@
         color: var(--font_color);
         font-weight: bold;
         border-radius: 50%;
-        background-color: #d4f9c6;
+        background-color: #f652a0;
         justify-self: center;
     }
     .circle7{
@@ -162,7 +162,7 @@
         color: var(--font_color);
         font-weight: bold;
         border-radius: 50%;
-        background-color: #c9f7f9;
+        background-color: #9A463D;
         justify-self: center;
     }
     .circle8{
@@ -176,7 +176,7 @@
         color: var(--font_color);
         font-weight: bold;
         border-radius: 50%;
-        background-color: #eec3fd;
+        background-color: #f8d210;
         justify-self: center;
     }
 

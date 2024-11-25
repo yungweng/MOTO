@@ -8,7 +8,7 @@
 ## Dannach zum Server starten
     cmd in Konsole (im selben Ordner wie docker-compose.yml) : docker-compose up
 
-## Datenbank zurücksetzten
+## Datenbank zurücksetzen
     Bei fehlern wie 'relation does exists' oder 'column does not exists' kann es sinnvoll sein die Datenbank zurückzusetzten
     1. Docker Desktop öffnen
     2. Containers links oben öffnen

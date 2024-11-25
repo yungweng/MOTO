@@ -170,8 +170,8 @@
         box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
     }
     .change_button_transparent{
-        background-color: var(--select_color_background);
-        color: var(--font_color);
+        background-color: rgba(132, 204, 45, 0.46);
+        color: rgba(27, 32, 33, 0.5);
         border-radius: 10px;
         border: none;
         font-size: 1.5rem;
@@ -180,7 +180,6 @@
         width: 150px;
         box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
         justify-self: end;
-        opacity: 0.5;
     }
     /* Style of Dropdown Select */
     select {

@@ -6,24 +6,24 @@
   --button_color2: rgba(185, 185, 185, 0.75);
   --inputfield_background: rgba(217, 217, 217, 0.5);
   --button_border: #1b2021;
-  --select_color_background: #BAD87A;
+  --select_color_background: #84cc2d;
   --shadow_color: #00000033;
   --help_button_color: #ffffff;
   --popup_text_background: #e1e1e1;
   --popup_header_font: #1b2021;
   --popup_header_background: #c3d6e8;
-  --red_color: #de675f;
+  --red_color: #fc3635;
   --listblock_background: #d9d9d9;
   --label_background: rgba(217, 217, 217, 0.25);
   --list_line_color: #c0c0c0;
-  --blue_color: #4a90e2;
+  --blue_color: #6d93d4;
   --color_icon_door: #9d8383;
   --color_icon_door2: rgba(157, 131, 131, 0.7);
   --color_icon_toilet: #aae3ff;
   --color_icon_toilet2: rgba(170, 227, 255, 0.7);
   --color_icon_school_yard: #909ca2;
   --color_icon_school_yard2: rgba(144, 156, 162, 0.7);
-  --color_icon_leave_school: rgb(255, 176, 67);
+  --color_icon_leave_school: #f48c14;
   --color_icon_leave_school2: rgb(255, 176, 67, 0.7);
   --orange_color: #ce764a;
 }
@@ -291,49 +291,6 @@
     cursor: pointer;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     margin-top: 50px;
-    transition: all 0.35s;
-    position: relative;
-    border-color: var(--font_color);
-    color: var(--font_color);
-
-    &::before,
-    &::after {
-      position: absolute;
-      top: 0;
-      left: 0;
-      border-color: var(--font_color); /* andere Farbe ?? */
-      border-radius: 45px;
-      border-style: solid;
-      transition: all 0.35s;
-      content: "";
-      z-index: 1;
-    }
-
-    &::before {
-      width: 0;
-      height: 100%;
-      border-width: 1px 0 1px 0;
-    }
-
-    &::after {
-      width: 100%;
-      height: 0;
-      border-width: 0 1px 0 1px;
-    }
-
-    &:hover {
-      border-color: var(--font_color); /* andere Farbe ?? */
-
-      &::before {
-        width: 100%;
-        border-width: 1px 0 1px 0;
-      }
-
-      &::after {
-        height: 100%;
-        border-width: 0 1px 0 1px;
-      }
-    }
   }
 
   /* Back Arrow Style*/
@@ -381,7 +338,63 @@
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     margin-top: 50px;
   }
+  /* PopUp Klick Style*/
+  .popup {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+  }
 
+  .popup:target {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .popup2 {
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 30%;
+    position: relative;
+    transition: all 5s ease-in-out;
+  }
+
+  .popup2 h2 {
+    margin-top: 0;
+    margin-bottom: 1px;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+  }
+
+  .popup2 .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+
+  .popup2 .close:hover {
+    color: var(--select_color_background);
+  }
+
+  .popup2 .content {
+    max-height: 30%;
+    padding-top: 0px;
+    overflow: auto;
+  }
+
+/*
   .popup {
     width: 700px;
     height: 0px;
@@ -436,11 +449,11 @@
     margin: 0em 0em 2% 0em;
   }
 
-  /* PopUp Klick Style*/
+  /* PopUp Klick Style
   .close {
     visibility: hidden;
   }
-
+*/
   .block_container {
     /* Adjustments for larger computer screens */
     height: 100%; /* Height adjusts to content */
@@ -450,6 +463,7 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
     margin: 0 auto; /* Centering on larger screens */
   }
+
 
   /* Button Style 2*/
   #button_style2 {
