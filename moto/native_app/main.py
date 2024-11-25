@@ -9,6 +9,10 @@ domain = "https://127.0.0.1:8000"
 device_id = str(uuid.uuid4())
 token = None
 
+# if not Gtk.init_check()[0]:
+#     print("GTK could not be initialized.")
+#     exit(1)
+
 class MainWindow(Gtk.Window):
     def __init__(self):
         super().__init__(title="Mein GTK-Fenster")
