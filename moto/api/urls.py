@@ -23,5 +23,4 @@ urlpatterns = [
     path('update_room/', views.UpdateRaumBelegungView.as_view(), name='update_room'),
     path('get_active_room_information/', views.GetRaumBelegungView.as_view(), name='get_active_room_information'),
     
-
 ]

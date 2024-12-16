@@ -1,0 +1,46 @@
+/* Big Heading */
+#big_heading {
+    font-size: 64px;
+    font-weight: 600;
+    color: #000000;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Room Container */
+#room_box {
+    background: #D9D9D9;
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
+}
+
+/* Room Label */
+#room_label {
+    font-size: 32px;
+    font-weight: 600;
+    color: #000000;
+}
+
+/* Buttons */
+#select_button {
+    background-color: #BAD87A;
+    color: #000000;
+    font-size: 32px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#occupied_button {
+    background-color: #DE675F;
+    color: #000000;
+    font-size: 32px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+

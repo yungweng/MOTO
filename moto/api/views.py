@@ -23,7 +23,6 @@ from api.view.user_verification.authenticate_user import AuthenticateUserView
 from api.view.room.update_room import UpdateRaumBelegungView
 from api.view.room.get_active_room_information import GetRaumBelegungView
 
-
 # Beispiel für Geschützte Route
 class ProtectedView(APIView):
     permission_classes = [IsAuthenticated]
@@ -33,3 +32,4 @@ class ProtectedView(APIView):
         Beispielroute, die nur für authentifizierte Nutzer zugänglich ist.
         """
         return Response({"message": f"Hallo {request.user.username}, dies ist eine geschützte Route!"})
+

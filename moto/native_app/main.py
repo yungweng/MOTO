@@ -1,116 +1,93 @@
 import gi
-import requests
-import uuid
-
+from typing import Optional
+from view.login import LoginWindow
+from view.choose_room import Choose_RoomWindow
+from view.create_activity import CreateActivityWindow
+from view.home import HomeWindow
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gdk
-
-domain = "https://127.0.0.1:8000"
-device_id = str(uuid.uuid4())
-token = None
+from gi.repository import Gtk
 
 class MainWindow(Gtk.Window):
     def __init__(self):
-        super().__init__(title="Mein GTK-Fenster")
+        super().__init__(title="Main Application")
+        self.set_default_size(1280, 720)
 
-        self.set_decorated(False)
+        # Placeholder for authentication tokens
+        self.access_token: Optional[str] = None
+        self.refresh_token: Optional[str] = None
 
-        self.fullscreen()
+        # Main container for switching views
+        self.main_container = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)  # Renamed to avoid conflict
+        self.add(self.main_container)
 
-        # Verbinde das Schließen-Ereignis
-        self.connect("destroy", Gtk.main_quit)
+        # Initialize first page based on authentication
+        if self.user_is_authenticated():
+            self.switch_page("choose_room")
+        else:
+            self.switch_page("login")
 
-        self.connect("key-press-event", self.on_key_press)
-        self.test()
+    def user_is_authenticated(self) -> bool:
+        """Check if the user is authenticated based on access token."""
+        return self.access_token is not None
 
-        # Zeige das Fenster an
-        self.show_all()
+    def set_auth_tokens(self, access_token: str, refresh_token: str):
+        """Set the authentication tokens after successful login."""
+        self.access_token = access_token
+        self.refresh_token = refresh_token
 
-    def test(self):
-        # Erstelle eine vertikale Box, die das Label zentriert ausrichtet
-        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
-        box.set_halign(Gtk.Align.CENTER)  # Zentriert die Box horizontal
-        box.set_valign(Gtk.Align.CENTER)  # Zentriert die Box vertikal
+    def get_device_id(self) -> str:
+        """Generate or return a unique device identifier."""
+        # Placeholder for a device ID; in production, use a persistent unique identifier
+        return "default-device-id"
 
-        # Erstelle das Label und setze den Text
-        label = Gtk.Label()
-        label.set_markup("<span font='26'>MotoApp</span>")
+    def switch_to_choose_room(self):
+        # Clear existing children
+        for child in self.main_container.get_children():
+            self.main_container.remove(child)
 
-        label.set_justify(Gtk.Justification.CENTER)
+        # Add the Choose_RoomWindow
+        choose_room_view = Choose_RoomWindow(self)
+        self.main_container.add(choose_room_view)
+        self.main_container.show_all()
 
-        # Füge das Label zur Box hinzu
-        box.pack_start(label, True, True, 0)
+    def switch_to_create_activity(self, room_id):
+        # Clear existing children
+        for child in self.main_container.get_children():
+            self.main_container.remove(child)
 
-        self.username = Gtk.Entry()
-        self.username.set_placeholder_text("Gib hier deinen Nutzernamen ein...")
-        self.username.set_size_request(200, 30)
-        box.pack_start(self.username, True, True, 0)
+        # Add the CreateActivityWindow
+        create_activity_view = CreateActivityWindow(self, room_id)
+        self.main_container.add(create_activity_view)
+        self.main_container.show_all()
 
-        self.pw = Gtk.Entry()
-        self.pw.set_placeholder_text("Gib hier dein Passwort ein...")
-        self.pw.set_size_request(200, 30)
-        box.pack_start(self.pw, True, True, 0)
+    def switch_to_home(self, room_id: str) -> None:
+        """Switch to home view"""
+        # Clear existing children
+        for child in self.main_container.get_children():
+            self.main_container.remove(child)
 
-        self.entry = Gtk.Entry()
-        self.entry.set_placeholder_text("Gib hier die ID ein...")
-        self.entry.set_size_request(200, 30)
-        box.pack_start(self.entry, True, True, 0)
+        # Create new home page with room_id
+        home_window = HomeWindow(self, room_id)
+        self.main_container.add(home_window)
+        self.main_container.show_all()
 
-        self.response_label = Gtk.Label(label="")
-        self.response_label.set_justify(Gtk.Justification.CENTER)
-        box.pack_start(self.response_label, True, True, 0)
+    def switch_page(self, page_name: str):
+        """Switch the current view to the specified page."""
+        # Clear existing children from the container
+        for child in self.main_container.get_children():
+            self.main_container.remove(child)
 
-        # Füge die Box zum Fenster hinzu
-        self.add(box)
-    
-    def on_key_press(self, widget, event):
-        # Überprüfe, ob die ESC-Taste gedrückt wurde
-        if event.keyval == Gdk.KEY_Escape:
-            Gtk.main_quit()
-        elif event.keyval == Gdk.KEY_Return:
-            input_text = self.entry.get_text()  # Text aus dem Eingabefeld holen
-            self.entry.set_text("")
-            username = self.username.get_text()
-            self.username.set_text("")
-            pw = self.pw.get_text()
-            self.pw.set_text("")
-            self.make_request(input_text=input_text, username=username, pw=pw)
-    
-    def make_request(self, input_text, username, pw):
-        try:
-            # response = requests.get("https://api.chucknorris.io/jokes/random")
-            response = requests.post(domain + "/api/login/", verify=False, allow_redirects=True, json={"device_id": device_id,
-                                                                                "password": pw,
-                                                                                "username": username})
+        if page_name == "login":
+            self.main_container.add(LoginWindow(parent_window=self))
+        elif page_name == "choose_room":
+            self.main_container.add(Choose_RoomWindow(parent_window=self))
+        else:
+            raise ValueError(f"Unknown page name: {page_name}")
 
-            if response.status_code == 200:
-                token = response.json().get("access_token")
-                headers = {
-                    "Authorization": f"Bearer {token}",  # Authentifizierung
-                    "Device-ID": device_id,  # Geräte-ID zur Überprüfung
-                }
-                response2 = requests.get(domain + "/api/get_user_by_id/" + input_text + "/", verify=False, allow_redirects=True, headers=headers)
-                if response2.status_code == 200:
-                    user_data2 = response2.json()
-                    vorname = user_data2.get("vorname","")
-                    nachname = user_data2.get("nachname","")
-                    fullname = vorname + " " + nachname
-                    if fullname == "":
-                        self.response_label.set_text("Keine Nachricht Erhalten")
-                    else:
-                        self.response_label.set_text(fullname)
-                else:
-                    print("Fehler:", response2.status_code, response.json())
-            # if response.status_code == 200:
-            #     response_data = response.json()  # Konvertiere die Antwort in ein JSON-Objekt
-            #     # self.response_label.set_text(response_data.get("value", "Keine Nachricht erhalten."))
-            else:
-                self.response_label.set_text(f"Error: {response.status_code}")
-        except requests.exceptions.RequestException as e:
-            print("HTTP Request failed:", e)
-            self.response_label.set_text(f"Error: {e}")
+        self.main_container.show_all()
 
 if __name__ == "__main__":
-    # Initialisiere GTK
     win = MainWindow()
+    win.connect("destroy", Gtk.main_quit)
+    win.show_all()
     Gtk.main()
