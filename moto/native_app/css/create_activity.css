@@ -1,0 +1,44 @@
+/* Title */
+#title_label {
+    font-size: 64px;
+    font-weight: 600;
+    color: #000000;
+    margin: 20px 0;
+}
+
+/* Form Labels */
+#form_label {
+    font-size: 40px;
+    font-weight: 400;
+    color: #000000;
+    width: 300px;
+}
+
+/* Form Entry Fields */
+#form_entry {
+    font-size: 32px;
+    padding: 10px;
+    background-color: rgba(217, 217, 217, 0.33);
+    border-radius: 20px;
+}
+
+/* Back Button */
+#back_button {
+    font-size: 32px;
+    font-weight: 600;
+    background: none;
+    border: none;
+    color: #000000;
+    margin-left: 50px;
+}
+
+/* Submit Button */
+#submit_button {
+    font-size: 32px;
+    font-weight: 600;
+    background-color: #BAD87A;
+    border-radius: 5px;
+    color: #000000;
+    padding: 10px 20px;
+    width: 200px;
+}
