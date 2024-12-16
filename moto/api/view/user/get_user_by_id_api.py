@@ -28,8 +28,6 @@
 
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
-from api.authentication import DeviceIDAuthentication
-from api.permissions import IsAuthenticatedDevice
 from rest_framework.response import Response
 from rest_framework import status
 from api.models import Device
@@ -37,16 +35,10 @@ from main_app.models import Nutzer
 from api.serializers import NutzerSerializer
 
 class UserDetailView(APIView):
-    authentication_classes = [DeviceIDAuthentication]  # Verwende DeviceIDAuthentication
     permission_classes = [IsAuthenticated]  # Nur authentifizierte Nutzer haben Zugriff
 
     def get(self, request, id):
         # Jetzt sollte request.device gesetzt sein, falls die Authentifizierung erfolgreich war
-        device = request.device  # Gerät durch DeviceIDAuthentication gesetzt
-
-        if not device:
-            return Response({"error": "Device is not registered"}, status=status.HTTP_400_BAD_REQUEST)
-
         try:
             user = Nutzer.objects.get(id=id)
         except Nutzer.DoesNotExist:

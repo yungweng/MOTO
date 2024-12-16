@@ -26,7 +26,7 @@ def room_information_view(request, raum):
         kinder_in_raum = Aufenthalt.objects.filter(raum_id = raum, zeitraum__endzeit__isnull=True)
         
         aktuelle_kinderanzahl = len(kinder_in_raum)
-        print(raum_belegung)
+        #print(raum_belegung)
 
         return render(request, 'room_information/room_information.html', {"raum":raum,
                                         "aktuelle_kinderanzahl":aktuelle_kinderanzahl,
