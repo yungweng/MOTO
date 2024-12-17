@@ -10,8 +10,8 @@ fi
 # Prüfen, ob ein Argument (Servicename) übergeben wurde
 if [ -n "$1" ]; then
     echo "Starte nur den Service: $1"
-    docker-compose up -d "$1"
+    docker-compose up "$1"
 else
     echo "Starte alle Services"
-    docker-compose up -d
+    docker-compose up
 fi
