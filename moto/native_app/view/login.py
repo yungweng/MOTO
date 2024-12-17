@@ -201,8 +201,8 @@ class LoginWindow(Gtk.Box):
             if response.status_code == 200:
                 data = response.json()
                 self.parent_window.set_auth_tokens(
-                    access_token=data["access_token"],
-                    refresh_token=data["refresh_token"]
+                    access_token=data["access"],
+                    refresh_token=data["refresh"]
                 )
                 self._handle_successful_login()
             else:
