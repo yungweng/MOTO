@@ -82,13 +82,19 @@ class LoginWindow(Gtk.Box):
         # Username field
         self.username_entry = self._create_entry("Benutzername")
         form_box.pack_start(self.username_entry, False, False, 0)
+        self.username_entry.connect("activate", lambda w: self.password_entry.grab_focus())
 
         # Password field
         self.password_entry = self._create_entry("Passwort", True)
         form_box.pack_start(self.password_entry, False, False, 0)
+        self.password_entry.connect("activate", lambda w: self.invisible_submit.clicked())
 
         self.pack_start(form_box, False, False, 0)
 
+        # Create an invisible button that will be activated by Enter key
+        self.invisible_submit = Gtk.Button()
+        self.invisible_submit.connect("clicked", self._handle_login)
+        self.invisible_submit.set_can_focus(False)
         # Login button
         button_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         button_box.set_margin_top(20)
