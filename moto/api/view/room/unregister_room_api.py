@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from main_app.models import Raum_Belegung, Aufenthalt, Raum_Historie, Zeitraum
 from datetime import datetime
 
@@ -8,6 +9,7 @@ class UnregisterTabletView(APIView):
     """
     API zum Abmelden eines Tablets aus einem Raum.
     """
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         # Tablet-ID aus dem Request-Daten
         tablet_id = request.data.get("tablet_id")

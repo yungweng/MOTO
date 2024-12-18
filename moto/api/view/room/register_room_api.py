@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from datetime import datetime
 from main_app.models import Raum, Raum_Belegung, AG, Zeitraum, Personal, AGKategorie
 
@@ -8,13 +9,14 @@ class RegisterTabletToRoom(APIView):
     """
     API-Endpoint zur Anmeldung eines Tablets in einem Raum.
     """
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data
         tablet_id = data.get("tablet_id")
         raum_id = data.get("raum_id")
         aufsichtsperson_id = data.get("aufsichtsperson_id")
         max_anzahl = data.get("max_anzahl")
-        ag_kategorie_name = data.get("ag_kategorie_name")
+        ag_kategorie_name = data.get("activity_kategorie_name")
         activity_name = data.get("activity_name")
 
         # Validierung der Eingangsdaten

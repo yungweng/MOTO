@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from django.utils.timezone import now
 from main_app.models import Raum_Belegung, Aufenthalt, Zeitraum, Nutzer, Schueler, Personal
 from datetime import datetime
@@ -9,7 +10,7 @@ class RegisterStudentWithTabletView(APIView):
     """
     API zum Anmelden eines Schülers in einem Raum basierend auf der Tablet-ID.
     """
-
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         tablet_id = request.data.get("tablet_id")
         nutzer_id = request.data.get("nutzer_id")  # Nutzer-ID von Schüler oder Personal

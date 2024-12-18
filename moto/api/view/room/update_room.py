@@ -1,10 +1,12 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
 from main_app.models import Raum_Belegung, Raum, Personal, Nutzer, AGKategorie, AG
 
 class UpdateRaumBelegungView(APIView):
+    permission_classes = [IsAuthenticated]
     def patch(self, request):
         tablet_id = request.data.get("tablet_id")
         if not tablet_id:
