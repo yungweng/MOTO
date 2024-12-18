@@ -3,6 +3,7 @@ from typing import List, Optional, Dict
 from enum import Enum
 import requests
 import logging
+from datetime import datetime
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, GLib
@@ -20,8 +21,9 @@ class Colors:
     LIST_BACKGROUND = "#D9D9D9"
 
 class Config:
-    API_BASE_URL = "http://127.0.0.1:8000/api"
-    ROOMS_ENDPOINT = "/rooms/"
+    API_BASE_URL = "https://127.0.0.1:8000/api"  # Note the https
+    ROOMS_ENDPOINT = "/get_room_list/"
+    VERIFY_SSL = False
     REQUEST_TIMEOUT = 10
 
 class RoomData:
@@ -32,16 +34,13 @@ class RoomData:
 
 class Choose_RoomWindow(Gtk.Box):
     def __init__(self, parent_window: Gtk.Window) -> None:
-        # Initialize GTK.Box
         super().__init__(homogeneous=False, spacing=20)
         self.set_orientation(Gtk.Orientation.VERTICAL)
 
-        print("Initializing Choose_RoomWindow")
         self.parent_window = parent_window
         self._state = RoomState.IDLE
         self._rooms = []
 
-        # Initialize logging
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(logging.INFO)
         if not self.logger.handlers:
@@ -53,38 +52,41 @@ class Choose_RoomWindow(Gtk.Box):
         self._init_ui()
         self._apply_styles()
 
-        # Make sure everything is visible
+        # Set up room refresh
+        GLib.timeout_add_seconds(30, self._refresh_rooms)
+        GLib.idle_add(self._load_rooms)
+
         self.show_all()
         self.logger.info("Choose_RoomWindow initialization complete")
 
     def _init_ui(self) -> None:
-        """Initialize the UI components"""
         self.logger.info("Starting UI initialization")
 
-        # Container margins
         self.set_margin_top(20)
         self.set_margin_bottom(20)
         self.set_margin_start(20)
         self.set_margin_end(20)
 
-        # Header box
+        # Header
         header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         header_box.set_margin_bottom(20)
 
-        # Title
         title = Gtk.Label(label="Hallo.")
         title.set_name("big_heading")
         title.set_halign(Gtk.Align.START)
         header_box.pack_start(title, True, True, 0)
 
-        # Help button
         help_button = Gtk.Button(label="Hilfe")
         help_button.set_name("help_button")
         help_button.connect("clicked", self._show_help_dialog)
         header_box.pack_end(help_button, False, False, 0)
 
+        refresh_button = Gtk.Button(label="Aktualisieren")
+        refresh_button.set_name("help_button")
+        refresh_button.connect("clicked", lambda _: self._load_rooms())
+        header_box.pack_end(refresh_button, False, False, 0)
+
         self.pack_start(header_box, False, True, 0)
-        self.logger.info("Header added")
 
         # Subtitle
         subtitle = Gtk.Label(label="Bitte ordne dem Gerät einen Raum zu:")
@@ -92,45 +94,89 @@ class Choose_RoomWindow(Gtk.Box):
         subtitle.set_halign(Gtk.Align.START)
         subtitle.set_margin_bottom(20)
         self.pack_start(subtitle, False, True, 0)
-        self.logger.info("Subtitle added")
 
-        # Room list container
-        list_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
-        list_box.set_margin_start(10)
-        list_box.set_margin_end(10)
+        # Room list
+        self.room_list = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        self.room_list.set_margin_start(10)
+        self.room_list.set_margin_end(10)
 
-        # Add some test rooms for visibility testing
-        for i in range(3):
+        scrolled = Gtk.ScrolledWindow()
+        scrolled.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        scrolled.set_vexpand(True)
+        scrolled.set_hexpand(True)
+        scrolled.add(self.room_list)
+        self.pack_start(scrolled, True, True, 0)
+
+        # Status bar
+        self.status_bar = Gtk.Label()
+        self.status_bar.set_name("status_bar")
+        self.status_bar.set_margin_bottom(10)
+        self.pack_end(self.status_bar, False, True, 0)
+
+    def _load_rooms(self) -> None:
+        self._state = RoomState.LOADING
+        try:
+            headers = {
+                "Authorization": f"Bearer {self.parent_window.access_token}",
+                "Content-Type": "application/json"
+            }
+
+            response = requests.get(
+                f"{Config.API_BASE_URL}{Config.ROOMS_ENDPOINT}",
+                headers=headers,
+                timeout=Config.REQUEST_TIMEOUT,
+                verify=Config.VERIFY_SSL  # Match login.py settings
+            )
+
+            if response.status_code == 200:
+                data = response.json()
+                self._rooms = [
+                    RoomData(
+                        id=room['id'],
+                        raum_nr=room['raum_nr'],
+                        is_occupied=room.get('is_occupied', False)
+                    )
+                    for room in data
+                ]
+                self._update_room_list()
+                self._state = RoomState.IDLE
+            else:
+                self.logger.error(f"API error: {response.status_code}")
+                self._state = RoomState.ERROR
+
+        except Exception as e:
+            self.logger.error(f"Failed to load rooms: {e}")
+            self._state = RoomState.ERROR
+
+    def _update_room_list(self) -> None:
+        for child in self.room_list.get_children():
+            self.room_list.remove(child)
+
+        for room in sorted(self._rooms, key=lambda x: x.raum_nr):
             room_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
             room_box.set_name("room_container")
 
-            label = Gtk.Label(label=f"Raum {i+1}.0")
+            label = Gtk.Label(label=f"Raum {room.raum_nr}")
             label.set_name("room_label")
             label.set_halign(Gtk.Align.START)
             room_box.pack_start(label, True, True, 10)
 
-            button = Gtk.Button(label="Auswählen")
-            button.set_name("select_button")
-            button.connect("clicked", self._on_room_selected, i + 1)  # Pass room ID
+            button = Gtk.Button(label="Belegt" if room.is_occupied else "Auswählen")
+            button.set_name("occupied_button" if room.is_occupied else "select_button")
+            if not room.is_occupied:
+                button.connect("clicked", self._on_room_selected, room.id)
+            button.set_sensitive(not room.is_occupied)
             room_box.pack_end(button, False, False, 10)
 
-            list_box.pack_start(room_box, False, True, 0)
-            self.logger.info(f"Added test room {i+1}")
+            self.room_list.pack_start(room_box, False, True, 0)
 
-        # Scrolled Window
-        scrolled = Gtk.ScrolledWindow()
-        scrolled.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
-        scrolled.set_vexpand(True)  # Ensures the scrolled window takes all available vertical space
-        scrolled.set_hexpand(True)  # Ensures the scrolled window takes all available horizontal space
-        scrolled.add(list_box)
-        self.pack_start(scrolled, True, True, 0)
+        self.room_list.show_all()
 
-        # Store reference for later updates
-        self.room_list = list_box
-        self.logger.info("Room list container added")
+    def _refresh_rooms(self) -> bool:
+        self._load_rooms()
+        return True
 
     def _on_room_selected(self, button: Gtk.Button, room_id: int) -> None:
-        """Handle room selection and forward to create_activity view"""
         self.logger.info(f"Room {room_id} selected")
         if hasattr(self.parent_window, "switch_to_create_activity"):
             self.parent_window.switch_to_create_activity(room_id)
@@ -138,7 +184,6 @@ class Choose_RoomWindow(Gtk.Box):
             self.logger.error("Parent window does not support switching views")
 
     def _apply_styles(self) -> None:
-        """Apply CSS styles"""
         css_provider = Gtk.CssProvider()
         css = f"""
             box {{
@@ -176,12 +221,25 @@ class Choose_RoomWindow(Gtk.Box):
                 padding: 8px 16px;
             }}
             
+            #occupied_button {{
+                background-color: {Colors.OCCUPIED_BUTTON};
+                color: white;
+                border: none;
+                border-radius: 5px;
+                padding: 8px 16px;
+            }}
+            
             #help_button {{
                 background-color: white;
                 color: {Colors.FONT};
                 border: 2px solid {Colors.FONT};
                 border-radius: 45px;
                 padding: 5px 15px;
+            }}
+            
+            #status_bar {{
+                font-size: 12px;
+                color: #666666;
             }}
         """
         css_provider.load_from_data(css.encode())
@@ -190,10 +248,8 @@ class Choose_RoomWindow(Gtk.Box):
             css_provider,
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         )
-        self.logger.info("Styles applied")
 
     def _show_help_dialog(self, button: Gtk.Button) -> None:
-        """Show help dialog"""
         dialog = Gtk.MessageDialog(
             transient_for=self.parent_window,
             flags=0,
