@@ -19,7 +19,6 @@ services:
     volumes:
       - ./native_app:/app
       - /tmp/.X11-unix:/tmp/.X11-unix
-      - ./native_app:/app
       - ~/.Authority:/tmp/.Xauthority:ro
     network_mode: host
   db:
