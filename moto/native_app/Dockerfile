@@ -18,7 +18,6 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Kopiere den restlichen Anwendungscode
-COPY . /app
 WORKDIR /app
 
 # Starte die Anwendung
