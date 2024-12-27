@@ -5,7 +5,6 @@ import requests
 import logging
 from urllib3.exceptions import InsecureRequestWarning
 import urllib3
-
 # Suppress only the single warning from urllib3 needed.
 urllib3.disable_warnings(InsecureRequestWarning)
 
@@ -24,9 +23,9 @@ class Colors:
     BACKGROUND = "#f6f4f3"
     FONT = "#1b2021"
     ERROR = "#de675f"
-    SUCCESS = "#BAD87A"
     HELP_BUTTON = "#ffffff"
     INPUT_BG = "rgba(217, 217, 217, 0.5)"
+    GREEN = "#84cc2d"
 
 class Config:
     """Configuration settings"""
@@ -68,10 +67,15 @@ class LoginWindow(Gtk.Box):
         header.pack_end(help_button, False, False, 20)
         self.pack_start(header, False, False, 0)
 
+        # MOTO Logo above title
+        logo_image = Gtk.Image.new_from_file("img/moto_transparent_200.png")  # Replace with the correct path
+        logo_image.set_margin_bottom(5)  # Add some spacing below the image
+        self.pack_start(logo_image, False, False, 0)
+
         # Title
-        title = Gtk.Label(label="Bitte melden Sie sich an:")
+        title = Gtk.Label(label="Login")
         title.set_name("heading_type1")
-        title.set_margin_bottom(30)
+        title.set_margin_bottom(20)
         self.pack_start(title, False, False, 0)
 
         # Login form
@@ -128,12 +132,14 @@ class LoginWindow(Gtk.Box):
         entry.set_name("login_entry")
         return entry
 
+
+
     def _apply_styles(self) -> None:
         """Apply CSS styles to match web version"""
         css_provider = Gtk.CssProvider()
         css = f"""
             #heading_type1 {{
-                font-size: 24px;
+                font-size: 40px;
                 font-weight: bold;
                 color: {Colors.FONT};
             }}
@@ -143,17 +149,18 @@ class LoginWindow(Gtk.Box):
                 padding: 8px;
                 border-radius: 10px;
                 background: {Colors.INPUT_BG};
-                color: {Colors.FONT};
+                color: {Colors.GREEN};
                 margin: 5px 0;
             }}
             
             #login_button {{
-                background-color: {Colors.SUCCESS};
+                background: {Colors.GREEN};
                 color: {Colors.FONT};
                 font-size: 18px;
                 font-weight: bold;
                 padding: 10px 20px;
-                border-radius: 5px;
+                border-radius: 10px;
+                box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
             }}
             
             #help_button {{
