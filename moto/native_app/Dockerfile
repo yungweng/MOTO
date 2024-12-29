@@ -11,6 +11,7 @@ RUN apt-get update && \
     apt-get install -y python3 python3-pip python3-gi python3-gi-cairo \
     gir1.2-gtk-3.0 x11-apps gobject-introspection libgirepository1.0-dev libcairo2-dev \
     pkg-config build-essential && \
+    apt-get install fonts-inter && \
     apt-get clean
 
 # Kopiere und installiere die Abhängigkeiten
