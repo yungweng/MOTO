@@ -80,8 +80,8 @@ class LoginWindow(Gtk.Box):
 
         # Login form
         form_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=20)
-        form_box.set_margin_start(50)
-        form_box.set_margin_end(50)
+        form_box.set_margin_start(200)
+        form_box.set_margin_end(200)
 
         # Username field
         self.username_entry = self._create_entry("Benutzername")
@@ -99,26 +99,35 @@ class LoginWindow(Gtk.Box):
         self.invisible_submit = Gtk.Button()
         self.invisible_submit.connect("clicked", self._handle_login)
         self.invisible_submit.set_can_focus(False)
+
         # Login button
         button_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        button_box.set_margin_start(450)
+        button_box.set_margin_end(450)
         button_box.set_margin_top(20)
-
         self.login_button = Gtk.Button(label="Anmelden")
         self.login_button.set_name("login_button")
+        self.login_button.set_size_request(100, 50)
         self.login_button.connect("clicked", self._handle_login)
         button_box.pack_start(self.login_button, False, False, 0)
 
         self.pack_start(button_box, False, False, 0)
 
+        # Forgot password
+        self.password_label = Gtk.Label(label="Passwort vergessen?")
+        self.password_label.set_name("password_label")
+        self.password_label.set_margin_top(0)
+        self.pack_start(self.password_label, False, False, 0)
+
         # Error message area
         self.error_label = Gtk.Label()
         self.error_label.set_name("error_label")
-        self.error_label.set_margin_top(50)
+        self.error_label.set_margin_top(0)
         self.pack_start(self.error_label, False, False, 0)
 
     def _create_help_button(self) -> Gtk.Button:
         """Create help button matching web styling"""
-        button = Gtk.Button(label="Hilfe")
+        button = Gtk.Button(label="HILFE")
         button.set_name("help_button")
         button.connect("clicked", self._show_help_dialog)
         return button
@@ -139,24 +148,27 @@ class LoginWindow(Gtk.Box):
         css_provider = Gtk.CssProvider()
         css = f"""
             #heading_type1 {{
-                font-size: 40px;
+                font-family: "Inter", sans-serif;
+                font-size: 50px;
                 font-weight: bold;
                 color: {Colors.FONT};
             }}
             
             #login_entry {{
-                font-size: 18px;
+                font-family: "Inter", sans-serif;
+                font-size: 24px;
                 padding: 8px;
                 border-radius: 10px;
                 background: {Colors.INPUT_BG};
-                color: {Colors.GREEN};
+                color: {Colors.FONT};
                 margin: 5px 0;
             }}
             
             #login_button {{
+                font-family: "Inter", sans-serif;
                 background: {Colors.GREEN};
                 color: {Colors.FONT};
-                font-size: 18px;
+                font-size: 26px;
                 font-weight: bold;
                 padding: 10px 20px;
                 border-radius: 10px;
@@ -164,15 +176,27 @@ class LoginWindow(Gtk.Box):
             }}
             
             #help_button {{
+                font-family: "Inter", sans-serif;
                 background: {Colors.HELP_BUTTON};
                 color: {Colors.FONT};
                 border: 2px solid {Colors.FONT};
                 border-radius: 45px;
-                padding: 5px 15px;
-                font-size: 16px;
+                padding: 10px 25px;
+                font-size: 20px;
+                box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+            }}
+            
+            #password_label {{
+                font-family: "Inter", sans-serif;
+                font-size: 14px;
+                color: {Colors.FONT};
+                font-style: italic;
+                text-decoration: underline;
+            
             }}
             
             #error_label {{
+                font-family: "Inter", sans-serif;
                 color: {Colors.ERROR};
                 font-size: 18px;
                 font-weight: 500;
