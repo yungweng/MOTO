@@ -1,11 +1,13 @@
 import gi
 from typing import Optional
+
 from view.login import LoginWindow
 from view.choose_room import Choose_RoomWindow
 from view.create_activity import CreateActivityWindow
 from view.home import HomeWindow
 from view.checked_in_overlay import CheckedInOverlay
 from view.checked_out_overlay import CheckedOutOverlay
+from view.go_home import GoHomeWindow
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
@@ -89,6 +91,15 @@ class MainWindow(Gtk.Window):
         self.main_container.add(home_window)
         self.main_container.show_all()
 
+    def switch_to_go_home(self):
+        """Switch to go home view"""
+        for child in self.main_container.get_children():
+            self.main_container.remove(child)
+
+        go_home_view = GoHomeWindow(self)
+        self.main_container.add(go_home_view)
+        self.main_container.show_all()
+
     def switch_page(self, page_name: str):
         """Switch the current view to the specified page."""
         # Clear existing children from the container
@@ -99,6 +110,8 @@ class MainWindow(Gtk.Window):
             self.main_container.add(LoginWindow(parent_window=self))
         elif page_name == "choose_room":
             self.main_container.add(Choose_RoomWindow(parent_window=self))
+        elif page_name == "go_home":
+            self.main_container.add(GoHomeWindow(parent_window=self))
         else:
             raise ValueError(f"Unknown page name: {page_name}")
 
