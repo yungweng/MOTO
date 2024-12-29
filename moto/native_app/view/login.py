@@ -250,6 +250,18 @@ class LoginWindow(Gtk.Box):
         finally:
             self._set_loading_state(False)
 
+    # Checked In Overlay Debugging für Login
+    # def _handle_successful_login(self) -> None:
+    #     """Handle successful login and navigate to next screen"""
+    #     self.error_label.set_text("")
+    #     self._state = LoginState.SUCCESS
+    #
+    #     # Show overlay first, then switch page
+    #     self.parent_window.show_checked_in_overlay(
+    #         "Test User",  # For debugging
+    #         lambda: self.parent_window.switch_page("choose_room")  # Callback after overlay
+    #     )
+
     def _handle_successful_login(self) -> None:
         """Handle successful login and navigate to next screen"""
         self.error_label.set_text("")

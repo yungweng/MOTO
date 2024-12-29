@@ -4,6 +4,7 @@ from view.login import LoginWindow
 from view.choose_room import Choose_RoomWindow
 from view.create_activity import CreateActivityWindow
 from view.home import HomeWindow
+from view.checked_in_overlay import CheckedInOverlay
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
@@ -11,14 +12,19 @@ class MainWindow(Gtk.Window):
     def __init__(self):
         super().__init__(title="Main Application")
         self.set_default_size(1280, 720)
+        self.set_resizable(False)
 
         # Placeholder for authentication tokens
         self.access_token: Optional[str] = None
         self.refresh_token: Optional[str] = None
 
+        # Create an overlay container for the main content
+        self.overlay_container = Gtk.Overlay()
+        self.add(self.overlay_container)
+
         # Main container for switching views
-        self.main_container = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)  # Renamed to avoid conflict
-        self.add(self.main_container)
+        self.main_container = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        self.overlay_container.add(self.main_container)
 
         # Initialize first page based on authentication
         if self.user_is_authenticated():
@@ -37,8 +43,13 @@ class MainWindow(Gtk.Window):
 
     def get_device_id(self) -> str:
         """Generate or return a unique device identifier."""
-        # Placeholder for a device ID; in production, use a persistent unique identifier
         return "default-device-id"
+
+    def show_checked_in_overlay(self, user_name: str, callback: Optional[callable] = None) -> None:
+        """Show the checked-in overlay with user name"""
+        overlay = CheckedInOverlay(self, user_name, callback)
+        self.overlay_container.add_overlay(overlay)
+        self.overlay_container.show_all()
 
     def switch_to_choose_room(self):
         # Clear existing children
