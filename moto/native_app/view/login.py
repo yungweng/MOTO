@@ -266,8 +266,9 @@ class LoginWindow(Gtk.Box):
         """Handle successful login and navigate to next screen"""
         self.error_label.set_text("")
         self._state = LoginState.SUCCESS
+        print("TEST DEBUG")
         # Navigate to room selection after successful login
-        GLib.timeout_add(500, self.parent_window.switch_page, "choose_room")
+        GLib.timeout_add(500, self.parent_window.switch_page, "home")
 
     def _show_error(self, message: str) -> None:
         """Display error message"""
