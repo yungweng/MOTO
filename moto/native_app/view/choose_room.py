@@ -16,9 +16,11 @@ class RoomState(Enum):
 class Colors:
     BACKGROUND = "#f6f4f3"
     FONT = "#1b2021"
-    SELECT_BUTTON = "#BAD87A"
+    HELP_BUTTON = "#ffffff"
     OCCUPIED_BUTTON = "#DE675F"
     LIST_BACKGROUND = "#D9D9D9"
+    GREEN = "#84cc2d"
+    RED = "#fc3635"
 
 class Config:
     API_BASE_URL = "https://127.0.0.1:8000/api"  # Note the https
@@ -62,8 +64,8 @@ class Choose_RoomWindow(Gtk.Box):
     def _init_ui(self) -> None:
         self.logger.info("Starting UI initialization")
 
-        self.set_margin_top(20)
-        self.set_margin_bottom(20)
+        self.set_margin_top(30)
+        self.set_margin_bottom(0)
         self.set_margin_start(20)
         self.set_margin_end(20)
 
@@ -71,12 +73,12 @@ class Choose_RoomWindow(Gtk.Box):
         header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         header_box.set_margin_bottom(20)
 
-        title = Gtk.Label(label="Hallo.")
-        title.set_name("big_heading")
-        title.set_halign(Gtk.Align.START)
-        header_box.pack_start(title, True, True, 0)
+        logout_button = Gtk.Button(label="Abmelden")
+        logout_button.set_name("help_button")
+        logout_button.set_halign(Gtk.Align.START)
+        header_box.pack_start(logout_button, False, False, 0)
 
-        help_button = Gtk.Button(label="Hilfe")
+        help_button = Gtk.Button(label="HILFE")
         help_button.set_name("help_button")
         help_button.connect("clicked", self._show_help_dialog)
         header_box.pack_end(help_button, False, False, 0)
@@ -88,6 +90,12 @@ class Choose_RoomWindow(Gtk.Box):
 
         self.pack_start(header_box, False, True, 0)
 
+        # Header title
+        title = Gtk.Label(label="Hallo VORNAME")
+        title.set_name("big_heading")
+        title.set_halign(Gtk.Align.START)
+        self.pack_start(title, False, True, 0)
+
         # Subtitle
         subtitle = Gtk.Label(label="Bitte ordne dem Gerät einen Raum zu:")
         subtitle.set_name("big_subheading")
@@ -98,17 +106,19 @@ class Choose_RoomWindow(Gtk.Box):
         # Room list
         self.room_list = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         self.room_list.set_margin_start(10)
-        self.room_list.set_margin_end(10)
+        self.room_list.set_margin_end(0)
+        self.room_list.set_name("room_list")
 
         scrolled = Gtk.ScrolledWindow()
         scrolled.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        scrolled.set_name("room_scrolled_window")
         scrolled.set_vexpand(True)
         scrolled.set_hexpand(True)
         scrolled.add(self.room_list)
         self.pack_start(scrolled, True, True, 0)
 
         # Status bar
-        self.status_bar = Gtk.Label()
+        self.status_bar = Gtk.Label(label="Zuletzt aktualisiert: 28.12.2024 12:00")
         self.status_bar.set_name("status_bar")
         self.status_bar.set_margin_bottom(10)
         self.pack_end(self.status_bar, False, True, 0)
@@ -187,57 +197,81 @@ class Choose_RoomWindow(Gtk.Box):
         css_provider = Gtk.CssProvider()
         css = f"""
             box {{
-                background-color: {Colors.BACKGROUND};
+                background: {Colors.BACKGROUND};
             }}
             
             #big_heading {{
+                font-family: "Inter", sans-serif;
                 font-size: 48px;
                 font-weight: bold;
                 color: {Colors.FONT};
             }}
             
             #big_subheading {{
+                font-family: "Inter", sans-serif;
                 font-size: 24px;
                 color: {Colors.FONT};
             }}
             
             #room_container {{
-                background-color: {Colors.LIST_BACKGROUND};
-                border-radius: 15px;
-                padding: 10px;
+                font-family: "Inter", sans-serif;
+                background: {Colors.LIST_BACKGROUND};
+                padding: 18px;
                 margin: 5px 0;
+                border-radius: 18px;
+                box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+                
             }}
             
             #room_label {{
-                font-size: 24px;
+                font-family: "Inter", sans-serif;
+                font-size: 26px;
                 color: {Colors.FONT};
+                
+            }}
+                
+            #room_list{{
+                background: inherit;
+                border-radius: 40px;
             }}
             
+        
             #select_button {{
-                background-color: {Colors.SELECT_BUTTON};
+                font-family: "Inter", sans-serif;
+                font-size: 20px;
+                background: {Colors.GREEN};
                 color: {Colors.FONT};
                 border: none;
-                border-radius: 5px;
-                padding: 8px 16px;
+                border-radius: 10px;
+                padding: 15px 25px;
+                box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
             }}
             
             #occupied_button {{
-                background-color: {Colors.OCCUPIED_BUTTON};
-                color: white;
+                font-family: "Inter", sans-serif;
+                background: {Colors.RED};
+                color: {Colors.FONT};
                 border: none;
-                border-radius: 5px;
+                border-radius: 10px;
                 padding: 8px 16px;
+                box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
             }}
             
             #help_button {{
-                background-color: white;
+                font-family: "Inter", sans-serif;
+                background: {Colors.HELP_BUTTON};
                 color: {Colors.FONT};
                 border: 2px solid {Colors.FONT};
                 border-radius: 45px;
                 padding: 5px 15px;
+                font-size: 20px;
+                box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
             }}
             
+        
+            
             #status_bar {{
+                font-family: "Inter", sans-serif;
                 font-size: 12px;
                 color: #666666;
             }}
