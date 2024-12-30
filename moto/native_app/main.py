@@ -17,6 +17,8 @@ class MainWindow(Gtk.Window):
         self.set_default_size(1280, 720)
         self.set_resizable(False)
 
+        self.fullscreen()
+
         # Placeholder for authentication tokens
         self.access_token: Optional[str] = None
         self.refresh_token: Optional[str] = None
