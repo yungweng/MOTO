@@ -10,7 +10,9 @@ class Colors:
     """Color constants from CSS"""
     BACKGROUND = "#f6f4f3"
     FONT = "#1b2021"
+    HELP_BUTTON = "#ffffff"
     SELECT_BUTTON = "#BAD87A"
+    GREEN = "#84cc2d"
     INPUT_BG = "rgba(217, 217, 217, 0.5)"
     ERROR = "#DE675F"
 
@@ -29,17 +31,19 @@ class CreateActivityWindow(Gtk.Box):
 
     def _init_ui(self) -> None:
         # Container margins
-        self.set_margin_top(20)
-        self.set_margin_bottom(20)
+        self.set_margin_top(30)
+        self.set_margin_bottom(30)
         self.set_margin_start(20)
         self.set_margin_end(20)
 
         # Header with back button and help
         header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        header_box.set_margin_bottom(20)
 
         # Back button
         back_button = Gtk.Button(label="Zurück")
-        back_button.set_name("back_button")
+        back_button.set_name("help_button")
+        back_button.set_halign(Gtk.Align.START)
         back_button.connect("clicked", self._on_back_clicked)
         header_box.pack_start(back_button, False, False, 0)
 
@@ -51,29 +55,25 @@ class CreateActivityWindow(Gtk.Box):
 
         self.pack_start(header_box, False, False, 0)
 
-        # Title and subtitle
+        # Title
         title = Gtk.Label()
         title.set_markup(f"<span size='24000'>Raum {self.room_id}</span>")
-        title.set_name("heading_2")
+        title.set_name("big_heading")
         title.set_halign(Gtk.Align.START)
         self.pack_start(title, False, False, 0)
 
 
-        # Title and subtitle
-        title = Gtk.Label()
-        #title.set_markup(f"<span size='24000'>Raum XXX</span>")  # Room number will be set later
-        title.set_name("heading_2")
-        title.set_halign(Gtk.Align.START)
-        self.pack_start(title, False, False, 0)
-
+        # Subtitle
         subtitle = Gtk.Label(label="Geben Sie folgende Informationen an:")
-        subtitle.set_name("subheading_2")
+        subtitle.set_name("big_subheading")
         subtitle.set_halign(Gtk.Align.START)
         self.pack_start(subtitle, False, False, 0)
 
+
+        """
         # Form container
-        form_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=15)
-        form_box.set_margin_top(50)
+        form_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
+        form_box.set_margin_top(0)
 
         # Supervisor (Aufsichtsperson)
         supervisor_box = self._create_input_block(
@@ -111,24 +111,82 @@ class CreateActivityWindow(Gtk.Box):
         )
         form_box.pack_start(capacity_box, False, False, 0)
 
-        self.pack_start(form_box, True, True, 0)
+        self.pack_start(form_box, True, True, 0)"""
+
+        # Form container
+        form_grid = Gtk.Grid()
+        form_grid.set_name("form_grid")
+        form_grid.set_row_spacing(10)
+        form_grid.set_column_spacing(10)
+        form_grid.set_margin_top(10)
+        form_grid.set_margin_start(30)
+        form_grid.set_margin_end(30)
+
+        # Supervisor (Aufsichtsperson)
+        supervisor_label = Gtk.Label(label="Aufsichtsperson:")
+        supervisor_label.set_xalign(0)  # Align text to the left
+        supervisor_dropdown = Gtk.ComboBoxText()
+        supervisor_dropdown.set_hexpand(True)  # Allow it to expand in the grid
+        supervisor_dropdown.append_text("Bitte auswählen...")
+        supervisor_dropdown.append_text("Person 1") # TODO: Populate from API
+        supervisor_dropdown.append_text("Person 2")
+        supervisor_dropdown.set_active(0)  # Select the first option by default
+
+        form_grid.attach(supervisor_label, 0, 0, 1, 1)  # Column 0, Row 0
+        form_grid.attach(supervisor_dropdown, 1, 0, 1, 1)  # Column 1, Row 0
+
+        # Activity name
+        activity_label = Gtk.Label(label="Aktivitätsname:")
+        activity_label.set_xalign(0)
+        activity_entry = Gtk.Entry()
+        activity_entry.set_placeholder_text("Aktivitätsname")
+
+        form_grid.attach(activity_label, 0, 1, 1, 1)  # Column 0, Row 1
+        form_grid.attach(activity_entry, 1, 1, 1, 1)  # Column 1, Row 1
+
+        # Activity category
+        category_label = Gtk.Label(label="AG-Kategorie:")
+        category_label.set_xalign(0)
+        category_dropdown = Gtk.ComboBoxText()
+        category_dropdown.set_hexpand(True)
+        category_dropdown.append_text("Bitte auswählen...")
+        category_dropdown.append_text("Sport") # TODO: Populate from API
+        category_dropdown.append_text("Kunst")
+        category_dropdown.append_text("Musik")
+        category_dropdown.set_active(0)
+
+        form_grid.attach(category_label, 0, 2, 1, 1)  # Column 0, Row 2
+        form_grid.attach(category_dropdown, 1, 2, 1, 1)  # Column 1, Row 2
+
+        # Maximum participants
+        capacity_label = Gtk.Label(label="Maximale Kinderanzahl:")
+        capacity_label.set_xalign(0)
+        capacity_entry = Gtk.Entry()
+        capacity_entry.set_placeholder_text("Maximale Anzahl")
+
+        form_grid.attach(capacity_label, 0, 3, 1, 1)  # Column 0, Row 3
+        form_grid.attach(capacity_entry, 1, 3, 1, 1)  # Column 1, Row 3
+
+        # Add grid to the container
+        self.pack_start(form_grid, True, True, 0)
+
+
+        # Submit button container
+        button_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        button_box.set_margin_start(500)
+        button_box.set_margin_end(500)
+        button_box.set_margin_top(0)
+        self.submit_button = Gtk.Button(label="Los geht's!")
+        self.submit_button.set_name("submit_button")
+        #self.submit_button.set_size_request(100, 50)
+        self.submit_button.connect("clicked", self._on_submit)
+        button_box.pack_start(self.submit_button, False, False, 0)
+        self.pack_start(button_box, False, False, 0)
 
         # Error message area
         self.error_label = Gtk.Label()
         self.error_label.set_name("error_label")
         self.pack_start(self.error_label, False, False, 0)
-
-        # Submit button container
-        button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-        button_box.set_halign(Gtk.Align.CENTER)
-        button_box.set_margin_top(30)
-
-        submit_button = Gtk.Button(label="Auswählen")
-        submit_button.set_name("submit_button")
-        submit_button.connect("clicked", self._on_submit)
-        button_box.pack_start(submit_button, False, False, 0)
-
-        self.pack_end(button_box, False, False, 0)
 
     def _create_input_block(self, label_text: str, entry: Optional[Gtk.Entry] = None,
                             is_dropdown: bool = False, options: list = None) -> Gtk.Box:
@@ -159,37 +217,42 @@ class CreateActivityWindow(Gtk.Box):
     def _apply_styles(self) -> None:
         css_provider = Gtk.CssProvider()
         css = f"""
-            #heading_2 {{
+            box {{
+                background: {Colors.BACKGROUND};
+            }}
+            
+            #big_heading {{
+                font-family: "Inter", sans-serif;
                 font-size: 48px;
                 font-weight: bold;
                 color: {Colors.FONT};
             }}
             
-            #subheading_2 {{
-                font-size: 32px;
+            #big_subheading {{
+                font-family: "Inter", sans-serif;
+                font-size: 24px;
                 color: {Colors.FONT};
             }}
             
+            #form_grid * {{
+                font-family: "Inter", sans-serif;
+                font-size: 18px;
+            }}
+            
             #inputblock {{
+                font-family: "Inter", sans-serif;
                 margin: 15px 0;
             }}
             
             #category {{
+                font-family: "Inter", sans-serif;
                 font-size: 24px;
                 color: {Colors.FONT};
             }}
             
-            #inputfield {{
-                background-color: {Colors.INPUT_BG};
-                border: none;
-                border-radius: 10px;
-                padding: 10px 20px;
-                font-size: 24px;
-                min-height: 50px;
-                min-width: 410px;
-            }}
             
             #custom-select {{
+                font-family: "Inter", sans-serif;
                 background-color: {Colors.INPUT_BG};
                 border: none;
                 border-radius: 10px;
@@ -200,33 +263,25 @@ class CreateActivityWindow(Gtk.Box):
             }}
             
             #submit_button {{
-                background-color: {Colors.SELECT_BUTTON};
+                font-family: "Inter", sans-serif;
+                background: {Colors.GREEN};
                 color: {Colors.FONT};
-                border: none;
-                border-radius: 10px;
+                font-size: 26px;
+                font-weight: bold;
                 padding: 10px 20px;
-                font-size: 24px;
-                font-weight: 500;
-                min-width: 200px;
-                min-height: 60px;
-            }}
-            
-            #back_button {{
-                color: {Colors.FONT};
-                font-size: 32px;
-                font-weight: 600;
-                background: none;
-                border: none;
-                margin-left: 50px;
+                border-radius: 10px;
+                box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
             }}
             
             #help_button {{
-                background: white;
+                font-family: "Inter", sans-serif;
+                background: {Colors.HELP_BUTTON};
                 color: {Colors.FONT};
                 border: 2px solid {Colors.FONT};
                 border-radius: 45px;
                 padding: 5px 15px;
                 font-size: 20px;
+                box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
             }}
             
             #error_label {{
