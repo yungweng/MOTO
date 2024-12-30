@@ -272,7 +272,7 @@ class Choose_RoomWindow(Gtk.Box):
             
             #status_bar {{
                 font-family: "Inter", sans-serif;
-                font-size: 12px;
+                f0ont-size: 12px;
                 color: #666666;
             }}
         """

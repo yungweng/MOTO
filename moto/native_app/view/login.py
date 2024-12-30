@@ -68,7 +68,7 @@ class LoginWindow(Gtk.Box):
         self.pack_start(header, False, False, 0)
 
         # MOTO Logo above title
-        logo_image = Gtk.Image.new_from_file("img/moto_transparent_200.png")  # Replace with the correct path
+        logo_image = Gtk.Image.new_from_file("img/moto_transparent_200.png")
         logo_image.set_margin_bottom(5)  # Add some spacing below the image
         self.pack_start(logo_image, False, False, 0)
 

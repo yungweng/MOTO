@@ -112,10 +112,11 @@ class MainWindow(Gtk.Window):
             self.main_container.add(LoginWindow(parent_window=self))
         elif page_name == "choose_room":
             self.main_container.add(Choose_RoomWindow(parent_window=self))
+        elif page_name == "home":  # only for development
+            self.main_container.add(HomeWindow(parent_window=self, room_id="2"))  # only for development
         elif page_name == "go_home":
             self.main_container.add(GoHomeWindow(parent_window=self))
-        elif page_name == "home":
-            self.main_container.add(GoHomeWindow(parent_window=self)) # only for development
+
         else:
             raise ValueError(f"Unknown page name: {page_name}")
 

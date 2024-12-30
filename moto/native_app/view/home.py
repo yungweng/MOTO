@@ -25,8 +25,8 @@ class HomeWindow(Gtk.Box):
 
     def _init_ui(self) -> None:
         # Container margins
-        self.set_margin_top(20)
-        self.set_margin_bottom(20)
+        self.set_margin_top(10)
+        self.set_margin_bottom(10)
         self.set_margin_start(20)
         self.set_margin_end(20)
 
@@ -52,12 +52,11 @@ class HomeWindow(Gtk.Box):
         mid_container.pack_start(room_label, False, True, 20)
 
         # NFC Image placeholder
-        image = Gtk.Image()
-        image.set_name("nfc_scan")
-        # You might want to replace this with an actual NFC icon
-        image.set_from_icon_name("nfc", Gtk.IconSize.DIALOG)
-        image.set_pixel_size(200)  # Make the icon larger
-        mid_container.pack_start(image, True, True, 20)
+
+        logo_image = Gtk.Image.new_from_file("img/moto_transparent_200.png")  # TODO: Replace with the correct image
+        logo_image.set_margin_bottom(5)  # Add some spacing below the image
+        self.pack_start(logo_image, False, False, 0)
+
 
         # Explanation text
         explanation = Gtk.Label(
@@ -71,44 +70,43 @@ class HomeWindow(Gtk.Box):
         # Hidden form for NFC tag ID
         self.tag_id_entry = Gtk.Entry()
         self.tag_id_entry.set_visible(False)
+        self.tag_id_entry.set_no_show_all(True)
         self.pack_start(self.tag_id_entry, False, False, 0)
 
     def _apply_styles(self) -> None:
         css_provider = Gtk.CssProvider()
         css = f"""
             #header_container_mid {{
-                margin: 20px;
+                font-family: "Inter", sans-serif;
+                margin: 0px;
             }}
             
             #login_button {{
+                font-family: "Inter", sans-serif;
                 background: {Colors.HELP_BUTTON};
                 color: {Colors.FONT};
-                border: 3px solid {Colors.FONT};
+                border: 2px solid {Colors.FONT};
                 border-radius: 45px;
-                padding: 10px 20px;
+                padding: 5px 15px;
                 font-size: 20px;
-                min-width: 130px;
-                min-height: 46px;
+                box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
             }}
             
             #mid_container {{
-                margin: 20px;
+                margin: 0px;
             }}
             
             #default_heading_mid {{
                 font-weight: bold;
                 font-size: 70px;
-                margin: 20px 0;
+                margin: 0px 0;
             }}
             
-            #nfc_scan {{
-                margin: 20px;
-                opacity: 0.8;
-            }}
+
             
             #explanation {{
                 font-size: 25px;
-                margin: 10px 0;
+                margin: 0px 0;
             }}
         """
         css_provider.load_from_data(css.encode())
