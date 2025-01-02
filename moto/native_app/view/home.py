@@ -25,7 +25,7 @@ class HomeWindow(Gtk.Box):
 
     def _init_ui(self) -> None:
         # Container margins
-        self.set_margin_top(10)
+        self.set_margin_top(20)
         self.set_margin_bottom(10)
         self.set_margin_start(20)
         self.set_margin_end(20)
@@ -52,10 +52,9 @@ class HomeWindow(Gtk.Box):
         mid_container.pack_start(room_label, False, True, 20)
 
         # NFC Image placeholder
-
-        logo_image = Gtk.Image.new_from_file("img/moto_transparent_200.png")  # TODO: Replace with the correct image
-        logo_image.set_margin_bottom(5)  # Add some spacing below the image
-        self.pack_start(logo_image, False, False, 0)
+        logo_image = Gtk.Image.new_from_file("img/nfc_pfeil.png")  # TODO: Replace with higher resolution
+        logo_image.set_margin_bottom(5)     # Add some spacing below the image
+        mid_container.pack_start(logo_image, False, False, 10)
 
 
         # Explanation text
