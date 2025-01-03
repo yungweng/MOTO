@@ -17,10 +17,10 @@ class Colors:
     BACKGROUND = "#f6f4f3"
     FONT = "#1b2021"
     HELP_BUTTON = "#ffffff"
-    OCCUPIED_BUTTON = "#DE675F"
+    OCCUPIED_BUTTON = "#ff3130"
     LIST_BACKGROUND = "#D9D9D9"
-    GREEN = "#84cc2d"
-    RED = "#fc3635"
+    GREEN = "#83cd2d"
+    RED = "#ff3130"
 
 class Config:
     API_BASE_URL = "https://127.0.0.1:8000/api"  # Note the https

@@ -7,7 +7,7 @@ from gi.repository import Gtk, GLib, Gdk
 class Colors:
     BACKGROUND = "#f6f4f3"
     FONT = "#1b2021"
-    GREEN = "#84cc2d"
+    GREEN = "#83cd2d"
 
 class CheckedInOverlay(Gtk.Overlay):
     def __init__(self, parent_window: Gtk.Window, user_name: str, callback: Optional[Callable] = None) -> None:

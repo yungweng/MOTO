@@ -11,10 +11,9 @@ class Colors:
     BACKGROUND = "#f6f4f3"
     FONT = "#1b2021"
     HELP_BUTTON = "#ffffff"
-    SELECT_BUTTON = "#BAD87A"
-    GREEN = "#84cc2d"
+    GREEN = "#83cd2d"
     INPUT_BG = "rgba(217, 217, 217, 0.5)"
-    ERROR = "#DE675F"
+    ERROR = "#FF3130"
 
 class CreateActivityWindow(Gtk.Box):
     def __init__(self, parent_window: Gtk.Window, room_id: str) -> None:

@@ -22,10 +22,10 @@ class Colors:
     """Color constants from CSS"""
     BACKGROUND = "#f6f4f3"
     FONT = "#1b2021"
-    ERROR = "#de675f"
+    ERROR = "#ff3130"
     HELP_BUTTON = "#ffffff"
     INPUT_BG = "rgba(217, 217, 217, 0.5)"
-    GREEN = "#84cc2d"
+    GREEN = "#83cd2d"
 
 class Config:
     """Configuration settings"""
