@@ -14,8 +14,8 @@
     2. Containers links oben öffnen
     3. MOTO ausklappen und db-1 mit symbol starten, dannach auf den namen db-1 klicken
     4. Reiter Exec öffnen
-    5. cmd eingeben: dropdb koordapp -f -U postgres
-    6. cmd eingeben: createdb koordapp -U postgres
+    5. cmd eingeben: dropdb moto -f -U postgres
+    6. cmd eingeben: createdb moto -U postgres
     7. im Projekt Ordner main_app/migrations alle datein löschen außer __init__.py
     8. mit dem cmd docker-compose up server neustarten, falls der server läuft vorher stoppen   
 

@@ -14,7 +14,7 @@ class RaumSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Raum
-        fields = ['id', 'raum_nr', 'geschoss', 'kapazitaet', 'belegt']  # Hier definierst du die Felder, die zurückgegeben werden sollen
+        fields = ['id', 'raum_nr', 'geschoss', 'kapazitaet', 'belegt', 'color', 'kategorie']  # Hier definierst du die Felder, die zurückgegeben werden sollen
 
     def get_belegt(self, obj):
         # Prüfen, ob es Raumbelegungen für diesen Raum gibt
