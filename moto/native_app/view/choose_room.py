@@ -17,7 +17,6 @@ class Colors:
     BACKGROUND = "#f6f4f3"
     FONT = "#1b2021"
     HELP_BUTTON = "#ffffff"
-    OCCUPIED_BUTTON = "#ff3130"
     LIST_BACKGROUND = "#D9D9D9"
     GREEN = "#83cd2d"
     RED = "#ff3130"
