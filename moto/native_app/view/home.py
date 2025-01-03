@@ -52,7 +52,7 @@ class HomeWindow(Gtk.Box):
         mid_container.pack_start(room_label, False, True, 20)
 
         # NFC Image placeholder
-        logo_image = Gtk.Image.new_from_file("img/nfc_pfeil.png")  # TODO: Replace with higher resolution
+        logo_image = Gtk.Image.new_from_file("img/nfc_pfeil.png")
         logo_image.set_margin_bottom(5)     # Add some spacing below the image
         mid_container.pack_start(logo_image, False, False, 10)
 
@@ -96,15 +96,19 @@ class HomeWindow(Gtk.Box):
             }}
             
             #default_heading_mid {{
+                font-family: "Inter", sans-serif;
                 font-weight: bold;
                 font-size: 70px;
+                color: {Colors.FONT};
                 margin: 0px 0;
             }}
             
 
             
             #explanation {{
+                font-family: "Inter", sans-serif;
                 font-size: 25px;
+                color: {Colors.FONT};
                 margin: 0px 0;
             }}
         """

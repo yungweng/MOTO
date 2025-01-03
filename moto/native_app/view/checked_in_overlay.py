@@ -5,7 +5,7 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GLib, Gdk
 
 class Colors:
-    BACKGROUND_OVERLAY = "rgba(255, 255, 255, 0.95)"
+    BACKGROUND = "#f6f4f3"
     FONT = "#1b2021"
     GREEN = "#84cc2d"
 
@@ -17,28 +17,23 @@ class CheckedInOverlay(Gtk.Overlay):
         self.callback = callback
         self.logger = logging.getLogger(__name__)
 
-        # Main center box
-        self.overlay_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=20)
-        self.overlay_box.set_name("overlay_box")
-        self.overlay_box.set_size_request(100, 100)
-
-
         # Size and position control
         center_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        center_box.set_valign(Gtk.Align.CENTER)
-        center_box.set_halign(Gtk.Align.CENTER)
+
 
         # Welcome message
         welcome_label = Gtk.Label()
-        welcome_label.set_markup(f"<span size='12000'>Hallo {user_name}!</span>")
+        welcome_label.set_markup(f"<span size='50000'>Hallo {user_name}!</span>")
+        welcome_label.set_margin_top(100)
         welcome_label.set_name("overlay_heading")
-        center_box.pack_start(welcome_label, False, False, 10)
+        center_box.pack_start(welcome_label, False, True, 20)
 
         # Image
         try:
             image = Gtk.Image.new_from_file("img/checked_in.png")
             image.set_pixel_size(60)
-            center_box.pack_start(image, False, False, 20)
+            image.set_margin_start(50)
+            center_box.pack_start(image, False, False, 10)
         except Exception as e:
             logging.error(f"Failed to load checked_in image: {e}")
 
@@ -48,20 +43,16 @@ class CheckedInOverlay(Gtk.Overlay):
 
         self.callback = callback
         # Hier Zeit bis es weg geht, kann für Debugging länger gemacht werden. Debuggende LG
-        GLib.timeout_add(1000, self._on_timeout)
+        GLib.timeout_add(10000, self._on_timeout)
 
     def _apply_styles(self) -> None:
         css_provider = Gtk.CssProvider()
         css = f"""
-            #overlay_box {{
-                background-color: {Colors.BACKGROUND_OVERLAY};
-                border-radius: 10px;
-                padding: 15px;
-            }}
             
             #overlay_heading {{
                 font-family: "Inter", sans-serif;
                 font-weight: bold;
+                font-size: 70px;
                 color: {Colors.FONT};
             }}
         """
