@@ -29,10 +29,11 @@ class Config:
     REQUEST_TIMEOUT = 10
 
 class RoomData:
-    def __init__(self, id: int, raum_nr: str, is_occupied: bool):
+    def __init__(self, id: int, raum_nr: str, is_occupied: bool, color: str):
         self.id = id
         self.raum_nr = raum_nr
         self.is_occupied = is_occupied
+        self.color = color
 
 class Choose_RoomWindow(Gtk.Box):
     def __init__(self, parent_window: Gtk.Window) -> None:
@@ -137,19 +138,26 @@ class Choose_RoomWindow(Gtk.Box):
                 f"{Config.API_BASE_URL}{Config.ROOMS_ENDPOINT}",
                 headers=headers,
                 timeout=Config.REQUEST_TIMEOUT,
-                verify=Config.VERIFY_SSL  # Match login.py settings
+                verify=Config.VERIFY_SSL 
             )
 
             if response.status_code == 200:
                 data = response.json()
-                self._rooms = [
-                    RoomData(
-                        id=room['id'],
-                        raum_nr=room['raum_nr'],
-                        is_occupied=room.get('is_occupied', False)
-                    )
-                    for room in data
-                ]
+                self._rooms_by_category = [] 
+
+                for category_data in data:
+                    category = category_data['kategorie']
+                    rooms = [
+                        RoomData(
+                            id=room['id'],
+                            raum_nr=room['raum_nr'],
+                            is_occupied=room.get('belegt', False),
+                            color=room['color'] 
+                        )
+                        for room in category_data['raeume']
+                    ]
+                    self._rooms_by_category.append({"kategorie": category, "raeume": rooms})
+
                 self._update_room_list()
                 self._state = RoomState.IDLE
             else:
@@ -160,29 +168,40 @@ class Choose_RoomWindow(Gtk.Box):
             self.logger.error(f"Failed to load rooms: {e}")
             self._state = RoomState.ERROR
 
+
     def _update_room_list(self) -> None:
         for child in self.room_list.get_children():
             self.room_list.remove(child)
 
-        for room in sorted(self._rooms, key=lambda x: x.raum_nr):
-            room_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
-            room_box.set_name("room_container")
+        for category_data in self._rooms_by_category:
+            category = category_data['kategorie']
+            rooms = category_data['raeume']
 
-            label = Gtk.Label(label=f"Raum {room.raum_nr}")
-            label.set_name("room_label")
-            label.set_halign(Gtk.Align.START)
-            room_box.pack_start(label, True, True, 10)
+            category_label = Gtk.Label(label=f"Kategorie: {category}")
+            category_label.set_name("category_label")
+            category_label.set_halign(Gtk.Align.START)
+            self.room_list.pack_start(category_label, False, True, 10)
 
-            button = Gtk.Button(label="Belegt" if room.is_occupied else "Auswählen")
-            button.set_name("occupied_button" if room.is_occupied else "select_button")
-            if not room.is_occupied:
-                button.connect("clicked", self._on_room_selected, room.id)
-            button.set_sensitive(not room.is_occupied)
-            room_box.pack_end(button, False, False, 10)
+            for room in sorted(rooms, key=lambda x: x.raum_nr):
+                room_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+                room_box.set_name("room_container")
 
-            self.room_list.pack_start(room_box, False, True, 0)
+                label = Gtk.Label(label=f"Raum {room.raum_nr}")
+                label.set_name("room_label")
+                label.set_halign(Gtk.Align.START)
+                room_box.pack_start(label, True, True, 10)
+
+                button = Gtk.Button(label="Belegt" if room.is_occupied else "Auswählen")
+                button.set_name("occupied_button" if room.is_occupied else "select_button")
+                if not room.is_occupied:
+                    button.connect("clicked", self._on_room_selected, room.id)
+                button.set_sensitive(not room.is_occupied)
+                room_box.pack_end(button, False, False, 10)
+
+                self.room_list.pack_start(room_box, False, True, 0)
 
         self.room_list.show_all()
+
 
     def _refresh_rooms(self) -> bool:
         self._load_rooms()
