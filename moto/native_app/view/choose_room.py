@@ -233,6 +233,13 @@ class Choose_RoomWindow(Gtk.Box):
                 color: {Colors.FONT};
             }}
             
+            #category_label {{
+                font-family: "Inter", sans-serif;
+                font-size: 20px;
+                color: {Colors.FONT};
+                border-bottom: 2px solid {Colors.FONT};
+            }}
+            
             #room_container {{
                 font-family: "Inter", sans-serif;
                 background: {Colors.LIST_BACKGROUND};
@@ -287,6 +294,7 @@ class Choose_RoomWindow(Gtk.Box):
                 font-size: 20px;
                 box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
             }}
+            
             
         
             
