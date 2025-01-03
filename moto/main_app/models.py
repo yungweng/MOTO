@@ -31,9 +31,11 @@ class Personal(models.Model):
         permissions = [("can_import", "Can import excel data")]
 
 class Raum(models.Model):
-    raum_nr = models.CharField(max_length=12)
-    geschoss = models.CharField(max_length=12)
+    raum_nr = models.CharField(max_length=15)
+    geschoss = models.CharField(max_length=15)
     kapazitaet = models.SmallIntegerField()
+    kategorie = models.CharField(max_length=30, null = True)
+    color = models.CharField(max_length=7, default="#FFFFFF", help_text="Hex color code, e.g., #FFFFFF for white")
 
     def get_schueler_in_raum(self):
         aufenthalte = Aufenthalt.objects.filter(raum_id=self, zeitraum__endzeit__isnull=True)

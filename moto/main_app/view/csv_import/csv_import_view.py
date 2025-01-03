@@ -12,6 +12,7 @@ from django.http import HttpResponse
 from openpyxl import Workbook, load_workbook
 
 from main_app.models import Nutzer, Personal, Raum, Gruppe, AG, Schueler, Zeitraum, AGZeit, Datumsraum, AGKategorie 
+import re
 
 @login_required(redirect_field_name="login")
 def csv_import_view(request):
@@ -43,10 +44,34 @@ def csv_import_view(request):
                                 Raum.objects.all().delete()
 
                             wss = wb['Raeume']
-                            for row in wss.iter_rows(min_row=2, values_only=True):              # Erstellung Nutzer
-                                raum_nr, geschoss, kapazitaet = row
-                                if(Raum.objects.filter(raum_nr=raum_nr).exists()==False):
-                                    Raum.objects.create(raum_nr=raum_nr,geschoss=geschoss,kapazitaet=kapazitaet)
+                            for row in wss.iter_rows(min_row=2, values_only=True):
+                                try:
+                                    raum_nr, geschoss, kapazitaet, kategorie, hex_farbe = row
+
+                                    # Überprüfen, ob Raum bereits existiert
+                                    if not Raum.objects.filter(raum_nr=raum_nr).exists():
+                                        # Standardwerte setzen, falls nötig
+                                        kategorie = kategorie if kategorie else "Allgemein"
+                                        
+                                        # Hex-Farbe überprüfen
+                                        if hex_farbe:
+                                            if hex_farbe and not is_valid_hex_color(hex_farbe):
+                                                messages.error(request, f"Ungültiger Hex-Code für Raum {raum_nr}: {hex_farbe}")
+                                                error = True
+                                                continue 
+
+                                        color = hex_farbe if hex_farbe else "#FFFFFF"
+
+                                        Raum.objects.create(
+                                            raum_nr=raum_nr,
+                                            geschoss=geschoss,
+                                            kapazitaet=kapazitaet,
+                                            kategorie=kategorie,
+                                            color=color
+                                        )
+                                except Exception as e:
+                                    error = True
+                                    messages.error(request, f"Fehler bei der Verarbeitung von Raum {row}: {e}")
 
                         if 'option_user' in optionlist:
                             if 'option_overwrite' in optionlist_reset:
@@ -277,3 +302,5 @@ def create_ag_zeiten(list, day, ag):
             agzeit = AGZeit.objects.create(wochentag=day, zeitraum=zeitraum)
             ag.ag_zeit.add(agzeit)
     
+def is_valid_hex_color(color):
+    return bool(re.fullmatch(r"^#[0-9A-Fa-f]{6}$", color))
