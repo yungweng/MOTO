@@ -76,6 +76,7 @@ class LoginWindow(Gtk.Box):
         title = Gtk.Label(label="Login")
         title.set_name("heading_type1")
         title.set_margin_bottom(20)
+
         self.pack_start(title, False, False, 0)
 
         # Login form

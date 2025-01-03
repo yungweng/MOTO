@@ -120,6 +120,8 @@ class MainWindow(Gtk.Window):
             self.main_container.add(CheckedInOverlay(parent_window=self, user_name="John Doe"))
         elif page_name == "checked_out":
             self.main_container.add(CheckedOutOverlay(parent_window=self, user_name="Yannick Wenger"))
+        elif page_name == "go_home":
+            self.main_container.add(GoHomeWindow(parent_window=self))
 
         else:
             raise ValueError(f"Unknown page name: {page_name}")

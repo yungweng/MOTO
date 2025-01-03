@@ -10,9 +10,10 @@ class Colors:
     FONT = "#1b2021"
     GREEN = "#84cc2d"
     INPUT_BG = "rgba(217, 217, 217, 0.5)"
-    VERY_WELL = "#BAD87A"
-    OKAY = "#FFD93D"
-    BAD = "#FF6B6B"
+    VERY_WELL = "#83CD2D"
+    OKAY = "#F78C10"
+    BAD = "#FF3130"
+
 
 class GoHomeWindow(Gtk.Box):
     def __init__(self, parent_window: Gtk.Window) -> None:
@@ -25,7 +26,7 @@ class GoHomeWindow(Gtk.Box):
         self.show_all()
 
         # Auto redirect after 3 seconds if no feedback given
-        GLib.timeout_add(3000, self._on_timeout)
+        GLib.timeout_add(300000, self._on_timeout) # Für Debug erhöht. Debuggende Grüße, Flo
 
     def _init_ui(self) -> None:
         # Container margins
@@ -35,48 +36,39 @@ class GoHomeWindow(Gtk.Box):
         self.set_margin_end(50)
 
         # Title
-        title = Gtk.Label(label="Auf Wiedersehen!")
+        title = Gtk.Label(label="Auf Wiedersehen!") # TODO: @chris include name of user
         title.set_name("heading_type1")
-        title.set_margin_bottom(30)
+        title.set_margin_bottom(0)
         self.pack_start(title, False, False, 0)
 
         # Feedback buttons container
         button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=30)
         button_box.set_halign(Gtk.Align.CENTER)
 
-        # Very well button
-        very_well = self._create_feedback_button(
-            "img/smiley.png",
-            "Sehr gut!",
-            "very_well_smiley",
-            lambda x: self._handle_feedback("good")
-        )
-        button_box.pack_start(very_well, False, False, 0)
-
-        # Okay button
-        okay = self._create_feedback_button(
-            "img/smiley.png",
-            "Okay!",
-            "okay_smiley",
-            lambda x: self._handle_feedback("medium")
-        )
-        button_box.pack_start(okay, False, False, 0)
-
         # Bad button
-        bad = self._create_feedback_button(
-            "img/bad_smiley.png",
-            "Schlecht!",
-            "bad_smiley",
-            lambda x: self._handle_feedback("bad")
-        )
+        bad = Gtk.Image.new_from_file("img/negative_smiley1.png")
+        bad.set_margin_bottom(0)  # Add some spacing below the image
         button_box.pack_start(bad, False, False, 0)
 
+        # Neutral button
+        neutral = Gtk.Image.new_from_file("img/neutral_smiley1.png")
+        neutral.set_margin_bottom(0)  # Add some spacing below the image
+        button_box.pack_start(neutral, False, False, 0)
+
+        # Positive button
+        positive = Gtk.Image.new_from_file("img/positive_smiley1.png")
+        positive.set_margin_bottom(0)  # Add some spacing below the image
+        button_box.pack_start(positive, False, False, 0)
+
+
+
         self.pack_start(button_box, True, True, 0)
+
 
         # Subtitle
         subtitle = Gtk.Label(label="Wie war dein Tag heute?")
         subtitle.set_name("subtitle")
-        subtitle.set_margin_top(30)
+        subtitle.set_margin_top(0)
         self.pack_start(subtitle, False, False, 0)
 
     def _create_feedback_button(self, image_path: str, label_text: str, button_id: str,
@@ -130,43 +122,18 @@ class GoHomeWindow(Gtk.Box):
         css = f"""
             #heading_type1 {{
                 font-family: "Inter", sans-serif;
-                font-size: 48px;
+                font-size: 56px;
                 font-weight: bold;
                 color: {Colors.FONT};
             }}
             
             #subtitle {{
                 font-family: "Inter", sans-serif;
-                font-size: 24px;
+                font-weight: bold;
+                font-size: 36px;
                 color: {Colors.FONT};
             }}
             
-            #very_well_smiley_button {{
-                background-color: {Colors.VERY_WELL};
-                border: none;
-                border-radius: 15px;
-                padding: 10px;
-                min-width: 120px;
-                min-height: 120px;
-            }}
-            
-            #okay_smiley_button {{
-                background-color: {Colors.OKAY};
-                border: none;
-                border-radius: 15px;
-                padding: 10px;
-                min-width: 120px;
-                min-height: 120px;
-            }}
-            
-            #bad_smiley_button {{
-                background-color: {Colors.BAD};
-                border: none;
-                border-radius: 15px;
-                padding: 10px;
-                min-width: 120px;
-                min-height: 120px;
-            }}
             
             #feedback_label {{
                 font-family: "Inter", sans-serif;
