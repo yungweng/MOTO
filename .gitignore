@@ -3,3 +3,4 @@
 # Django migrations
 **/migrations/*
 !**/migrations/__init__.py
+moto/main_app/migrations/0001_initial.py
