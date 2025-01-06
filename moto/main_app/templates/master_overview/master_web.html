@@ -59,6 +59,11 @@
                 {% endif %}
                 <button id="button_style1" onclick="window.location.href = '/preferences/'"> Persönliche Einstellungen </button>
             </div>
+            {% if user.is_superuser %}
+            <div class="button_container">
+                <button id="button_style1" onclick="window.location.href = '/choose_data/'"> Datenbank Bearbeiten </button>
+            </div>
+            {% endif %}
             {% else %}
             <div class="button_container">
                 <button id="button_style1" onclick="window.location.href = '/dashboard/'"> Dashboard </button>
@@ -82,6 +87,7 @@
             </div>
             <div class="button_container">
                 <button id="button_style1" onclick="window.location.href = '/preferences/'"> Persönliche Einstellungen </button>
+                <button id="button_style1" onclick="window.location.href = '/choose_data/'"> Datenbank Bearbeiten </button>
             </div>
             {% endif %}            
             {% else %}
@@ -104,6 +110,7 @@
         </div>
         <div class="button_container">
             <button id="button_style1" onclick="window.location.href = '/set_new_pw/'"> Root Passwort Ändern </button>
+            <button id="button_style1" onclick="window.location.href = '/choose_data/'"> Datenbank Bearbeiten </button>
         </div>
         {% endif %}
         {% endif %}

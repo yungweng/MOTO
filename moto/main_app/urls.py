@@ -39,6 +39,11 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('food_history/<int:pupil>', views.food_history, name='food_history'),
     path('representation/', views.representation, name='representation'),
+    path('choose_data/', views.choose_data_view, name='choose_data'),
+    path('choose_data/student/', views.select_student_change_view, name='choose_data_student'),
+    path('choose_data/room/', views.select_room_change, name='choose_data_room'),
+    path('choose_data/pa/', views.select_pa_change, name='choose_data_pa'),
+    path('choose_data/group/', views.select_group_change, name='choose_data_group'),
 ]
 
 
@@ -91,6 +96,11 @@ allowed_urls_web = [
     'dashboard',
     'food_history',
     'representation',
+    'choose_data',
+    'choose_data_student',
+    'choose_data_pa',
+    'choose_data_room',
+    'choose_data_group',
     ]
 main_url_web = 'master_web'
 

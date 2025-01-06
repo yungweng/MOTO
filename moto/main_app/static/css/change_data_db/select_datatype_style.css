@@ -1,0 +1,59 @@
+/* COMPLETE VIEW FOR TABLET ONLY */
+
+/* Specific header style */
+.big_heading{
+    font-size: 3.5rem;
+    font-weight: bolder;
+    color: var(--font_color);
+    margin-bottom: 0px;
+    margin-top: 10%;
+
+}
+.big_subheading{
+    font-size: 3.5vw;
+    font-weight: 450;
+    color: var(--font_color);
+    margin-top: 0px;
+    padding-top: 0px;
+    border-bottom-style: solid;
+    border-color: var(--font_color);
+    height:  auto;
+    width: 770px;
+    margin-bottom: 15px;
+}
+/*  Single Rooom Bars in List */
+.room_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height:  5em;
+    width: 100%;
+    margin-top: 15px;
+    background-color: var(--listblock_background);
+    border-radius: 18px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+}
+.text_room{
+    margin-top: 25px;
+    font-size: 1.7rem;
+    font-weight: 400;
+    color: var(--font_color);
+    margin-left: 30px;
+    height:  1.6em;
+    width: 760px;
+}
+/* Button styles */
+#select_button{
+    margin: auto;
+    background-color: var(--select_color_background);
+    color: var(--font_color);
+    border-radius: 10px;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding-top: 0px;
+    height:  2.5em;
+    width: 200px;
+    margin-right: 25px;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+}

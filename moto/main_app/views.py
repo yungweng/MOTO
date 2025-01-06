@@ -39,7 +39,11 @@ from main_app.view.search_pupil.search_pupil import search_pupil_view
 from main_app.view.dashboard.dashboard_view import dashboard_view
 from main_app.view.history_pages_students.food_history import food_history_view
 from main_app.view.representation.representation import representation_view
-
+from main_app.view.change_data_db.choose_data_view import choose_data_view
+from main_app.view.change_data_db.select_student_view import select_student_change_view
+from main_app.view.change_data_db.select_group_view import select_group_change_view
+from main_app.view.change_data_db.select_pa_view import select_pa_change_view
+from main_app.view.change_data_db.select_room_view import select_room_change_view
 
 def master_web(request):
     return master_web_view(request)
@@ -142,3 +146,18 @@ def food_history(request, pupil):
 
 def representation(request):
     return representation_view(request)
+
+def choose_data(request):
+    return choose_data_view(request)
+
+def select_student_change(request):
+    return select_student_change_view(request)
+
+def select_room_change(request):
+    return select_room_change_view(request)
+
+def select_pa_change(request):
+    return select_pa_change_view(request)
+
+def select_group_change(request):
+    return select_group_change_view(request)
