@@ -1,0 +1,6 @@
+/raspberry-pi/nfc_project/db.sqlite3
+/raspberry-pi/nfc_project/dump.rdb
+# Django migrations
+**/migrations/*
+!**/migrations/__init__.py
+moto/main_app/migrations/0001_initial.py
