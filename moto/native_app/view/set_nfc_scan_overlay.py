@@ -10,7 +10,7 @@ class Colors:
     FONT = "#1b2021"
     BUTTON_BG = "#ffffff"
 
-class SetNFCScanWindow(Gtk.Box):
+class SetNFCScanOverlay(Gtk.Box):
     def __init__(self, parent_window: Gtk.Window) -> None:
         super().__init__(orientation=Gtk.Orientation.VERTICAL, spacing=20)
         self.parent_window = parent_window

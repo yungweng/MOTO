@@ -9,8 +9,10 @@ from view.checked_in_overlay import CheckedInOverlay
 from view.checked_out_overlay import CheckedOutOverlay
 from view.go_home import GoHomeWindow
 from view.leave_room_overlay import LeaveRoomOverlay
-from view.set_nfc_scan import SetNFCScanWindow
+from view.set_nfc_scan_overlay import SetNFCScanOverlay
 from view.master_tablet import MasterTabletWindow
+from view.set_nfc_set import SetNFCSetWindow
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
@@ -19,7 +21,8 @@ class MainWindow(Gtk.Window):
         super().__init__(title="Main Application")
         self.set_default_size(1280, 720)
         self.set_resizable(False)
-
+        # Placeholder for Tag ID
+        self.tag_id = "tag_id_string"
         self.fullscreen()
 
         # Placeholder for authentication tokens
@@ -131,9 +134,11 @@ class MainWindow(Gtk.Window):
         elif page_name == "go_home":
             self.main_container.add(GoHomeWindow(parent_window=self))
         elif page_name == "set_nfc_scan":
-            self.main_container.add(SetNFCScanWindow(parent_window=self))
+            self.main_container.add(SetNFCScanOverlay(parent_window=self))
         elif page_name == "master_tablet":
             self.main_container.add(MasterTabletWindow(parent_window=self))
+        elif page_name == "set_nfc_set":
+            self.main_container.add(SetNFCSetWindow(parent_window=self, tag_id=self.tag_id))
 
         else:
             raise ValueError(f"Unknown page name: {page_name}")
