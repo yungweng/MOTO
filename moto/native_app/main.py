@@ -12,6 +12,7 @@ from view.leave_room_overlay import LeaveRoomOverlay
 from view.set_nfc_scan_overlay import SetNFCScanOverlay
 from view.master_tablet import MasterTabletWindow
 from view.set_nfc_set import SetNFCSetWindow
+from view.remove_tablet_overlay import RemoveTabletOverlay
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
@@ -112,6 +113,11 @@ class MainWindow(Gtk.Window):
         go_home_view = GoHomeWindow(self)
         self.main_container.add(go_home_view)
         self.main_container.show_all()
+
+    def show_remove_tablet_overlay(self) -> None:
+        overlay = RemoveTabletOverlay(self)
+        self.overlay_container.add_overlay(overlay)
+        self.overlay_container.show_all()
 
     def switch_page(self, page_name: str):
         """Switch the current view to the specified page."""
