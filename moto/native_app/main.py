@@ -9,6 +9,7 @@ from view.checked_in_overlay import CheckedInOverlay
 from view.checked_out_overlay import CheckedOutOverlay
 from view.go_home import GoHomeWindow
 from view.leave_room_overlay import LeaveRoomOverlay
+from view.set_nfc_scan import SetNFCScanWindow
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
@@ -128,6 +129,8 @@ class MainWindow(Gtk.Window):
             self.main_container.add(CheckedOutOverlay(parent_window=self, user_name="Yannick Wenger"))
         elif page_name == "go_home":
             self.main_container.add(GoHomeWindow(parent_window=self))
+        elif page_name == "set_nfc_scan":
+            self.main_container.add(SetNFCScanWindow(parent_window=self))
 
         else:
             raise ValueError(f"Unknown page name: {page_name}")
