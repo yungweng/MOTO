@@ -8,6 +8,7 @@ from view.home import HomeWindow
 from view.checked_in_overlay import CheckedInOverlay
 from view.checked_out_overlay import CheckedOutOverlay
 from view.go_home import GoHomeWindow
+from view.leave_room_overlay import LeaveRoomOverlay
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
@@ -59,6 +60,11 @@ class MainWindow(Gtk.Window):
     def show_checked_out_overlay(self, user_name: str, callback: Optional[callable] = None) -> None:
         """Show the checked-out overlay with user name"""
         overlay = CheckedOutOverlay(self, user_name, callback)
+        self.overlay_container.add_overlay(overlay)
+        self.overlay_container.show_all()
+
+    def show_leave_room_overlay(self, user_name: str) -> None:
+        overlay = LeaveRoomOverlay(self, user_name)
         self.overlay_container.add_overlay(overlay)
         self.overlay_container.show_all()
 
