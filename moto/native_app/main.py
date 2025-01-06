@@ -10,6 +10,7 @@ from view.checked_out_overlay import CheckedOutOverlay
 from view.go_home import GoHomeWindow
 from view.leave_room_overlay import LeaveRoomOverlay
 from view.set_nfc_scan import SetNFCScanWindow
+from view.master_tablet import MasterTabletWindow
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
@@ -131,6 +132,8 @@ class MainWindow(Gtk.Window):
             self.main_container.add(GoHomeWindow(parent_window=self))
         elif page_name == "set_nfc_scan":
             self.main_container.add(SetNFCScanWindow(parent_window=self))
+        elif page_name == "master_tablet":
+            self.main_container.add(MasterTabletWindow(parent_window=self))
 
         else:
             raise ValueError(f"Unknown page name: {page_name}")
