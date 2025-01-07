@@ -32,15 +32,15 @@
                 </div>
             </div>
     
-            <h1 class="heading_2"> Schüler auswählen </h1>
+            <h1 class="heading_2"> Pädagogische Fachkraft auswählen </h1>
 
             <form method='post'>{% csrf_token %}
                 <div class = "list_container">
-                    {% for student in students %}
+                    {% for pa in pas %}
                         <div class="room_container">
-                        <p class="text_room"> {{student.user_id.vorname}} {{student.user_id.nachname}}</p>
+                        <p class="text_room"> {{pa.nutzer.vorname}} {{pa.nutzer.nachname}}</p>
         
-                        <input type="button" id="select_button" value="Auswählen" onclick="location.href='{% url 'change_student_data' id=student.id %}';">                 
+                        <input type="button" id="select_button" value="Auswählen" onclick="location.href='{% url 'choose_data_room' %}';">                 
         
                         </div>
                     {% endfor %}
