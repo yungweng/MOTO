@@ -30,12 +30,11 @@
             </div>"
         </div>
     </div>
-    <h1 class="heading_2"> {{student.user_id.vorname}} {{student.user_id.nachname}} </h1>
+    <h1 class="heading_2"> Neuer Schüler </h1>
     
     <div class = "information">
         <div class="header_line">
             <label class="category_header">Kategorie</label>
-            <label class="current_header">Aktueller Wert</label>
             <label class="new_header">Neuer Wert</label>
             <label class="submit_header"></label>
 
@@ -44,23 +43,20 @@
             <div class="input_container">
                 
                 <div class = "inputblock">
-                    <label class = "category">Vorname:</label>
-                    <label class = "current">{{student.user_id.vorname}}</label>
+                    <label class = "category">Vorname*:</label>
                     <input type="text" class="inputfield" name="firstname" placeholder="|" maxlength="30"/>
                 </div>
                 <div class = "line"></div>
 
                 <div class = "inputblock">
-                    <label class = "category">Nachname:</label>
-                    <label class = "current">{{student.user_id.nachname}}</label>
+                    <label class = "category">Nachname*:</label>
                     <input type="text" class="inputfield" name="lastname" placeholder="|" maxlength="30"/>
                 </div>
                 <div class = "line"></div>
 
                 <div class="inputblock">
-                    <label class = "category">OGS-Gruppe:</label>
+                    <label class = "category">OGS-Gruppe*:</label>
 
-                    <label class = "current">{{student.gruppen_id.name}}</label>
                     <div class="custom-select">
                         <select name="ogs_group">
                             <option value="0" style="color:#ffff00;">...</option>
@@ -74,21 +70,18 @@
                 <div class = "line"></div>
 
                 <div class = "inputblock">
-                    <label class = "category">Kontaktperson:</label>
-                    <label class = "current">{{student.name_eb}}</label>
+                    <label class = "category">Kontaktperson*:</label>
                     <input type="text" class="inputfield" name="name_eb" placeholder="|" maxlength="15"/>
                 </div>
                 <div class = "line"></div>
                 <div class="inputblock">
-                    <label class = "category">Telefonkontakt:</label>
-                    <label class = "current">{{student.kontakt_eb}}</label>
+                    <label class = "category">Telefonkontakt*:</label>
                     <input type="text" class="inputfield" name="kontakt_eb" placeholder="|" />
 
                 </div>
                 <div class = "line"></div>
                 <div class = "inputblock">
-                    <label class = "category">Schulklasse:</label>
-                    <label class = "current">{{student.klasse}}</label>
+                    <label class = "category">Schulklasse*:</label>
                     <div class="custom-select">
                         <select name="klasse">
                             <option value="0" style="color:#ffff00;">...</option>
@@ -100,8 +93,7 @@
                 </div>
                 <div class = "line"></div>
                 <div class = "inputblock">
-                    <label class = "category">Buskind:</label>
-                    <label class = "current">{{bus_kind}}</label>
+                    <label class = "category">Buskind*:</label>
                     <div class="custom-select">
                         <select name="bus_kind">
                             <option value="0" style="color:#ffff00;">...</option>
@@ -115,7 +107,6 @@
 
                 <div class = "inputblock">
                     <label class = "category">Armband-ID:</label>
-                    <label class = "current">{{student.user_id.tag_id}}</label>
                     <input type="text" class="inputfield" name="tag_id" placeholder="|" maxlength="40"/>
                 </div>
                 <!-- % if user.is_superuser % -->
@@ -128,7 +119,7 @@
                     <button class="change_button_transparent">Ändern</button>
                 </div>
                 {% endif %}-->
-                <input type='submit' class="change_button" name="change_button_bus_kind" value='Ändern'/>
+                <input type='submit' class="change_button" name="change_button_bus_kind" value='Erstellen'/>
             </div>
         </form>
     </div>

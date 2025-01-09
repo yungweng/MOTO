@@ -36,6 +36,13 @@
 
             <form method='post'>{% csrf_token %}
                 <div class = "list_container">
+
+                    <div class="room_container">
+                        <p class="text_room"> Neuer Schüler </p>
+        
+                        <input type="button" id="select_button" value="Erstellen" onclick="location.href='{% url 'change_student_data' id=0 %}';">                 
+                    </div>
+
                     {% for student in students %}
                         <div class="room_container">
                         <p class="text_room"> {{student.user_id.vorname}} {{student.user_id.nachname}}</p>

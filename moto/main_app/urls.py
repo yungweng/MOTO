@@ -45,6 +45,9 @@ urlpatterns = [
     path('choose_data/pa/', views.select_pa_change, name='choose_data_pa'),
     path('choose_data/group/', views.select_group_change, name='choose_data_group'),
     path('choose_data/student/<int:id>', views.change_student, name='change_student_data'),
+    path('choose_data/room/<int:id>', views.change_room, name='change_room_data'),
+    path('choose_data/group/<int:id>', views.change_student, name='change_group_data'),
+    path('choose_data/pa/<int:id>', views.change_student, name='change_pa_data'),
 ]
 
 
@@ -103,6 +106,9 @@ allowed_urls_web = [
     'choose_data_room',
     'choose_data_group',
     'change_student_data',
+    'change_room_data',
+    'change_pa_data',
+    'change_group_data',
     ]
 main_url_web = 'master_web'
 

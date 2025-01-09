@@ -45,6 +45,7 @@ from main_app.view.change_data_db.select_group_view import select_group_change_v
 from main_app.view.change_data_db.select_pa_view import select_pa_change_view
 from main_app.view.change_data_db.select_room_view import select_room_change_view
 from main_app.view.change_data_db.change_student_view import student_change_view
+from main_app.view.change_data_db.change_room_view import room_change_view
 
 def master_web(request):
     return master_web_view(request)
@@ -165,3 +166,6 @@ def select_group_change(request):
 
 def change_student(request, id):
     return student_change_view(request, id)
+
+def change_room(request, id):
+    return room_change_view(request, id)

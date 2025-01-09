@@ -36,11 +36,16 @@
 
             <form method='post'>{% csrf_token %}
                 <div class = "list_container">
+                    <div class="room_container">
+                        <p class="text_room"> Neue Gruppe </p>
+        
+                        <input type="button" id="select_button" value="Erstellen" onclick="location.href='{% url 'change_group_data' id=0 %}';">                 
+                    </div>
                     {% for group in groups %}
                         <div class="room_container">
                         <p class="text_room"> {{group.name}} </p>
         
-                        <input type="button" id="select_button" value="Auswählen" onclick="location.href='{% url 'choose_data_room' %}';">                 
+                        <input type="button" id="select_button" value="Auswählen" onclick="location.href='{% url 'change_group_data' id=group.id %}';">                 
         
                         </div>
                     {% endfor %}
