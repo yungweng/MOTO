@@ -150,7 +150,8 @@ class MainWindow(Gtk.Window):
             self.main_container.add(SetNFCSetWindow(parent_window=self, tag_id=self.tag_id))
         elif page_name == "change_roomdata":
             self.main_container.add(ChangeRoomDataWindow(parent_window=self, room_id=self.current_room_id))
-
+        elif page_name == "leave_room_overlay":
+            self.main_container.add(LeaveRoomOverlay(parent_window=self, user_name="John Doe"))
         else:
             raise ValueError(f"Unknown page name: {page_name}")
 

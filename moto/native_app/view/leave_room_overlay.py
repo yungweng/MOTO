@@ -5,12 +5,12 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GLib, Gdk
 
 class Colors:
-    BACKGROUND_OVERLAY = "rgba(255, 255, 255, 0.95)"
+    BACKGROUND_OVERLAY = "#f6f4f3"
     FONT = "#1b2021"
-    DOOR = "#BAD87A"
-    TOILET = "#FFD93D"
-    SCHOOLYARD = "#84cc2d"
-    HOME = "#DE675F"
+    DOOR = "#F78C10"
+    TOILET = "#5080d8"
+    SCHOOLYARD = "#83cd2d"
+    HOME = "#ff3130"
 
 class LeaveRoomOverlay(Gtk.Overlay):
     def __init__(self, parent_window: Gtk.Window, user_name: str, callback: Optional[Callable] = None) -> None:
@@ -22,7 +22,9 @@ class LeaveRoomOverlay(Gtk.Overlay):
 
         # Main vertical box
         main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=20)
-        main_box.set_margin_top(50)
+        main_box.set_margin_top(90)
+        main_box.set_margin_left(50)
+        main_box.set_margin_right(50)
 
         # Title
         title = Gtk.Label()
@@ -32,7 +34,7 @@ class LeaveRoomOverlay(Gtk.Overlay):
 
         # Subtitle
         subtitle = Gtk.Label()
-        subtitle.set_markup("<span size='20000'>Wohin möchtest du gehen?</span>")
+        subtitle.set_markup("<span size='25000'>Wohin möchtest du gehen?</span>")
         subtitle.set_name("overlay_subheading")
         main_box.pack_start(subtitle, False, False, 20)
 
@@ -99,45 +101,45 @@ class LeaveRoomOverlay(Gtk.Overlay):
 
             #button_label {{
                 font-family: "Inter", sans-serif;
-                font-size: 16px;
+                font-size: 26px;
                 font-weight: 600;
                 color: {Colors.FONT};
             }}
 
             #custom_button_{Colors.DOOR[1:]} {{
-                background-color: {Colors.DOOR};
+                background: {Colors.DOOR};
                 border: none;
                 border-radius: 18px;
-                min-width: 120px;
-                min-height: 120px;
-                box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+                min-width: 300px;
+                min-height: 300px;
+                box-shadow: rgba(0, 0, 0, 0.36) 0px 6px 20px 2px;
             }}
 
             #custom_button_{Colors.TOILET[1:]} {{
-                background-color: {Colors.TOILET};
+                background: {Colors.TOILET};
                 border: none;
                 border-radius: 18px;
-                min-width: 120px;
-                min-height: 120px;
-                box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+                min-width: 300px;
+                min-height: 300px;
+                box-shadow: rgba(0, 0, 0, 0.36) 0px 6px 20px 2px;
             }}
 
             #custom_button_{Colors.SCHOOLYARD[1:]} {{
-                background-color: {Colors.SCHOOLYARD};
+                background: {Colors.SCHOOLYARD};
                 border: none;
                 border-radius: 18px;
-                min-width: 120px;
-                min-height: 120px;
-                box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+                min-width: 300px;
+                min-height: 300px;
+                box-shadow: rgba(0, 0, 0, 0.36) 0px 6px 20px 2px;
             }}
 
             #custom_button_{Colors.HOME[1:]} {{
-                background-color: {Colors.HOME};
+                background: {Colors.HOME};
                 border: none;
                 border-radius: 18px;
-                min-width: 120px;
-                min-height: 120px;
-                box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+                min-width: 300px;
+                min-height: 300px;
+                box-shadow: rgba(0, 0, 0, 0.36) 0px 6px 20px 2px;
             }}
         """
         css_provider.load_from_data(css.encode())
