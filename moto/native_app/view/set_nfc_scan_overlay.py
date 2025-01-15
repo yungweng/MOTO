@@ -28,7 +28,7 @@ class SetNFCScanOverlay(Gtk.Box):
         header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
 
         back_button = Gtk.Button(label="← Zurück")
-        back_button.set_name("back_button")
+        back_button.set_name("help_button")
         back_button.connect("clicked", self._on_back_clicked)
         header_box.pack_start(back_button, False, False, 0)
 
@@ -48,9 +48,10 @@ class SetNFCScanOverlay(Gtk.Box):
 
         # NFC Image
         try:
-            image = Gtk.Image.new_from_file("img/placeholder_nfc_scan_transparent.png")
-            image.set_pixel_size(300)
-            self.pack_start(image, True, True, 0)
+            # NFC Image
+            logo_image = Gtk.Image.new_from_file("img/nfc_pfeil.png")
+            logo_image.set_margin_bottom(5)     # Add some spacing below the image
+            self.pack_start(logo_image, False, False, 10)
         except Exception as e:
             logging.error(f"Failed to load NFC scan image: {e}")
 
@@ -59,19 +60,11 @@ class SetNFCScanOverlay(Gtk.Box):
         css = f"""
             #heading_type1 {{
                 font-family: "Inter", sans-serif;
-                font-size: 24px;
+                font-size: 38px;
                 font-weight: 600;
                 color: {Colors.FONT};
             }}
-            
-            #back_button {{
-                background: none;
-                border: none;
-                color: {Colors.FONT};
-                font-family: "Inter", sans-serif;
-                font-size: 20px;
-                padding: 10px 20px;
-            }}
+        
             
             #help_button {{
                 background: {Colors.BUTTON_BG};
@@ -81,6 +74,10 @@ class SetNFCScanOverlay(Gtk.Box):
                 padding: 10px 25px;
                 font-family: "Inter", sans-serif;
                 font-size: 20px;
+                box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
+            }}
+            #help_button:hover {{
+                box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
             }}
         """
         css_provider.load_from_data(css.encode())

@@ -134,6 +134,26 @@ class GoHomeWindow(Gtk.Box):
                 color: {Colors.FONT};
             }}
             
+            #very_well_smiley_button {{
+                min-width: 120px;
+                min-height: 120px;
+            }}
+            
+            #okay_smiley_button {{
+                border: none;
+                border-radius: 15px;
+                padding: 10px;
+                min-width: 120px;
+                min-height: 120px;
+            }}
+            
+            #bad_smiley_button {{
+                border: none;
+                border-radius: 15px;
+                padding: 10px;
+                min-width: 120px;
+                min-height: 120px;
+            }}
             
             #feedback_label {{
                 font-family: "Inter", sans-serif;

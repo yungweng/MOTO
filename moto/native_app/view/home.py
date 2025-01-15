@@ -51,7 +51,7 @@ class HomeWindow(Gtk.Box):
         room_label.set_name("default_heading_mid")
         mid_container.pack_start(room_label, False, True, 20)
 
-        # NFC Image placeholder
+        # NFC Image
         logo_image = Gtk.Image.new_from_file("img/nfc_pfeil.png")
         logo_image.set_margin_bottom(5)     # Add some spacing below the image
         mid_container.pack_start(logo_image, False, False, 10)

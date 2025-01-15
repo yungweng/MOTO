@@ -154,6 +154,8 @@ class MainWindow(Gtk.Window):
             self.main_container.add(LeaveRoomOverlay(parent_window=self, user_name="Namensgebende Grüße"))
         elif page_name == "master_tablet":
             self.main_container.add(MasterTabletWindow(parent_window=self))
+        elif page_name == "set_nfc_scan_overlay":
+            self.main_container.add(SetNFCScanOverlay(parent_window=self))
         else:
             raise ValueError(f"Unknown page name: {page_name}")
 
