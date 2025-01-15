@@ -115,7 +115,7 @@ class CreateActivityWindow(Gtk.Box):
         # Form container
         form_grid = Gtk.Grid()
         form_grid.set_name("form_grid")
-        form_grid.set_row_spacing(10)
+        form_grid.set_row_spacing(30)
         form_grid.set_column_spacing(10)
         form_grid.set_margin_top(10)
         form_grid.set_margin_start(30)
@@ -235,12 +235,12 @@ class CreateActivityWindow(Gtk.Box):
             
             #form_grid * {{
                 font-family: "Inter", sans-serif;
-                font-size: 18px;
+                font-size: 24px;
             }}
             
             #inputblock {{
                 font-family: "Inter", sans-serif;
-                margin: 15px 0;
+                margin: 24px 0;
             }}
             
             #category {{

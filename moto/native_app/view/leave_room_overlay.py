@@ -58,7 +58,7 @@ class LeaveRoomOverlay(Gtk.Overlay):
         self.show_all()
 
         # Auto timeout after 5 seconds
-        GLib.timeout_add(5000, lambda: self._on_change_room())
+        GLib.timeout_add(500000, lambda: self._on_change_room()) # increased for debugging
 
     def _create_button(self, label: str, icon_name: str, color: str, callback: Callable) -> Gtk.Box:
         container = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
