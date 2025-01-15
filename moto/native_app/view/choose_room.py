@@ -64,8 +64,6 @@ class Choose_RoomWindow(Gtk.Box):
     def _init_ui(self) -> None:
         self.logger.info("Starting UI initialization")
 
-        # TODO: Gebäude hinzufügen
-
         self.set_margin_top(30)
         self.set_margin_bottom(0)
         self.set_margin_start(20)

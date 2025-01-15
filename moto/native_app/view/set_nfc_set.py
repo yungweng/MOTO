@@ -8,9 +8,9 @@ from gi.repository import Gtk, Gdk
 class Colors:
     BACKGROUND = "#f6f4f3"
     FONT = "#1b2021"
-    BLUE = "#4a90e2"
-    GREEN = "#BAD87A"
-    ORANGE = "#FFB043"
+    BLUE = "#5080D8"
+    GREEN = "#83cd2d"
+    ORANGE = "#F78C10"
     INPUT_BG = "rgba(217, 217, 217, 0.5)"
     LIST_BG = "#D9D9D9"
     HELP_BUTTON = "#ffffff"
@@ -48,7 +48,7 @@ class SetNFCSetWindow(Gtk.Box):
 
         # Title
         title = Gtk.Label()
-        title.set_markup(f"<span size='24000'>Chip erkannt: [{self.tag_id}]</span>")
+        title.set_markup(f"<span size='36000'>Chip erkannt: [{self.tag_id}]</span>")
         title.set_name("heading")
         title.set_halign(Gtk.Align.START)
         self.pack_start(title, False, False, 0)
@@ -108,6 +108,7 @@ class SetNFCSetWindow(Gtk.Box):
 
         name_label = Gtk.Label(label=name)
         name_label.set_name("text_pupil")
+        name_label.set_halign(Gtk.Align.START)
         result_box.pack_start(name_label, True, True, 30)
 
         assign_button = Gtk.Button(label="Zuweisen")
@@ -149,17 +150,23 @@ class SetNFCSetWindow(Gtk.Box):
             
             #subheading {{
                 font-family: "Inter", sans-serif;
-                font-size: 24px;
+                font-size: 32px;
                 color: {Colors.FONT};
             }}
             
             #help_button {{
+                font-family: "Inter", sans-serif;
                 background: {Colors.HELP_BUTTON};
                 color: {Colors.FONT};
                 border: 2px solid {Colors.FONT};
                 border-radius: 45px;
                 padding: 10px 25px;
+                font-family: "Inter", sans-serif;
                 font-size: 20px;
+                box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
+            }}
+            #help_button:hover {{
+                box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
             }}
             
             #text_current {{
@@ -169,11 +176,13 @@ class SetNFCSetWindow(Gtk.Box):
             }}
             
             #current_value {{
-                background-color: {Colors.INPUT_BG};
+                font-family: "Inter", sans-serif;
+                background: {Colors.INPUT_BG};
                 border-radius: 10px;
                 padding: 10px 20px;
                 font-size: 26px;
                 color: {Colors.FONT};
+                box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
             }}
             
             #text_new {{
@@ -185,30 +194,39 @@ class SetNFCSetWindow(Gtk.Box):
             }}
             
             #searchbar {{
+                font-family: "Inter", sans-serif;
                 background-color: {Colors.INPUT_BG};
                 border: none;
                 border-radius: 10px;
                 padding: 10px 20px;
                 font-size: 24px;
-                min-height: 50px;
+                min-height: 40px;
+                box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
             }}
             
+            
             #search_button {{
-                background-color: {Colors.BLUE};
+                font-family: "Inter", sans-serif;
+                background: {Colors.BLUE};
                 color: white;
                 border: none;
                 border-radius: 10px;
                 padding: 10px 20px;
                 font-size: 24px;
                 min-width: 150px;
+                min-height: 40px;
                 font-weight: 600;
+                box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
+            }}
+            #search_button:hover {{
+                box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
             }}
             
             #pupil_container {{
                 background-color: {Colors.LIST_BG};
                 border-radius: 18px;
                 min-height: 80px;
-                box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px;
+                
             }}
             
             #text_pupil {{
@@ -219,25 +237,40 @@ class SetNFCSetWindow(Gtk.Box):
             }}
             
             #assign_button {{
-                background-color: {Colors.GREEN};
+                font-family: "Inter", sans-serif;
+                background: {Colors.GREEN};
                 color: {Colors.FONT};
                 border: none;
                 border-radius: 10px;
                 padding: 10px 20px;
                 font-size: 24px;
-                font-weight: 500;
+                font-weight: 600;
                 min-width: 200px;
+                min-height: 40px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+            }}
+            #assign_button:hover {{
+                box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
             }}
             
             #assign_button_orange {{
-                background-color: {Colors.ORANGE};
+                font-family: "Inter", sans-serif;
+                background: {Colors.ORANGE};
                 color: {Colors.FONT};
-                border: none;
                 border-radius: 10px;
                 padding: 10px 20px;
                 font-size: 24px;
-                font-weight: 500;
+                font-weight: 600;
                 min-width: 200px;
+                min-height: 40px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+            }}
+            #asssign_button_orange:hover {{
+                box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
             }}
         """
         css_provider.load_from_data(css.encode())
