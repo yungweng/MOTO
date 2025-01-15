@@ -46,7 +46,7 @@ urlpatterns = [
     path('choose_data/group/', views.select_group_change, name='choose_data_group'),
     path('choose_data/student/<int:id>', views.change_student, name='change_student_data'),
     path('choose_data/room/<int:id>', views.change_room, name='change_room_data'),
-    path('choose_data/group/<int:id>', views.change_student, name='change_group_data'),
+    path('choose_data/group/<int:id>', views.change_group, name='change_group_data'),
     path('choose_data/pa/<int:id>', views.change_student, name='change_pa_data'),
 ]
 
