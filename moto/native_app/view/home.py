@@ -34,7 +34,7 @@ class HomeWindow(Gtk.Box):
         header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         header_box.set_name("header_container_mid")
 
-        login_button = Gtk.Button(label="Login")
+        login_button = Gtk.Button(label="Einstellungen")
         login_button.set_name("login_button")
         login_button.connect("clicked", self._on_login_clicked)
         header_box.pack_end(login_button, False, False, 0)
@@ -88,7 +88,10 @@ class HomeWindow(Gtk.Box):
                 border-radius: 45px;
                 padding: 5px 15px;
                 font-size: 20px;
-                box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+                box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
+            }}
+            #login_button:hover {{
+                box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
             }}
             
             #mid_container {{

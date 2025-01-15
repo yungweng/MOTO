@@ -42,7 +42,7 @@ class MasterTabletWindow(Gtk.Box):
         self.pack_start(header_box, False, False, 0)
 
         # Title and subtitle
-        title = Gtk.Label(label="Hauptansicht")
+        title = Gtk.Label(label="Einstellungen")
         title.set_name("heading_2")
         title.set_halign(Gtk.Align.START)
         self.pack_start(title, False, False, 0)
@@ -52,21 +52,24 @@ class MasterTabletWindow(Gtk.Box):
         subtitle.set_halign(Gtk.Align.START)
         self.pack_start(subtitle, False, False, 0)
 
-        # Buttons
-        button_grid = Gtk.Grid()
-        button_grid.set_row_spacing(20)
-        button_grid.set_column_spacing(20)
-        button_grid.set_margin_top(30)
+        # Buttons container
+        button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=50)
+        button_box.set_halign(Gtk.Align.CENTER)
 
-        remove_button = self._create_action_button("Gerät abmelden", lambda x: self.parent_window.switch_page("remove_tablet"))
-        change_button = self._create_action_button("Raumangaben ändern", lambda x: self.parent_window.switch_page("change_roomdata"))
-        nfc_button = self._create_action_button("NFC Chip neu zuweisen", lambda x: self.parent_window.switch_page("set_nfc_scan"))
+        # Create buttons
+        buttons = [
+            ("Gerät abmelden", lambda x: self.parent_window.switch_page("remove_tablet")),
+            ("Raumangaben ändern", lambda x: self.parent_window.switch_page("change_roomdata")),
+            ("NFC Chip neu zuweisen", lambda x: self.parent_window.switch_page("set_nfc_scan"))
+        ]
 
-        button_grid.attach(remove_button, 0, 0, 1, 1)
-        button_grid.attach(change_button, 1, 0, 1, 1)
-        button_grid.attach(nfc_button, 0, 1, 2, 1)
+        for label, callback in buttons:
+            button_container = self._create_action_button(label, callback)
+            button_box.pack_start(button_container, False, True, 10)
 
-        self.pack_start(button_grid, True, True, 0)
+        self.pack_start(button_box, True, True, 0)
+        self._apply_styles()
+        self.show_all()
 
     def _create_action_button(self, label: str, callback: callable) -> Gtk.Button:
         button = Gtk.Button(label=label)
@@ -97,24 +100,26 @@ class MasterTabletWindow(Gtk.Box):
                 border-radius: 45px;
                 padding: 10px 25px;
                 font-size: 20px;
+                box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
             }}
             
             #button_style1 {{
                 font-family: "Inter", sans-serif;
-                background-color: {Colors.BUTTON_BG};
-                border: 3px solid {Colors.FONT};
-                border-radius: 15px 225px 255px 15px;
+                background: {Colors.BUTTON_BG};
+                border-radius: 24px;
                 color: {Colors.FONT};
-                font-size: 24px;
+                font-size: 30px;
                 font-weight: bold;
-                min-height: 150px;
+                min-height: 220px;
                 min-width: 300px;
                 box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
             }}
             
             #button_style1:hover {{
                 box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
-                color: white;
+            }}
+            #help_button:hover {{
+                box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
             }}
         """
         css_provider.load_from_data(css.encode())

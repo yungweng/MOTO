@@ -56,7 +56,7 @@ class CreateActivityWindow(Gtk.Box):
 
         # Title
         title = Gtk.Label()
-        title.set_markup(f"<span size='24000'>Raum {self.room_id}</span>")
+        title.set_markup(f"<span size='36000'>Raum {self.room_id}</span>")
         title.set_name("big_heading")
         title.set_halign(Gtk.Align.START)
         self.pack_start(title, False, False, 0)
@@ -223,13 +223,13 @@ class CreateActivityWindow(Gtk.Box):
             #big_heading {{
                 font-family: "Inter", sans-serif;
                 font-size: 48px;
-                font-weight: bold;
+                font-weight: 600;
                 color: {Colors.FONT};
             }}
             
             #big_subheading {{
                 font-family: "Inter", sans-serif;
-                font-size: 24px;
+                font-size: 32px;
                 color: {Colors.FONT};
             }}
             
