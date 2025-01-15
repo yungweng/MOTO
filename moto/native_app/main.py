@@ -158,6 +158,8 @@ class MainWindow(Gtk.Window):
             self.main_container.add(SetNFCScanOverlay(parent_window=self))
         elif page_name == "set_nfc_set":
             self.main_container.add(SetNFCSetWindow(parent_window=self, tag_id=self.tag_id))
+        elif page_name == "remove_tablet":
+            self.main_container.add(RemoveTabletOverlay(parent_window=self))
         else:
             raise ValueError(f"Unknown page name: {page_name}")
 

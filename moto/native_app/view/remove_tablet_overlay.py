@@ -8,8 +8,8 @@ from gi.repository import Gtk, GLib, Gdk
 class Colors:
     BACKGROUND = "#f6f4f3"
     FONT = "#1b2021"
-    GREEN = "#BAD87A"
-    RED = "#DE675F"
+    GREEN = "#83cd2d"
+    RED = "#ff3130"
 
 class RemoveTabletOverlay(Gtk.Overlay):
     def __init__(self, parent_window: Gtk.Window, callback: Optional[Callable] = None) -> None:
@@ -20,8 +20,10 @@ class RemoveTabletOverlay(Gtk.Overlay):
 
         # Title
         title = Gtk.Label()
-        title.set_markup("<span size='24000'>Wollen Sie das Gerät wirklich abmelden?</span>")
+        title.set_markup("<span size='36000'>Wollen Sie das Gerät wirklich abmelden?</span>")
         title.set_name("overlay_heading")
+        title.set_margin_top(100)
+        title.set_margin_bottom(160)
         main_box.pack_start(title, False, False, 0)
 
         # Buttons
@@ -55,22 +57,23 @@ class RemoveTabletOverlay(Gtk.Overlay):
             
             #select_button, #abort_button {{
                 font-family: "Inter", sans-serif;
-                font-size: 24px;
+                font-size: 28px;
                 font-weight: bold;
                 border: none;
-                border-radius: 10px;
+                border-radius: 18px;
                 padding: 10px 40px;
-                min-width: 200px;
-                min-height: 60px;
+                min-width: 260px;
+                min-height: 100px;
+                box-shadow: rgba(0, 0, 0, 0.36) 0px 6px 20px 2px;
             }}
             
             #select_button {{
-                background-color: {Colors.GREEN};
+                background: {Colors.GREEN};
                 color: {Colors.FONT};
             }}
             
             #abort_button {{
-                background-color: {Colors.RED};
+                background: {Colors.RED};
                 color: white;
             }}
         """
