@@ -1,29 +1,29 @@
 :root {
-  --font_color: #1b2021;
+  --font_color: #201b21;
   --background_color: #f6f4f3;
   --background_color_selection_board: #b4b0b0ff;
   --button_color: #aeaeb3;
   --button_color2: rgba(185, 185, 185, 0.75);
   --inputfield_background: rgba(217, 217, 217, 0.5);
   --button_border: #1b2021;
-  --select_color_background: #84cc2d;
+  --select_color_background: #83CD2D;
   --shadow_color: #00000033;
   --help_button_color: #ffffff;
   --popup_text_background: #e1e1e1;
   --popup_header_font: #1b2021;
   --popup_header_background: #c3d6e8;
-  --red_color: #fc3635;
+  --red_color: #ff3130;
   --listblock_background: #d9d9d9;
   --label_background: rgba(217, 217, 217, 0.25);
   --list_line_color: #c0c0c0;
-  --blue_color: #6d93d4;
+  --blue_color: #5080d8;
   --color_icon_door: #9d8383;
   --color_icon_door2: rgba(157, 131, 131, 0.7);
   --color_icon_toilet: #aae3ff;
   --color_icon_toilet2: rgba(170, 227, 255, 0.7);
   --color_icon_school_yard: #909ca2;
   --color_icon_school_yard2: rgba(144, 156, 162, 0.7);
-  --color_icon_leave_school: #f48c14;
+  --color_icon_leave_school: #f78C10;
   --color_icon_leave_school2: rgb(255, 176, 67, 0.7);
   --orange_color: #ce764a;
 }

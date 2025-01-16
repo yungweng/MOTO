@@ -53,6 +53,7 @@
             <div class = "pupil">
                 <div class="pupil_container_transp">
                     <p class="text_pupil_transp"> {{ schuler.user_id.vorname }} {{ schuler.user_id.nachname }} </p>
+                    <p class="current_location"> Raum 2.1 </p> <!-- TODO: nur wenn Schüler auch angemeldet -->
                     <button class="assign_button" onclick="location.href='{% url 'pupil' pupil=schuler.user_id.id %}';"> Auswählen </button>
                 </div>
             </div>
