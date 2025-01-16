@@ -177,7 +177,6 @@ class CreateActivityWindow(Gtk.Box):
         button_box.set_margin_top(0)
         self.submit_button = Gtk.Button(label="Los geht's!")
         self.submit_button.set_name("submit_button")
-        #self.submit_button.set_size_request(100, 50)
         self.submit_button.connect("clicked", self._on_submit)
         button_box.pack_start(self.submit_button, False, False, 0)
         self.pack_start(button_box, False, False, 0)

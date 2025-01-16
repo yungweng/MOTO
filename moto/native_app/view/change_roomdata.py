@@ -9,7 +9,7 @@ from gi.repository import Gtk, Gdk
 class Colors:
     BACKGROUND = "#f6f4f3"
     FONT = "#1b2021"
-    GREEN = "#BAD87A"
+    GREEN = "#83cd2d"
     LIST_BG = "rgba(217, 217, 217, 0.25)"
     LIST_LINE = "#c0c0c0"
     INPUT_BG = "rgba(217, 217, 217, 0.5)"
@@ -60,21 +60,138 @@ class ChangeRoomDataWindow(Gtk.Box):
         header_grid.set_column_spacing(10)
         header_grid.set_name("header_line")
 
-        labels = ["Kategorie", "Aktueller Wert", "Neuer Wert", ""]
-        for i, text in enumerate(labels):
-            label = Gtk.Label(label=text)
-            label.set_name("header_label")
-            header_grid.attach(label, i, 0, 1, 1)
+        label1 = Gtk.Label(label="Kategorie")
+        label1.set_name("header_label1")
+        label1.set_xalign(0)  # Align text to the left
+        header_grid.attach(label1, 0, 0, 1, 1)
+
+        label2 = Gtk.Label(label="Aktueller Wert")
+        label2.set_name("header_label2")
+        label2.set_xalign(0)  # Align text to the left
+        header_grid.attach(label2, 1, 0, 1, 1)
+
+        label3 = Gtk.Label(label="Neuer Wert")
+        label3.set_name("header_label3")
+        label3.set_xalign(0)  # Align text to the left
+        header_grid.attach(label3, 2, 0, 1, 1)
+
+        label4 = Gtk.Label(label="")
+        label4.set_name("header_label4")
+        label4.set_xalign(0)  # Align text to the left
+        header_grid.attach(label4, 3, 0, 1, 1)
+
+
+
 
         self.pack_start(header_grid, False, False, 20)
 
-        # Form container
+
         self.form_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-        self.form_box.set_margin_top(20)
-        scrolled = Gtk.ScrolledWindow()
-        scrolled.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
-        scrolled.add(self.form_box)
-        self.pack_start(scrolled, True, True, 0)
+        self.form_box.set_name("form_container")
+        self.parent_window.set_resizable(True)
+        # Form container
+        form_grid = Gtk.Grid()
+        form_grid.set_name("form_grid")
+        form_grid.set_row_spacing(30)
+        form_grid.set_column_spacing(10)
+        #form_grid.set_margin_top(10)
+        form_grid.set_margin_start(10)
+        form_grid.set_margin_end(10)
+
+        # Supervisor (Aufsichtsperson)
+        supervisor_label = Gtk.Label(label="Aufsichtsperson:")
+        supervisor_label.set_name("category")
+        supervisor_label.set_xalign(0)  # Align text to the left
+
+        supervisor_current = Gtk.Label(label="Max Mustermann") # TODO: Populate from API @chris
+        supervisor_current.set_name("current")
+
+        supervisor_dropdown = Gtk.ComboBoxText()
+        supervisor_dropdown.set_name("dropdown")
+        supervisor_dropdown.set_hexpand(True)  # Allow it to expand in the grid
+        supervisor_dropdown.append_text("Bitte auswählen...")
+        supervisor_dropdown.append_text("Person 1") # TODO: Populate from API @chris
+        supervisor_dropdown.append_text("Person 2")
+        supervisor_dropdown.set_active(0)  # Select the first option by default
+
+        change_button = Gtk.Button(label="Ändern")
+        change_button.set_name("change_button")
+
+        form_grid.attach(supervisor_label, 0, 0, 1, 1)  # Column 0, Row 0
+        form_grid.attach(supervisor_current, 1, 0, 1, 1)  # Column 1, Row 0
+        form_grid.attach(supervisor_dropdown, 2, 0, 1, 1)  # Column 2, Row 0
+        form_grid.attach(change_button, 3, 0, 1, 1)  # Column 3, Row 0
+
+
+        # Activity name
+        activity_label = Gtk.Label(label="Aktivitätsname:")
+        activity_label.set_name("category")
+        activity_label.set_xalign(0)
+
+        activity_current = Gtk.Label(label="Fußball") # TODO: Populate from API @chris
+        activity_current.set_name("current")
+
+        activity_entry = Gtk.Entry()
+        activity_entry.set_placeholder_text("Aktivitätsname")
+        activity_entry.set_name("inputfield")
+
+        change_button = Gtk.Button(label="Ändern")
+        change_button.set_name("change_button")
+
+        form_grid.attach(activity_label, 0, 1, 1, 1)  # Column 0, Row 1
+        form_grid.attach(activity_current, 1, 1, 1, 1)  # Column 1, Row 1
+        form_grid.attach(activity_entry, 2, 1, 1, 1)  # Column 2, Row 1
+        form_grid.attach(change_button, 3, 1, 1, 1)  # Column 3, Row 1
+
+        # Activity category
+        category_label = Gtk.Label(label="AG-Kategorie:")
+        category_label.set_name("category")
+        category_label.set_xalign(0)
+
+        category_current = Gtk.Label(label="Sport") # TODO: Populate from API @chris
+        category_current.set_name("current")
+
+        category_dropdown = Gtk.ComboBoxText()
+        category_dropdown.set_hexpand(True)
+        category_dropdown.set_name("dropdown")
+        category_dropdown.append_text("Bitte auswählen...")
+        category_dropdown.append_text("Sport") # TODO: Populate from API @chris
+        category_dropdown.append_text("Kunst")
+        category_dropdown.append_text("Musik")
+        category_dropdown.set_active(0)
+
+        change_button = Gtk.Button(label="Ändern")
+        change_button.set_name("change_button")
+
+        form_grid.attach(category_label, 0, 2, 1, 1)  # Column 0, Row 2
+        form_grid.attach(category_current, 1, 2, 1, 1)  # Column 1, Row 2
+        form_grid.attach(category_dropdown, 2, 2, 1, 1)  # Column 2, Row 2
+        form_grid.attach(change_button, 3, 2, 1, 1)  # Column 3, Row 2
+
+        # Maximum participants
+        capacity_label = Gtk.Label(label="Maximale Kinderanzahl:")
+        capacity_label.set_name("category")
+        capacity_label.set_xalign(0)
+
+        capacity_current = Gtk.Label(label="20") # TODO: Populate from API
+        capacity_current.set_name("current")
+
+        capacity_entry = Gtk.Entry()
+        capacity_entry.set_placeholder_text("Maximale Anzahl")
+        capacity_entry.set_name("inputfield")
+
+
+        change_button = Gtk.Button(label="Ändern")
+        change_button.set_name("change_button")
+
+        form_grid.attach(capacity_label, 0, 3, 1, 1)  # Column 0, Row 3
+        form_grid.attach(capacity_current, 1, 3, 1, 1)  # Column 1, Row 3
+        form_grid.attach(capacity_entry, 2, 3, 1, 1)  # Column 2, Row 3
+        form_grid.attach(change_button, 3, 3, 1, 1)  # Column 3, Row 3
+
+        # Add grid to the container
+        self.pack_start(form_grid, True, True, 0)
+
 
     def _create_form_row(self, label: str, current_value: str, is_dropdown: bool = False,
                          options: List[str] = None) -> Gtk.Box:
@@ -192,30 +309,44 @@ class ChangeRoomDataWindow(Gtk.Box):
             
             #subheading {{
                 font-family: "Inter", sans-serif;
-                font-size: 24px;
+                font-size: 32px;
                 color: {Colors.FONT};
             }}
             
             #help_button {{
+                font-family: "Inter", sans-serif;
                 background: {Colors.HELP_BUTTON};
                 color: {Colors.FONT};
                 border: 2px solid {Colors.FONT};
                 border-radius: 45px;
                 padding: 10px 25px;
+                font-family: "Inter", sans-serif;
                 font-size: 20px;
+                box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
+            }}
+            #help_button:hover {{
+                box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
             }}
             
             #header_line {{
                 border-bottom: 1px solid {Colors.FONT};
-                margin-bottom: 10px;
             }}
             
-            #header_label {{
+            #header_label1, #header_label2, #header_label3, #header_label4 {{
                 font-family: "Inter", sans-serif;
                 font-size: 24px;
                 font-weight: 600;
+                min-width: 250px;
                 color: {Colors.FONT};
                 padding: 10px;
+            }}
+            
+            #header_label1 {{
+                min-width: 260px;
+            }}
+            
+            #header_label2 {{
+                min-width: 215px;
             }}
             
             #inputblock {{
@@ -227,6 +358,15 @@ class ChangeRoomDataWindow(Gtk.Box):
                 font-size: 24px;
                 color: {Colors.FONT};
                 min-width: 200px;
+            }}
+            
+            #dropdown {{
+                font-family: "Inter", sans-serif;
+                background-color: {Colors.LIST_BG};
+                border-radius: 10px;
+                font-size: 24px;
+                color: {Colors.FONT};
+                min-width: 180px;
             }}
             
             #current {{
@@ -250,14 +390,18 @@ class ChangeRoomDataWindow(Gtk.Box):
             
             #change_button {{
                 font-family: "Inter", sans-serif;
-                background-color: {Colors.GREEN};
+                background: {Colors.GREEN};
                 color: {Colors.FONT};
                 border: none;
                 border-radius: 10px;
                 padding: 10px 20px;
                 font-size: 24px;
-                font-weight: 500;
+                font-weight: 600;
                 min-width: 120px;
+                box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
+            }}
+            #change_button:hover {{
+                box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
             }}
             
             #line {{
